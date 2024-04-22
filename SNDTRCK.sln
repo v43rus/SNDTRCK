@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNDTRCK", "SNDTRCK\SNDTRCK.csproj", "{66E231E6-99D2-41AC-BAD3-FB3822AA7478}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNDTRCK", "SNDTRCK\SNDTRCK.csproj", "{66E231E6-99D2-41AC-BAD3-FB3822AA7478}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseContext", "DbContext\DatabaseContext.csproj", "{5086D697-4A1F-47E6-8408-D841CBB6BCDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{66E231E6-99D2-41AC-BAD3-FB3822AA7478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66E231E6-99D2-41AC-BAD3-FB3822AA7478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66E231E6-99D2-41AC-BAD3-FB3822AA7478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5086D697-4A1F-47E6-8408-D841CBB6BCDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5086D697-4A1F-47E6-8408-D841CBB6BCDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5086D697-4A1F-47E6-8408-D841CBB6BCDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5086D697-4A1F-47E6-8408-D841CBB6BCDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

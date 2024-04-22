@@ -1,6 +1,8 @@
-﻿namespace DbContext
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace DatabaseContext
 {
-    public class Class1
+    public class SNDTRCKContext : DbContext
     {
 
     }
