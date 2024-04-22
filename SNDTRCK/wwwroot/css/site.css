@@ -18,5 +18,21 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 1280px;
+    margin-bottom: 60px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between !important;
+    margin-top: 10px;
+    padding: 10px;
+    min-width: 1280px;
+}
+
+#sndtrck-logo {
+    width: 200px;
 }
