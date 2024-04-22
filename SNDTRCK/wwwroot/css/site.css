@@ -30,7 +30,11 @@ nav {
     justify-content: space-between !important;
     margin-top: 10px;
     padding: 10px;
-    min-width: 1280px;
+    min-width: 960px;
+}
+
+footer {
+    bottom: 0px;
 }
 
 #sndtrck-logo {

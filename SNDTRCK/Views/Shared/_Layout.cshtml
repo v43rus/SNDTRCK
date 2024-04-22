@@ -5,14 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@ViewData["Title"] - SNDTRCK</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/SNDTRCK.styles.css" asp-append-version="true" />
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow">
 			<div>
-				<a href="index"><img id="sndtrck-logo" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>
+				<a href="/Home/index"><img id="sndtrck-logo" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>
 			</div>
 			<div>
 			<partial name="_LoginPartial" />
