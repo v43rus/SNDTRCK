@@ -5,8 +5,6 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SNDTRCK", "SNDTRCK\SNDTRCK.csproj", "{66E231E6-99D2-41AC-BAD3-FB3822AA7478}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbContext", "DbContext\DbContext.csproj", "{F297E10D-FD0A-4809-AE64-01D905850FBC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{66E231E6-99D2-41AC-BAD3-FB3822AA7478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66E231E6-99D2-41AC-BAD3-FB3822AA7478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66E231E6-99D2-41AC-BAD3-FB3822AA7478}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F297E10D-FD0A-4809-AE64-01D905850FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F297E10D-FD0A-4809-AE64-01D905850FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F297E10D-FD0A-4809-AE64-01D905850FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F297E10D-FD0A-4809-AE64-01D905850FBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
