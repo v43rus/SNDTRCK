@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using SNDTRCK.Models.Users;
 
 namespace SNDTRCK.Models;
 
-public partial class Dfs126605Context : DbContext
+public partial class SNDTRCKContext : DbContext
 {
-    public Dfs126605Context()
+    public SNDTRCKContext()
     {
     }
 
-    public Dfs126605Context(DbContextOptions<Dfs126605Context> options)
+    public SNDTRCKContext(DbContextOptions<SNDTRCKContext> options)
         : base(options)
     {
     }

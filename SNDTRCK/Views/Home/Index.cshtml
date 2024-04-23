@@ -1,6 +1,9 @@
-﻿@{
+﻿@using SNDTRCK.Models.Users
+@{
 	ViewData["Title"] = "Home Page";
 }
+
+@model List<AspNetUser>
 
 <div class="text-center">
 	<section class="home-view" id="home-hero-view">
@@ -15,6 +18,11 @@
 			<!-- Här har vi bilderna -->
 		</article>
 	</section>
+
+	@foreach (var user in Model)
+	{
+		<p>@user.Email</p>
+	}
 
 	<section class="home-view" id="home-top-5">
 		<h3>
