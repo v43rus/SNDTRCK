@@ -4,23 +4,38 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@ViewData["Title"] - SNDTRCK</title>
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<!--<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
 	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/header.css" asp-append-version="true"/>
 </head>
 <body>
+
 	<header>
-		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow">
-			<div>
-				<a href="/Home/index"><img id="sndtrck-logo" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>
+		<section>
+            <div>
+                <!--<a href="/Home/index"><img id="sndtrck-logo" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>-->
+				<p id="header-logo-text">SNDTRCK</p>
+            </div>
+
+			<div id="header-icon-container">
+				<input id="header-searchbar" type="text" placeholder="Search..">
+                <img class="header-icon" src="~/media/icons/star.png" />
+                <img class="header-icon" src="~/media/icons/cart.png" />
 			</div>
-			<div>
-			<partial name="_LoginPartial" />
-			</div>
+
+		</section>
+
+
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow">
+			<p class="navbar-category-text">Categoires</p>
+			<p class="navbar-category-text">Categoires</p>
+			<p class="navbar-category-text">Categoires</p>
 		</nav>
 	</header>
+
 	<div class="container">
-		<main role="main" class="pb-3">
+		<main role="main" class="pb-3" >
 			@RenderBody()
 		</main>
 	</div>
@@ -33,6 +48,7 @@
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/js/header.js"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,0 +1,126 @@
+﻿
+@font-face{
+    font-family: inter;
+    src: url(/fonts/Inter/Inter-VariableFont_slnt,wght.ttf)
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/*To make the fixed header not cover any content*/
+.container{
+    padding-top: 18vh;
+}
+
+
+header {
+    height: 18vh;
+    width: 100%;
+    background-color: white;
+
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+#header-logo-text {
+    color: #0032D2;
+    font-size: 64px;
+    font-weight: 800;
+    margin: 0 0 0 5%;
+    font-family: inter;
+
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+
+/*The high part that contains logo and icons (not nav with categories)*/
+header section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+#header-icon-container {
+    margin: 0 10% 0 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#header-searchbar {
+    height: 25px;
+    width: 250px;
+    background-image: url('/media/icons/search.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 80%;
+    background-position: 98% 20%;
+    padding: 0 5% 0 0;
+}
+
+.header-icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+    margin: 0 0 0 35px;
+}
+
+
+/*Navbar*/
+nav{
+    margin: 0;
+    height: 5vh;
+    background-color: white !important;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+
+    position: fixed;
+    top: 0;
+}
+
+.navbar-category-text{
+    color: black;
+    font-weight: bolder;
+    margin: 0 2% 0 2%;
+    font-size: 1.2em;
+}
+
+
+
+
+/* #region Media queries*/
+    /*For phones*/
+    @media screen and (max-width: 599px) {
+
+    }
+    /*For tablet potrait up*/
+    @media screen and (min-width: 600px) {
+
+    }
+
+    /*For tablet landscape up + small computers*/
+    @media screen and (min-width: 900px) {
+
+    }
+    /*For desktop up*/
+    @media screen and (min-width: 1200px) {
+
+    }
+    /*For big desktop*/
+    @media screen and (min-width: 1800px) {
+    }
