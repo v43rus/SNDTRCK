@@ -17,6 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Pages\Dashboard\" />
+    <Folder Include="Areas\Admin\Views\NewFolder\" />
     <Folder Include="Areas\Identity\Pages\Account\NewFolder\" />
   </ItemGroup>
 

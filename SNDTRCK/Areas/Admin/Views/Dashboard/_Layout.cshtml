@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+        Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="center-text">Admin Dashboard</h1>
+
+<div>
+    <ul class="list-group list-group-horizontal justify-content-center">
+        <li class="list-group-item"><a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Main</a></li>
+        <li class="list-group-item"><a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="ManageOrders">Manage Orders</a></li>
+        <li class="list-group-item"><a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="ManageProducts">Manage Products</a></li>
+        <li class="list-group-item"><a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="ManageUsers">Manage Users</a></li>
+    </ul>
+</div>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

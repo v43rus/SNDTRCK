@@ -24,11 +24,28 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			_context = context;
 			_userManager = userManager;
 		}
-
 		
 		public IActionResult Index()
 		{
 			return View();
 		}
+
+		public IActionResult ManageOrders()
+		{
+			return View();
+		}
+
+		public IActionResult ManageProducts()
+		{
+			return View();
+		}
+
+		public IActionResult ManageUsers()
+		{
+			var db = _context;
+			return View(db);
+		}
+
+
 	}
 }
