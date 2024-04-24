@@ -51,9 +51,8 @@ header {
     flex-direction: row;
 }
 
-#desktop-header-searchbar {
-    height: 25px;
-    width: 250px;
+/*Shared styles of searchbar for both desktop and mobile verision*/
+.searchbar {
     background-image: url('/media/icons/search.png');
     background-repeat: no-repeat;
     background-position: right center;
@@ -121,128 +120,140 @@ nav{
 /*For phones*/
 @media screen and (max-width: 599px) {
 }
-    /*For tablet potrait up (used as standard mobile verision of site)*/
-    @media screen and (max-width: 899px) {
+/*For tablet potrait up (used as standard mobile verision of site)*/
+@media screen and (max-width: 899px) {
         
-        header{
-            height: 10%;
-        }
-
-        /*#region mobile menu/nav */
-        .hide-in-mobile{
-            display: none;
-        }
-
-        /*This div is necessary to position elements in the center*/
-        #center-header-content-div {
-            justify-content: center;
-            align-items: center;
-        }
-
-        /*Shopping cart and star icons*/
-        .header-icon {
-            width: 30px;
-            height: 30px;
-        }
-
-        /*The white menu that slides in from the right*/
-        nav {
-            overflow: hidden;
-            width: 75%;
-            height: 90%;
-            background-color: white;
-            position: fixed;
-            bottom: 0;
-            left: -75%;
-            transition: left .5s ease-out;
-        }
-
-        /*The <ul> list with category items in nav*/
-        #navigation-list {
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-
-        /*Each <li>-element or category item in the nav*/
-        .nav-category-text {
-            margin: 8% 0 0 5%;
-            font-size: 3em;
-        }
-
-        /*Anchor tags inside <li> elements above*/
-        .nav-category-text a:active {
-            text-decoration: underline;
-        }
-
-        /*Mobile menu toggle icon*/
-        .hamburger {
-            cursor: pointer;
-            float: left;
-            padding: 40px 20px;
-            
-            position: absolute;
-            left: 8%;
-        }
-
-        /*Mobile menu toggle icon lines*/
-        .hamburger-line {
-            background: black;
-            display: block;
-            height: 4px;
-            position: relative;
-            width: 48px;
-        }
-
-        .hamburger-line::before,
-        .hamburger-line::after {
-            background: black;
-            content: "";
-            display: block;
-            height: 100%;
-            position: absolute;
-            transition: all .2s ease-out;
-            width: 100%;
-        }
-
-        .hamburger-line::before {
-            top: 12px;
-        }
-
-        .hamburger-line::after {
-            top: -12px;
-        }
-
-        /*Hide checkbox for mobile menu*/
-        #mobile-menu-checkbox {
-            display: none;
-        }
-
-        /*When checkbox is checked*/
-        .mobile-menu-checkbox:checked ~ nav {
-            left: 0;
-        }
-
-        .mobile-menu-checkbox:checked ~ #header-content-section .hamburger .hamburger-line {
-            background: transparent;
-        }
-
-        .mobile-menu-checkbox:checked ~ #header-content-section .hamburger .hamburger-line::before {
-            transform: rotate(-45deg);
-            top: 0;
-        }
-
-        .mobile-menu-checkbox:checked ~ #header-content-section .hamburger .hamburger-line::after {
-            transform: rotate(45deg);
-            top: 0;
-        }
-
-        /*#endregion*/
+    header{
+        height: 10%;
     }
+
+    /*#region mobile menu/nav */
+    .hide-in-mobile{
+        display: none;
+    }
+
+    /*This div is necessary to position elements in the center*/
+    #center-header-content-div {
+        justify-content: center;
+        align-items: center;
+    }
+
+    /*Shopping cart and star icons*/
+    .header-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    /*The white menu that slides in from the right*/
+    nav {
+        overflow: hidden;
+        width: 75%;
+        height: 90%;
+        background-color: white;
+        position: fixed;
+        bottom: 0;
+        left: -75%;
+        transition: left .5s ease-out;
+    }
+
+    /*The <ul> list with category items in nav*/
+    #navigation-list {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    /*Each <li>-element or category item in the nav*/
+    .nav-category-text {
+        margin: 8% 0 0 5%;
+        font-size: 2.8em;
+        border-bottom: 1.5px solid grey;
+        width: 80%;
+
+        display: flex;
+        justify-content: space-between;
+    }
+
+    /*Anchor tags inside <li> elements above*/
+    .nav-category-text a:active {
+        text-decoration: underline;
+    }
+
+    /*Style for mobile searchbar*/
+    #mobile-header-searchbar {
+        width: 80%;
+        aspect-ratio: 7/1;
+        margin: 8% 0 0 5%;
+        font-size: 2.5em;
+    }
+
+    /*Mobile menu toggle icon*/
+    .hamburger {
+        cursor: pointer;
+        float: left;
+        padding: 40px 20px;
+        position: absolute;
+        left: 8%;
+    }
+
+    /*Mobile menu toggle icon lines*/
+    .hamburger-line {
+        background: black;
+        display: block;
+        height: 4px;
+        position: relative;
+        width: 48px;
+    }
+
+    .hamburger-line::before,
+    .hamburger-line::after {
+        background: black;
+        content: "";
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all .2s ease-out;
+        width: 100%;
+    }
+
+    .hamburger-line::before {
+        top: 12px;
+    }
+
+    .hamburger-line::after {
+        top: -12px;
+    }
+
+    /*Hide checkbox for mobile menu*/
+    #mobile-menu-checkbox {
+        display: none;
+    }
+
+    /*When checkbox is checked*/
+    .mobile-menu-checkbox:checked ~ nav {
+        left: 0;
+    }
+
+    .mobile-menu-checkbox:checked ~ #header-content-section .hamburger .hamburger-line {
+        background: transparent;
+    }
+
+    .mobile-menu-checkbox:checked ~ #header-content-section .hamburger .hamburger-line::before {
+        transform: rotate(-45deg);
+        top: 0;
+    }
+
+    .mobile-menu-checkbox:checked ~ #header-content-section .hamburger .hamburger-line::after {
+        transform: rotate(45deg);
+        top: 0;
+    }
+
+    /*#endregion*/
+}
 
     /*Breakpoint for mobile verision of site*/
 
@@ -251,11 +262,6 @@ nav{
         header {
             height: 18vh;
         }
-
-        /*To make the fixed header not cover any content*/
-        .container {
-            padding-top: 18vh;
-        }
         
         #center-header-content-div {
             justify-content: flex-start;
@@ -264,8 +270,16 @@ nav{
 
         /*Shopping cart and star icons*/
         .header-icon {
-            width: 1.8em;
-            height: 1.8em;
+            width: 1.6em;
+            height: 1.6em;
+        }
+
+        /*Style for desktop verision of the searchbar*/
+        #desktop-header-searchbar {
+            height: 25px;
+            width: 250px;
+
+            font-size: 1em;
         }
         
         nav {
