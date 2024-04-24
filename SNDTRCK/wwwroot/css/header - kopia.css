@@ -9,8 +9,14 @@ body {
     margin: 0;
 }
 
+/*To make the fixed header not cover any content*/
+.container{
+    padding-top: 18vh;
+}
+
 
 header {
+    height: 18vh;
     width: 100%;
     position: fixed;
     left: 0;
@@ -24,17 +30,15 @@ header {
     color: #0032D2;
     font-size: 64px;
     font-weight: 800;
-    margin: 0 0 0 2%;
+    margin: 0 0 0 5%;
     font-family: inter;
     user-select: none;
     -webkit-user-drag: none;
-
-    position: absolute;
 }
 
 
 /*The high part that contains logo and icons (not nav with categories)*/
-#header-content-section {
+header section {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -43,12 +47,11 @@ header {
     background-color: white;
 }
 
-/*This div is necessary to position elements in the center*/
-#center-header-content-div {
-    width: 100%;
-    height: 100%;
+#header-icon-container {
+    margin: 0 10% 0 0;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 #desktop-header-searchbar {
@@ -62,18 +65,9 @@ header {
     padding: 0 5% 0 0;
 }
 
-#header-icon-container {
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: absolute;
-    right: 8%;
-}
-
-/*Shopping cart and star icons*/
 .header-icon {
-
+    width: 25px;
+    height: 25px;
     cursor: pointer;
     user-select: none;
     -webkit-user-drag: none;
@@ -90,25 +84,12 @@ nav{
     align-content: center;
 }
 
-/*Each option in nav*/
 .nav-category-text{
     color: black;
     font-weight: bolder;
     font-family: inter;
 }
 
-/*The anchor link in each option in nav*/
-.nav-category-text a {
-    text-decoration: none;
-    position: relative;
-    color: #0032D2;
-    display: inline-block;
-}
-.nav-category-text a:visited {
-    color: #0032D2;
-}
-
-/*The <ul> list contanining all options in nav*/
 #navigation-list{
     list-style: none;
     display: flex;
@@ -124,37 +105,21 @@ nav{
     /*For tablet potrait up (used as standard mobile verision of site)*/
     @media screen and (max-width: 899px) {
         
-        header{
-            height: 10%;
-        }
-
         /*#region mobile menu/nav */
-        .hide-in-mobile{
+        #desktop-header-searchbar{
             display: none;
-        }
-
-        /*This div is necessary to position elements in the center*/
-        #center-header-content-div {
-            justify-content: center;
-            align-items: center;
-        }
-
-        /*Shopping cart and star icons*/
-        .header-icon {
-            width: 30px;
-            height: 30px;
         }
 
         /*The white menu that slides in from the right*/
         nav {
             overflow: hidden;
-            width: 75%;
-            height: 90%;
+            width: 100%;
+            height: 82vh;
             background-color: white;
             position: fixed;
             bottom: 0;
-            left: -75%;
-            transition: left .5s ease-out;
+            max-width: 0;
+            transition: max-width .5s ease-out;
         }
 
         /*The <ul> list with category items in nav*/
@@ -171,12 +136,7 @@ nav{
         /*Each <li>-element or category item in the nav*/
         .nav-category-text {
             margin: 8% 0 0 5%;
-            font-size: 3em;
-        }
-
-        /*Anchor tags inside <li> elements above*/
-        .nav-category-text a:active {
-            text-decoration: underline;
+            font-size: 2em;
         }
 
         /*Mobile menu toggle icon*/
@@ -184,18 +144,15 @@ nav{
             cursor: pointer;
             float: left;
             padding: 40px 20px;
-            
-            position: absolute;
-            left: 8%;
         }
 
         /*Mobile menu toggle icon lines*/
         .hamburger-line {
             background: black;
             display: block;
-            height: 4px;
+            height: 2px;
             position: relative;
-            width: 48px;
+            width: 24px;
         }
 
         .hamburger-line::before,
@@ -210,11 +167,11 @@ nav{
         }
 
         .hamburger-line::before {
-            top: 12px;
+            top: 5px;
         }
 
         .hamburger-line::after {
-            top: -12px;
+            top: -5px;
         }
 
         /*Hide checkbox for mobile menu*/
@@ -224,19 +181,19 @@ nav{
 
         /*When checkbox is checked*/
         .mobile-menu-checkbox:checked ~ nav {
-            left: 0;
+            max-width: 75%;
         }
 
-        .mobile-menu-checkbox:checked ~ #header-content-section .hamburger .hamburger-line {
+        .mobile-menu-checkbox:checked ~ .hamburger .hamburger-line {
             background: transparent;
         }
 
-        .mobile-menu-checkbox:checked ~ #header-content-section .hamburger .hamburger-line::before {
+        .mobile-menu-checkbox:checked ~ .hamburger .hamburger-line::before {
             transform: rotate(-45deg);
             top: 0;
         }
 
-        .mobile-menu-checkbox:checked ~ #header-content-section .hamburger .hamburger-line::after {
+        .mobile-menu-checkbox:checked ~ .hamburger .hamburger-line::after {
             transform: rotate(45deg);
             top: 0;
         }
@@ -248,26 +205,6 @@ nav{
 
     /*For tablet landscape up + small computers*/
     @media screen and (min-width: 900px) {
-        header {
-            height: 18vh;
-        }
-
-        /*To make the fixed header not cover any content*/
-        .container {
-            padding-top: 18vh;
-        }
-        
-        #center-header-content-div {
-            justify-content: flex-start;
-            align-items: center;
-        }
-
-        /*Shopping cart and star icons*/
-        .header-icon {
-            width: 1.8em;
-            height: 1.8em;
-        }
-        
         nav {
             margin: 0;
             height: 5vh;
@@ -286,34 +223,8 @@ nav{
             font-size: 1.1em;
         }
 
-        /*Anchor tags inside <li> elements above*/
-        /*When on desktop, underline deocrations are animated*/
-        .nav-category-text a:hover {
-            color: #0032D2;
-        }
-
-        .nav-category-text a::before {
-            content: "";
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: blue;
-            transform: scaleX(0);
-            transform-origin: bottom left;
-            transition: transform 0.3s ease-out;
-            color: aqua;
-        }
-
-        .nav-category-text a:hover::before {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
         /*Hides mobile menu parts*/
-        .hide-in-desktop {
+        #mobile-menu-checkbox, .hamburger{
             display: none;
         }
     }

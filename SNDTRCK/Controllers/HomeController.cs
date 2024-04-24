@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 using SNDTRCK.Data;
 using SNDTRCK.Models;
 using System.Diagnostics;

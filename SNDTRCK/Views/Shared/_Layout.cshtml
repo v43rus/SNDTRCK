@@ -12,33 +12,47 @@
 <body>
 
 	<header>
-		<section>
-            <div>
-                <!--<a href="/Home/index"><img id="sndtrck-logo" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>-->
+		<!--Checkbox needs to be put here in order to control nav style-->
+		<input id="mobile-menu-checkbox" class="mobile-menu-checkbox hide-in-desktop" type="checkbox" onclick="checkIfScroll()" />
+		<section id="header-content-section">
+
+			<!--This div is necessary to position elements in the center-->
+			<div id="center-header-content-div">
+				<!--Mobile nav menu toggle-->
+				<label class="hamburger hide-in-desktop" for="mobile-menu-checkbox"><span class="hamburger-line"></span></label>
+
+				<!--Loggo-->
+				<!--<a href="/Home/index"><img id="sndtrck-logo" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>-->
 				<p id="header-logo-text">SNDTRCK</p>
-            </div>
 
-			<div id="header-icon-container">
-				<input id="header-searchbar" type="text" placeholder="Search..">
-                <img class="header-icon" src="~/media/icons/star.png" />
-                <img class="header-icon" src="~/media/icons/cart.png" />
+				<!--Star and cart icon-->
+				<div id="header-icon-container">
+					<input id="desktop-header-searchbar" class="hide-in-mobile" type="text" placeholder="Search..">
+					<img class="header-icon hide-in-mobile" src="~/media/icons/user.png" />
+					<img class="header-icon" src="~/media/icons/star.png" />
+					<img class="header-icon" src="~/media/icons/cart.png" />
+				</div>
 			</div>
+		</section>	
 
-		</section>
 
-
-		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow">
-			<p class="navbar-category-text">Categoires</p>
-			<p class="navbar-category-text">Categoires</p>
-			<p class="navbar-category-text">Categoires</p>
+		<nav class="nav">
+			<ul id="navigation-list">
+				<input id="mobile-header-searchbar" class="hide-in-desktop" type="text" placeholder="Search..">
+                <li class="nav-category-text"><a href="#">News</a></li>
+				<li class="nav-category-text hide-in-desktop"><a>Log in</a></li>
+				<li class="nav-category-text"><a href="#">Category</a></li>
+				<li class="nav-category-text"><a href="#">Category</a></li>
+				<li class="nav-category-text"><a href="#">Category</a></li>
+			</ul>
 		</nav>
 	</header>
 
-	<div class="container">
-		<main role="main" class="pb-3" >
+	<!--<div class="container">-->
+		<main role="main" >
 			@RenderBody()
 		</main>
-	</div>
+	<!--</div>-->
 
 	<footer class="border-top footer text-muted">
 		<div class="container">
@@ -48,7 +62,7 @@
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
-	<script src="~/js/header.js"></script>
+	<script src="~/js/header.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
