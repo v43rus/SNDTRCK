@@ -1,9 +1,18 @@
 ﻿@using SNDTRCK.Models.Users
+@using Microsoft.AspNetCore.Identity
+
 @{
 	ViewData["Title"] = "Home Page";
 }
 
 @model List<AspNetUser>
+
+@if (User.Identity!.IsAuthenticated && ViewBag.IsAdmin)
+{
+	<div id="admin-header">
+		<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" title="Admin">Access admin dashboard</a>
+	</div>
+}
 
 <div class="text-center">
 	<section class="home-view" id="home-hero-view">
@@ -18,11 +27,6 @@
 			<!-- Här har vi bilderna -->
 		</article>
 	</section>
-
-	@foreach (var user in Model)
-	{
-		<p>@user.Email</p>
-	}
 
 	<section class="home-view" id="home-top-5">
 		<h3>
