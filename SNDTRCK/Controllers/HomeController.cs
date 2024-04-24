@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 using SNDTRCK.Data;
@@ -9,19 +10,31 @@ namespace SNDTRCK.Controllers
 {
 	public class HomeController : Controller
 	{
+		private readonly UserManager<IdentityUser> _userManager;
 		private readonly ILogger<HomeController> _logger;
 		private readonly SNDTRCKContext _context;
 
-		public HomeController(SNDTRCKContext context, ILogger<HomeController> logger)
+
+		public HomeController(SNDTRCKContext context, UserManager<IdentityUser> userManager, ILogger<HomeController> logger)
 		{
 			_logger = logger;
 			_context = context;
+			_userManager = userManager;
 		}
 
-		public IActionResult Index()
+
+
+		public async Task<IActionResult> Index()
 		{
-			var user = _context.AspNetUsers.ToList();
-			return View(user);
+			// Checks if user is authenticated before returning IsAdmin to the view
+			if (User.Identity!.IsAuthenticated)
+			{ 
+			var user = await _userManager.GetUserAsync(User);
+			var isAdmin = await _userManager.IsInRoleAsync(user!, "Admin");
+
+			ViewBag.IsAdmin = isAdmin;
+			}
+			return View();
 		}
 
 		public IActionResult Privacy()
