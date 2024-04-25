@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SNDTRCK.Controllers;
 using SNDTRCK.Models;
+using SNDTRCK.Models.User;
 
 namespace SNDTRCK.Areas.Admin.Controllers
 {
@@ -16,12 +17,14 @@ namespace SNDTRCK.Areas.Admin.Controllers
 		private readonly UserManager<IdentityUser> _userManager;
 		private readonly ILogger<HomeController> _logger;
 		private readonly SNDTRCKContext _context;
+		private readonly SNDTRCKContext _context2;
 
 
 		public DashboardController(SNDTRCKContext context, UserManager<IdentityUser> userManager, ILogger<HomeController> logger)
 		{
 			_logger = logger;
 			_context = context;
+			_context2 = context;
 			_userManager = userManager;
 		}
 		
@@ -42,10 +45,12 @@ namespace SNDTRCK.Areas.Admin.Controllers
 
 		public IActionResult ManageUsers()
 		{
-			var db = _context;
-			return View(db);
+			var viewModel = new ManageUsersViewModel
+			{
+				Users = _context.AspNetUsers.ToList(),
+				Roles = _context2.AspNetUserRoles.ToList(),
+			};
+			return View(viewModel);
 		}
-
-
 	}
 }

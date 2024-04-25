@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using SNDTRCK.Models.User;
 using SNDTRCK.Models.Users;
 
 namespace SNDTRCK.Models;
@@ -17,6 +18,10 @@ public partial class SNDTRCKContext : DbContext
 	}
 
 	public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+
+	public virtual DbSet<Product> Products { get; set; }
+
+	public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
 
 	public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
 
@@ -41,6 +46,34 @@ public partial class SNDTRCKContext : DbContext
 			entity.Property(e => e.NormalizedName).HasMaxLength(256);
 		});
 
+		modelBuilder.Entity<Product>(entity =>
+		{
+			entity.HasKey(e => e.ProductId).HasName("PK__Products__B40CC6CD38CB737A");
+
+			entity.Property(e => e.CoverImageLink)
+				.HasMaxLength(255)
+				.IsUnicode(false);
+			entity.Property(e => e.Description).HasColumnType("text");
+			entity.Property(e => e.Genre)
+				.HasMaxLength(50)
+				.IsUnicode(false);
+			entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
+			entity.Property(e => e.Title)
+				.HasMaxLength(255)
+				.IsUnicode(false);
+		});
+
+		{
+			modelBuilder.Entity<AspNetUserRole>(entity =>
+			{
+				entity.HasKey(e => new { e.UserId, e.RoleId });
+
+				entity.HasIndex(e => e.RoleId, "IX_AspNetUserRoles_RoleId");
+			});
+
+			OnModelCreatingPartial(modelBuilder);
+		};
+
 		modelBuilder.Entity<AspNetRoleClaim>(entity =>
 		{
 			entity.HasIndex(e => e.RoleId, "IX_AspNetRoleClaims_RoleId");
@@ -60,18 +93,6 @@ public partial class SNDTRCKContext : DbContext
 			entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
 			entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
 			entity.Property(e => e.UserName).HasMaxLength(256);
-
-			entity.HasMany(d => d.Roles).WithMany(p => p.Users)
-				.UsingEntity<Dictionary<string, object>>(
-					"AspNetUserRole",
-					r => r.HasOne<AspNetRole>().WithMany().HasForeignKey("RoleId"),
-					l => l.HasOne<AspNetUser>().WithMany().HasForeignKey("UserId"),
-					j =>
-					{
-						j.HasKey("UserId", "RoleId");
-						j.ToTable("AspNetUserRoles");
-						j.HasIndex(new[] { "RoleId" }, "IX_AspNetUserRoles_RoleId");
-					});
 		});
 
 		modelBuilder.Entity<AspNetUserClaim>(entity =>

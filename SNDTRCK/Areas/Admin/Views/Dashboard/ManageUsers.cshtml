@@ -1,8 +1,8 @@
 ﻿@using SNDTRCK.Models
-@using SNDTRCK.Models.Users
+@using SNDTRCK.Models.User
 
 
-@model SNDTRCKContext
+@model ManageUsersViewModel
 @{
 	Layout = "_Layout";
 }
@@ -19,12 +19,14 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var user in Model.AspNetUsers)
+		@foreach (var user in Model.Users!)
 		{
 			<tr>
 				<th scope="col">@user.Email</th>
 				<th scope="col">@user.PhoneNumber</th>
-				<th scope="col"></th>
+				<th scope="col">Roles</th>
+
+				
 				<th scope="col">
 					<button type="button" class="btn btn-success">Edit</button>
 					<button type="button" class="btn btn-danger">Delete</button>
