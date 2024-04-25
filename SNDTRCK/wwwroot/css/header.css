@@ -163,13 +163,21 @@ nav{
         transition: left .5s ease-out;
     }
 
+    /*Label that makes the mobile menu close if you press outside it*/
+    #close-mobile-menu-label{
+        width: 25%;
+        height: 90%; 
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        display: none; /*Will be displayed when checkbox is checked*/
+    }
     /*The <ul> list with category items in nav*/
     #navigation-list {
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
         padding-left: 1em !important;
-
         position: absolute;
         top: 0;
         right: 0;
@@ -259,6 +267,10 @@ nav{
     /*When checkbox is checked*/
     .mobile-menu-checkbox:checked ~ nav {
         left: 0;
+    }
+
+    .mobile-menu-checkbox:checked ~ #close-mobile-menu-label {
+        display: initial;
     }
 
     .mobile-menu-checkbox:checked ~ #header-content-section .hamburger .hamburger-line {
