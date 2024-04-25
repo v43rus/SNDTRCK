@@ -1,1 +1,7 @@
-﻿
+﻿#admin-wrapper {
+    min-width: 1280px;
+}
+
+#admin-wrapper h2 {
+    width: fit-content;
+}

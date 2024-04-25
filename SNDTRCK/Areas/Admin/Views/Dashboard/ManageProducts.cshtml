@@ -1,4 +1,7 @@
-﻿@using SNDTRCK.Models
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using SNDTRCK.Models
 
 @model List<Product>
 @{
@@ -10,14 +13,19 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th scope="col">Email</th>
-			<th scope="col">Phone Nr</th>
-			<th scope="col">Role</th>
-			<th scope="col">Actions</th>
+			<th scope="col">Id</th>
+			<th scope="col">Title</th>
+			<th scope="col">Artist</th>
+			<th scope="col">Genre</th>
+			<th scope="col">Price</th>
 		</tr>
 	</thead>
 	<tbody>
-			<tr>
+		<tr>
+			@if (Model != null)
+			{
+			@foreach (var product in Model)
+			{
 				<th scope="col"></th>
 				<th scope="col"></th>
 				<th scope="col">Roles</th>
@@ -25,8 +33,38 @@
 
 				<th scope="col">
 					<button type="button" class="btn btn-success">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
 				</th>
-			</tr>
+				}
+			}
+			else
+			{
+			}
+		</tr>
 	</tbody>
 </table>
+
+<h3>Add New Product</h3>
+<form asp-area="Admin" asp-controller="dashboard" asp-action="SaveNewProduct">
+
+	<div class="form-group">
+	<label for="title">Title </label>
+	<input type="text" id="title" name="title" placeholder="Album Title..." required />
+	</div>
+
+	<div class="form-group">
+		<label for="genre">Genre: </label>
+		<input type="text" id="genre" name="genre" placeholder="Album Genre..." required />
+	</div>
+
+	<div class="form-group">
+		<label for="price">Price </label>
+		<input type="text" id="price" name="price" placeholder="Album Price..." required />
+	</div>
+
+	<div class="form-group">
+		<label for="album-cover">Upload Cover Image</label>
+		<input type="file" id="album-cover" name="album-cover" class="form-control-file">
+	</div>
+
+		<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Save User" />Submit User</button>
+</form>
