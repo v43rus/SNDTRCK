@@ -35,7 +35,7 @@ main{
     justify-content: flex-start;
     align-items: center;
     padding-top: 18vh;
-    padding-top: 10%;
+    padding-top: 10px;
 
     min-height: 100vh;
 }

@@ -1,18 +1,32 @@
-﻿body {
+﻿:root {
+    --main-blue: #0032D2;
+    --main-orange: #FF3300;
 }
 
-.container {
-
+body {
 }
 
 .home-view {
-    background-color: #FF3300;
+    background-color: var(--main-blue);
     padding: 40px;
     display: flex;
     justify-content: space-between;
     width: 960px;
     margin-bottom: 20px;
 }
+
+#admin-header {
+    width: 960px;
+    text-align: center;
+    padding: 7px;
+    background-color: var(--main-blue);
+}
+
+    #admin-header a {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
 
 #home-hero-view {
     background-color: #FF3300; 

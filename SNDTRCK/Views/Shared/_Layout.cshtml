@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@ViewData["Title"] - SNDTRCK</title>
-	<!--<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/header.css" asp-append-version="true"/>
@@ -21,14 +21,13 @@
 				<!--Mobile nav menu toggle-->
 				<label class="hamburger hide-in-desktop" for="mobile-menu-checkbox"><span class="hamburger-line"></span></label>
 
-				<!--Loggo-->
-				<!--<a href="/Home/index"><img id="sndtrck-logo" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>-->
-				<p id="header-logo-text">SNDTRCK</p>
+				<!--Logo-->
+				<a href="/Home/index"><img id="header-logo-text" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>
 
 				<!--Star and cart icon-->
 				<div id="header-icon-container">
 					<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" placeholder="Search..">
-					<img class="header-icon hide-in-mobile" src="~/media/icons/user.png" />
+					<partial name="_LoginPartial" />
 					<img class="header-icon" src="~/media/icons/star.png" />
 					<img class="header-icon" src="~/media/icons/cart.png" />
 				</div>
