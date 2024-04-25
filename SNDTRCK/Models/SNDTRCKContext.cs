@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using SNDTRCK.Models.User;
 using SNDTRCK.Models.Users;
 
 namespace SNDTRCK.Models;
@@ -18,7 +19,8 @@ public partial class SNDTRCKContext : DbContext
 
 	public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
 
-	public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
+    public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+    public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
 
 	public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
 
@@ -41,7 +43,18 @@ public partial class SNDTRCKContext : DbContext
 			entity.Property(e => e.NormalizedName).HasMaxLength(256);
 		});
 
-		modelBuilder.Entity<AspNetRoleClaim>(entity =>
+        {
+            modelBuilder.Entity<AspNetUserRole>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.RoleId });
+
+                entity.HasIndex(e => e.RoleId, "IX_AspNetUserRoles_RoleId");
+            });
+
+            OnModelCreatingPartial(modelBuilder);
+        };
+
+        modelBuilder.Entity<AspNetRoleClaim>(entity =>
 		{
 			entity.HasIndex(e => e.RoleId, "IX_AspNetRoleClaims_RoleId");
 
