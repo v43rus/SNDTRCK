@@ -1,0 +1,85 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using SNDTRCK.Models
+
+@model List<Product>
+@{
+	Layout = "_Layout";
+}
+
+<h2>Manage Products</h2>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Title</th>
+			<th scope="col">Artist</th>
+			<th scope="col">Genre</th>
+			<th scope="col">Price</th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			@if (Model != null)
+			{
+				@foreach (var product in Model)
+				{
+				<tr>
+					<th scope="col">@product.ProductId</th>
+					<th scope="col">@product.Title</th>
+					<th scope="col">@product.Artist</th>
+					<th scope="col">@product.Genre</th>
+					<th scope="col">@product.Price</th>
+
+
+					<th scope="col">
+						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct">
+							<input type="hidden" name="productId" value="@product.ProductId" />
+							<button type="submit" id="@product.ProductId" class="btn btn-danger">Delete</button>
+						</form>
+					</th>
+				</tr>
+				}
+			}
+		
+	</tbody>
+</table>
+
+<h3>Add New Product</h3>
+<form asp-area="Admin" asp-controller="Product" asp-action="SaveNewProduct">
+
+	<div class="form-group">
+		<label for="title">Title </label>
+		<input type="text" id="title" name="title" placeholder="Album Title..." required />
+	</div>
+
+	<div class="form-group">
+		<label for="genre">Artist: </label>
+		<input type="text" id="artist" name="artist" placeholder="Album Artist..." required />
+	</div>
+
+	<div class="form-group">
+		<label for="genre">Genre: </label>
+		<input type="text" id="genre" name="genre" placeholder="Album Genre..." required />
+	</div>
+
+	<div class="form-group">
+		<label for="genre">Description: </label>
+		<input type="text" id="description" name="description" placeholder="Album Description..." required />
+	</div>
+
+	<div class="form-group">
+		<label for="price">Price </label>
+		<input type="number" id="price" name="price" placeholder="Album Price..." required />
+	</div>
+
+	<div class="form-group">
+		<label for="album-cover">Upload Cover Image</label>
+		<input type="file" id="album-cover" name="album-cover" class="form-control-file">
+	</div>
+
+	<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Save User" />Submit User</button>
+</form>

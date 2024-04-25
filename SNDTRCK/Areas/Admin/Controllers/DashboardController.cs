@@ -13,7 +13,7 @@ namespace SNDTRCK.Areas.Admin.Controllers
 	[Area("Admin")]
 	[Route("Admin/[controller]/[action]")]
 	[Authorize(Roles = "Admin")]
-	public class DashboardController: Controller
+	public class DashboardController : Controller
 	{
 		private readonly UserManager<IdentityUser> _userManager;
 		private readonly ILogger<HomeController> _logger;
@@ -26,7 +26,7 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			_context = context;
 			_userManager = userManager;
 		}
-		
+
 		public IActionResult Index()
 		{
 			return View();
@@ -37,22 +37,11 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			return View();
 		}
 
-		public IActionResult ManageProducts()
-		{
-			var products = _context.Products.ToList();
-			return View(products);
-		}
-
 		public IActionResult ManageUsers()
 		{
 			return View();
 		}
 
-		public ActionResult SaveNewProduct()
-		{
-			Debug.WriteLine("apa");
 
-			return View("Index");
-		}
 	}
 }
