@@ -28,8 +28,8 @@
 				<!--Star and cart icon-->
 				<div id="header-icon-container">
 					<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" placeholder="Search..">
-					<partial name="_LoginPartial" />
-					<img class="header-icon" src="~/media/icons/star.png" />
+					<partial name="_LoginPartial" class="hide-in-mobile"/>
+					<img class="header-icon hide-in-mobile" src="~/media/icons/star.png" />
 					<img class="header-icon" src="~/media/icons/cart.png" />
 				</div>
 			</div>
@@ -39,12 +39,12 @@
 		<nav class="nav">
 			<ul id="navigation-list">
 				<input id="mobile-header-searchbar" class="searchbar hide-in-desktop" type="text" placeholder="Search..">
-				<li class="nav-category-text"><a href="#">News</a><img src="/media/icons/thin-arrow-right.png" class="header-icon hide-in-desktop" /></li>
-				<li class="nav-category-text hide-in-desktop"><a>Log in/Sign up</a><img src="/media/icons/thin-arrow-right.png" class="header-icon hide-in-desktop" /></li>
-				<!--<a href="#"><li class="nav-category-text">Category<img src="/media/icons/thin-arrow-right.png" class="header-icon hide-in-desktop" /></li></a>-->
-				<li class="nav-category-text"><a href="#">Category</a><img src="/media/icons/thin-arrow-right.png" class="header-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="#">Category</a><img src="/media/icons/thin-arrow-right.png" class="header-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="#">Category</a><img src="/media/icons/thin-arrow-right.png" class="header-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="#">News</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text hide-in-desktop"><a>Log in/Sign up</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text hide-in-desktop"><a href="#">Favourites</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="#">Category</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="#">Category</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="#">Category</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
 			</ul>
 		</nav>
 	</header>

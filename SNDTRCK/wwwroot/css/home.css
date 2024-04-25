@@ -2,17 +2,23 @@
     --main-blue: #0032D2;
     --main-orange: #FF3300;
 }
+/*Bör läggas i en root-css fil*/
+@font-face {
+    font-family: inter;
+    src: url(/fonts/Inter/Inter-VariableFont_slnt,wght.ttf)
+}
 
 body {
 }
 
+/*Storleken på denna ställde till det*/
 .home-view {
     background-color: var(--main-blue);
-    padding: 40px;
+    /*padding: 40px;*/
     display: flex;
-    justify-content: space-between;
-    width: 960px;
-    margin-bottom: 20px;
+    /*width: 960px;*/
+    /*margin-bottom: 20px;*/
+    margin-bottom: 7vh;
 }
 
 #admin-header {
@@ -29,18 +35,24 @@ body {
     }
 
 #home-hero-view {
-    background-color: #FF3300; 
+    background-color: #FF3300;
+    justify-content: space-between;
+    align-items: center;
 }
 
     #home-hero-view article {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        margin-left: 5%;
+
     }
 
     #home-hero-view article h2 {
-        font-size: 40px;
+        font-size: 70px;
+        /*font-size: 30px; Tills jag har sorterat media queries*/
         font-weight: 700;
+        font-family: inter;
         color: white;
         width: 100px;
     }
@@ -50,10 +62,19 @@ body {
         color: white;
     }
 
-    #home-hero-view article img {
-        width: 200px;
+    #album-stack-gif-container {
+        width: 32%;
+        aspect-ratio: 1/1;
+        margin: 0 12% 0 0;
     }
 
+    #album-stack-gif{
+
+    }
+/* Behövs ej
+    #home-hero-view article img {
+        width: 200px;
+    }*/
 #home-top-5 {
     background-color: #D8D8D8;
     flex-direction: column;
@@ -105,3 +126,36 @@ body {
     #home-heart-house img {
         width: 275px;
     }
+
+
+
+/* #region Media queries*/
+/*For phones*/
+@media screen and (max-width: 599px) {
+    /*Only used in special cases for really small screens*/
+}
+/*For tablet potrait up (used as standard mobile verision of site)*/
+@media screen and (max-width: 899px) {
+    .home-view {
+        width: 95%;
+    }
+}
+
+/*Breakpoint for mobile verision of site*/
+
+/*For tablet landscape up + small computers*/
+@media screen and (min-width: 900px) {
+    #home-hero-view {
+        height: 83%;
+        height: 78vh;
+    }
+    .home-view {
+        width: 98%;
+    }
+}
+/*For desktop up*/
+@media screen and (min-width: 1200px) {
+}
+/*For big desktop*/
+@media screen and (min-width: 1800px) {
+}

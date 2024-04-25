@@ -11,19 +11,13 @@ body {
 
 
 header {
-    position: sticky;
     width: 100%;
     top: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
 }
 
-#header-logo-text {
-    margin-left: 2%;
-    width: 338px;
-}
 
 
 /*The high part that contains logo and icons (not nav with categories)*/
@@ -61,6 +55,7 @@ header {
     align-items: center;
     position: absolute;
     right: 8%;
+    right: 4%;
 }
 
 /*Shopping cart and star icons*/
@@ -72,6 +67,13 @@ header {
     margin: 0 0 0 35px;
 }
 
+/*Arrow icons in mobile nav
+.mobile-nav-arrow-icon {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+    margin: 0 0 0 0;
+}*/
 
 /*Navbar*/
 nav{
@@ -93,8 +95,9 @@ nav{
 .nav-category-text a {
     text-decoration: none;
     position: relative;
-    color: #0032D2;
+    color: #0032D2 !important;
     display: inline-block;
+    width: 100%;
 }
 .nav-category-text a:visited {
     color: #0032D2;
@@ -115,9 +118,10 @@ nav{
 }
 /*For tablet potrait up (used as standard mobile verision of site)*/
 @media screen and (max-width: 899px) {
-        
-    header{
+
+    header {
         height: 10%;
+        position: fixed;    
     }
 
     /*#region mobile menu/nav */
@@ -131,10 +135,19 @@ nav{
         align-items: center;
     }
 
+    #header-logo-text {
+        width: 15em;
+        margin-left: -2%;
+    }
+
+    #header-icon-container {
+        right: 8%;
+    }
+
     /*Shopping cart and star icons*/
     .header-icon {
-        width: 35px;
-        height: 35px;
+        width: 2em;
+        height: 2em;
     }
 
     /*The white menu that slides in from the right*/
@@ -154,6 +167,7 @@ nav{
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
+        padding-left: 1em !important;
 
         position: absolute;
         top: 0;
@@ -163,7 +177,7 @@ nav{
     /*Each <li>-element or category item in the nav*/
     .nav-category-text {
         margin: 8% 0 0 5%;
-        font-size: 2.8em;
+        font-size: 1.4em;
         border-bottom: 1.5px solid grey;
         width: 80%;
 
@@ -176,30 +190,45 @@ nav{
         text-decoration: underline;
     }
 
+    .mobile-nav-category-text-anchortag{
+        width: 80%;
+    }
+
+    /*Arrow icons in mobile nav*/
+    .mobile-nav-arrow-icon {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-drag: none;
+        margin: 0 0 0 0;
+        width: 1.5em;
+        height: 1.5em;
+    }
+
     /*Style for mobile searchbar*/
     #mobile-header-searchbar {
         width: 80%;
         aspect-ratio: 7/1;
         margin: 8% 0 0 5%;
-        font-size: 2.5em;
+        font-size: 1.4em;
     }
 
     /*Mobile menu toggle icon*/
     .hamburger {
         cursor: pointer;
         float: left;
-        padding: 40px 20px;
+        padding: 20px 10px;
         position: absolute;
-        left: 8%;
+        left: 4%;
     }
 
     /*Mobile menu toggle icon lines*/
     .hamburger-line {
         background: black;
         display: block;
-        height: 4px;
+        height: 2px;
         position: relative;
         width: 48px;
+        width: 30px;
     }
 
     .hamburger-line::before,
@@ -214,11 +243,11 @@ nav{
     }
 
     .hamburger-line::before {
-        top: 12px;
+        top: 10px;
     }
 
     .hamburger-line::after {
-        top: -12px;
+        top: -10px;
     }
 
     /*Hide checkbox for mobile menu*/
@@ -251,14 +280,24 @@ nav{
     /*Breakpoint for mobile verision of site*/
 
     /*For tablet landscape up + small computers*/
-    @media screen and (min-width: 900px) {
+@media screen and (min-width: 900px) {
         header {
             height: 18vh;
+            position: sticky;
         }
         
         #center-header-content-div {
             justify-content: flex-start;
             align-items: center;
+        }
+
+        #header-logo-text {
+            width: 338px;
+            margin-left: 2%;
+        }
+
+        #header-icon-container {
+            right: 4%;
         }
 
         /*Shopping cart and star icons*/
