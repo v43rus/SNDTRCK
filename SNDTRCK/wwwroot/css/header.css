@@ -13,6 +13,7 @@ body {
 header {
     width: 100%;
     left: 0;
+    position: sticky;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
