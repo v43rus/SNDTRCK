@@ -13,7 +13,7 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th scope="col">#</th>
+			<th scope="col"></th>
 			<th scope="col">Title</th>
 			<th scope="col">Artist</th>
 			<th scope="col">Genre</th>
@@ -28,7 +28,8 @@
 				@foreach (var product in Model)
 				{
 				<tr>
-					<th scope="col">@product.ProductId</th>
+					<th scope="col"><img src="~/@product.CoverImageLink"/>
+					</th>
 					<th scope="col">@product.Title</th>
 					<th scope="col">@product.Artist</th>
 					<th scope="col">@product.Genre</th>
@@ -42,6 +43,8 @@
 						</form>
 					</th>
 				</tr>
+
+				
 				}
 			}
 		
@@ -49,7 +52,7 @@
 </table>
 
 <h3>Add New Product</h3>
-<form asp-area="Admin" asp-controller="Product" asp-action="SaveNewProduct">
+<form asp-area="Admin" asp-controller="Product" asp-action="SaveNewProduct" enctype="multipart/form-data">
 
 	<div class="form-group">
 		<label for="title">Title </label>
@@ -78,8 +81,8 @@
 
 	<div class="form-group">
 		<label for="album-cover">Upload Cover Image</label>
-		<input type="file" id="album-cover" name="album-cover" class="form-control-file">
+		<input type="file" id="image" name="image" class="form-control-file" required>
 	</div>
 
-	<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Save User" />Submit User</button>
+	<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Save Album"/>Save Album</button>
 </form>

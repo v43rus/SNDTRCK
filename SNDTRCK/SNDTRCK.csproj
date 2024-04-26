@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Pages\Account\NewFolder\" />
+    <Folder Include="wwwroot\media\pictures\album-covers\" />
   </ItemGroup>
 
 </Project>
