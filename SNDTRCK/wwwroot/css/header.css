@@ -45,7 +45,7 @@ header {
     background-position: right center;
     background-size: auto 80%;
     background-position: 98% 20%;
-    padding: 0 5% 0 0;
+    padding: 0 5% 0 1%;
 }
 
 #header-icon-container {
@@ -116,6 +116,24 @@ nav{
 /* #region Media queries*/
 /*For phones*/
 @media screen and (max-width: 599px) {
+    /*!important is needed because the next query otherwise will override it.*/
+    /*Since this query wont be many styles anyway, I think this is a better solution than to mess with the other queries*/
+
+    /*Shopping cart and star icons*/
+    .header-icon {
+        width: 1.8em !important;  
+        height: 1.8em !important;
+    }
+
+    /*Each <li>-element or category item in the nav*/
+    .nav-category-text {
+        font-size: 1.4em !important;
+    }
+
+    /*Style for mobile searchbar*/
+    #mobile-header-searchbar {
+        font-size: 1.4em !important;
+    }
 }
 /*For tablet potrait up (used as standard mobile verision of site)*/
 @media screen and (max-width: 899px) {
@@ -125,19 +143,19 @@ nav{
         position: fixed;    
     }
 
-    /*#region mobile menu/nav */
-    .hide-in-mobile{
-        display: none;
-    }
-
     /*This div is necessary to position elements in the center*/
     #center-header-content-div {
         justify-content: center;
         align-items: center;
     }
 
+    #logo-anchor-container{
+        width: 50%;
+    }
+
     #header-logo-text {
         width: 15em;
+        width: 100%; /*100% of anchor container*/
         margin-left: -2%;
     }
 
@@ -147,8 +165,8 @@ nav{
 
     /*Shopping cart and star icons*/
     .header-icon {
-        width: 2em;
-        height: 2em;
+        width: 2.6em;
+        height: 2.6em;
     }
 
     /*The white menu that slides in from the right*/
@@ -186,7 +204,7 @@ nav{
     /*Each <li>-element or category item in the nav*/
     .nav-category-text {
         margin: 8% 0 0 5%;
-        font-size: 1.4em;
+        font-size: 2em;
         border-bottom: 1.5px solid grey;
         width: 80%;
 
@@ -218,7 +236,7 @@ nav{
         width: 80%;
         aspect-ratio: 7/1;
         margin: 8% 0 0 5%;
-        font-size: 1.4em;
+        font-size: 1.8em;
     }
 
     /*Mobile menu toggle icon*/
@@ -322,7 +340,7 @@ nav{
 
         /*Style for desktop verision of the searchbar*/
         #desktop-header-searchbar {
-            height: 25px;
+            height: 30px;
             width: 250px;
 
             font-size: 1em;
@@ -370,11 +388,6 @@ nav{
         .nav-category-text a:hover::before {
             transform: scaleX(1);
             transform-origin: bottom left;
-        }
-
-        /*Hides mobile menu parts*/
-        .hide-in-desktop {
-            display: none;
         }
     }
     /*For desktop up*/

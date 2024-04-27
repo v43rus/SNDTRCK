@@ -11,16 +11,6 @@
 body {
 }
 
-/*Storleken på denna ställde till det*/
-.home-view {
-    background-color: var(--main-blue);
-    /*padding: 40px;*/
-    display: flex;
-    /*width: 960px;*/
-    /*margin-bottom: 20px;*/
-    margin-bottom: 7vh;
-}
-
 #admin-header {
     width: 960px;
     text-align: center;
@@ -34,47 +24,49 @@ body {
         text-transform: uppercase;
     }
 
-#home-hero-view {
-    background-color: #FF3300;
-    justify-content: space-between;
-    align-items: center;
+
+/*Shared styles for all home-sections*/
+.home-section {
+    /*background-color: var(--main-blue); --färg appliceras med id istället för klass*/
+    display: flex;
+    /*margin-bottom: 7vh;*/
 }
 
-    #home-hero-view article {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        margin-left: 5%;
+/*The orange section at the top*/
+#home-section-1 {
+    background-color: #FF3300;
+}
 
-    }
+/*Shared rules for both article and div in #home-section-1*/
+/*This one need no media queries*/
+#home-section-1 > *{
+    display: flex; /*Needed for both article and almbum-stack-container*/
+    flex-direction: column; /*Only used by article*/
+}
 
-    #home-hero-view article h2 {
-        font-size: 70px;
-        /*font-size: 30px; Tills jag har sorterat media queries*/
-        font-weight: 700;
-        font-family: inter;
-        color: white;
-        width: 100px;
-    }
+/*"Complete your stack" header in orange section*/
+#home-section-1 article h2 {
+    font-weight: 700;
+    font-family: inter;
+    color: white;
+}
 
-    #home-hero-view article a {
-        font-weight: 700;
-        color: white;
-    }
+/*The link "See all categories"*/
+.see-categories-link {
+    font-weight: 700;
+    margin-top: 8%;
+    color: white;
+}
 
-    #album-stack-gif-container {
-        width: 32%;
-        aspect-ratio: 1/1;
-        margin: 0 12% 0 0;
-    }
+/*The div containing the img gif*/
+#album-stack-gif-container {
+    aspect-ratio: 1/1;
+}
 
     #album-stack-gif{
 
     }
-/* Behövs ej
-    #home-hero-view article img {
-        width: 200px;
-    }*/
+
 #home-top-5 {
     background-color: #D8D8D8;
     flex-direction: column;
@@ -133,11 +125,59 @@ body {
 /*For phones*/
 @media screen and (max-width: 599px) {
     /*Only used in special cases for really small screens*/
+
+    /*"Complete your stack" header in orange section*/
+    #home-section-1 article h2 {
+        font-size: 3.5em !important;
+        /*margin: 5% 0 0 6%;*/
+    }
+
+    /*The div containing the img gif*/
+    #album-stack-gif-container {
+        width: 75% !important;
+    }
+
+    /*The link "See all categories"*/
+    .see-categories-link {
+        font-size: 1.8em !important;
+    }
 }
 /*For tablet potrait up (used as standard mobile verision of site)*/
 @media screen and (max-width: 899px) {
-    .home-view {
+    .home-section {
         width: 95%;
+    }
+
+    #home-section-1 {
+        height: 98%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    /*"Complete your stack" header in orange section*/
+    #home-section-1 article h2 {
+        font-size: 5em;
+        margin: 5% 0 0 6%;
+    }
+
+    /*Article containing text*/
+    #home-section-1 article {
+        margin-bottom: 5%;
+    }
+
+    /*The div containing the img gif*/
+    #album-stack-gif-container {
+        width: 65%;
+        margin: auto;
+        margin-top: 0;
+    }
+
+    /*The link "See all categories"*/
+    .see-categories-link {
+        font-size: 2.8em;
+        margin: auto;
+        margin-top: 0;
     }
 }
 
@@ -145,13 +185,41 @@ body {
 
 /*For tablet landscape up + small computers*/
 @media screen and (min-width: 900px) {
-    #home-hero-view {
-        height: 83%;
-        height: 78vh;
-    }
-    .home-view {
+    .home-section {
         width: 98%;
     }
+    
+    /*Since I don't want all sections to have the same height, it is applied by id instead of class*/
+    #home-section-1 {
+        height: 83%;
+        height: 78vh;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /*"Complete your stack" header in orange section*/
+    #home-section-1 article h2 {
+        font-size: 4.5em;
+    }
+
+    /*Article containing text*/
+    #home-section-1 article {
+        margin-left: 5%;
+        margin-bottom: 5%;
+    }
+
+    /*The link "See all categories"*/
+    .see-categories-link {
+        font-size: 1.8em;
+    }
+
+    /*The div containing the img gif*/
+    #album-stack-gif-container {
+        width: 32%;
+        margin: 0 12% 0 0;
+    }
+
 }
 /*For desktop up*/
 @media screen and (min-width: 1200px) {

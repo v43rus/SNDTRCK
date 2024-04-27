@@ -15,19 +15,23 @@
 }
 
 <!--<div class="text-center">-->
-	<section class="home-view" id="home-hero-view">
-		<article>
-			<h2>
-				COMPLETE YOUR STACK
-			</h2>
-			<a href="">SEE ALL CATEGORIES</a>
-		</article>
-		<article id="album-stack-gif-container">
-			<img id="album-stack-gif" src="~/media/pictures/stack-gif.gif">
-		</article>
-	</section>
+	<section class="home-section" id="home-section-1">
 
-	<section class="home-view" id="home-top-5">
+		<article>
+			<h2>COMPLETE <br />YOUR <br />STACK</h2>
+			<a class="hide-in-mobile see-categories-link" href="">SEE ALL CATEGORIES</a>
+		</article>
+
+		<!--Container needed to set size and apsect ratio of gif-->
+		<div id="album-stack-gif-container">
+			<img id="album-stack-gif" src="~/media/pictures/stack-gif.gif">
+		</div>
+
+		<!--Only shown in mobile, needed for a better look with the album stack-->
+		<a class="hide-in-desktop see-categories-link" href="">SEE ALL CATEGORIES</a>
+	</section>
+	<!--
+	<section class="home-section" id="home-top-5">
 		<h3>
 			TOP 5 ALBUMS NOW
 		</h3>
@@ -54,5 +58,5 @@
 		<article>
 			<img src="~/media/pictures/placeholder.jpg">
 		</article>
-	</section>
+	</section>-->
 <!--</div>-->
