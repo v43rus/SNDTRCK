@@ -4,21 +4,21 @@
     src: url(/fonts/Inter/Inter-VariableFont_slnt,wght.ttf)
 }
 
-body {
-    overflow-x: hidden;
-    margin: 0;
+@font-face {
+    font-family: inika-bold;
+    src: url(/fonts/Inika/Inika-bold.ttf);
 }
 
 
+/*#region Header & nav*/
 header {
     width: 100%;
     top: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    z-index:2;
 }
-
-
 
 /*The high part that contains logo and icons (not nav with categories)*/
 #header-content-section {
@@ -76,12 +76,13 @@ header {
 }*/
 
 /*Navbar*/
-nav{
+nav {
     background-color: white !important;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
+    z-index: 2;
 }
 
 /*Each option in nav*/
@@ -111,6 +112,118 @@ nav{
     margin: 0;
     padding: 0;
 }
+/*#endregion Header & nav*/
+
+/*#region Footer*/
+footer {
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1;
+}
+
+/*More styles in queries*/
+.footer-hand-container {
+    position: absolute;
+}
+
+/*Sets size for hand inside container*/
+.footer-hand {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+#footer-left-hand-container {
+    left: 1%;
+}
+
+#footer-right-hand-container {
+    position: absolute;
+    right: 1%;
+}
+
+#footer-bar-code-container {
+    width: 15%;
+    aspect-ratio: 2.36/ 1;
+    position: absolute;
+    right: 1%;
+}
+
+#footer-bar-code {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/*Needed to be able to set aspect ratio on pricetag*/
+#footer-pricetag-container{
+    position: absolute;
+    aspect-ratio: 1.29 / 1 ;
+}
+
+#footer-pricetag {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/*Container of all "list"-rows in footer*/
+#footer-list{
+    margin-right: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/*Container for each pair of paragaph and link in footer, making a row*/
+#footer-list div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+/*The numbers in the footer*/
+.footer-list-p {
+    font-family: inika-bold;
+    font-size: 2.4em;
+    line-height: 0; /*Font was weird, so this was needed*/
+    margin: 0;
+    border: 2px solid black;
+    padding: 3% 2% 4% 2%; /*The space between border and number*/
+    user-select: none;
+    color: black;
+}
+
+/*The links in the footer*/
+.footer-list-a {
+    font-family: inika-bold;
+    font-size: 2.4em;
+    line-height: unset;
+    padding-top: 0%;
+    margin-left: 4%;
+    text-decoration: none;
+    color: black;
+}
+
+.footer-list-a:hover {
+    text-decoration: underline !important;
+    color: black;
+    cursor:pointer;
+}
+
+
+/*#endregion Footer*/
 
 
 /* #region Media queries*/
@@ -118,7 +231,7 @@ nav{
 @media screen and (max-width: 599px) {
     /*!important is needed because the next query otherwise will override it.*/
     /*Since this query wont be many styles anyway, I think this is a better solution than to mess with the other queries*/
-
+    /*#region Header & nav*/
     /*Shopping cart and star icons*/
     .header-icon {
         width: 1.8em !important;  
@@ -134,10 +247,33 @@ nav{
     #mobile-header-searchbar {
         font-size: 1.4em !important;
     }
+    /*#endregion Header & nav*/
+
+    /*#region Footer*/
+
+    /*Container of all "list"-rows in footer*/
+    #footer-list {
+        width: 85%;
+        margin-top: 25% !important;
+        margin-right: 0 !important;
+    }
+
+    /*The numbers in the footer*/
+    .footer-list-p {
+        font-size: 2em !important;
+        padding: 3% 2% 6% 2%; /*The space between border and number*/
+    }
+
+    /*The links in the footer*/
+    .footer-list-a {
+        font-size: 2em;
+    }
+    /*#endregion*/
 }
 /*For tablet potrait up (used as standard mobile verision of site)*/
 @media screen and (max-width: 899px) {
 
+    /*#region Header & nav*/
     header {
         height: 10%;
         position: fixed;    
@@ -306,6 +442,35 @@ nav{
         top: 0;
     }
 
+    /*#endregion Header & nav*/
+
+    /*#region Footer*/
+    footer {
+        height: 88vh;
+    }
+
+    .footer-hand-container {
+        bottom: -5%;
+        width: 35%;
+    }
+
+    #footer-bar-code-container {
+        width: 25%;
+        top: 1%;
+    }
+
+    /*Needed to be able to set aspect ratio on pricetag*/
+    #footer-pricetag-container {
+        top: 5%;
+        left: 4%;
+        width: 20%;
+    }
+
+    /*Container of all "list"-rows in footer*/
+    #footer-list {
+        width: 75%;
+        margin-top: 25%;
+    }
     /*#endregion*/
 }
 
@@ -313,87 +478,120 @@ nav{
 
     /*For tablet landscape up + small computers*/
 @media screen and (min-width: 900px) {
-        header {
-            height: 18vh;
-            position: sticky;
-        }
+
+    /*#region Header & nav*/
+    header {
+        height: 18vh;
+        position: sticky;
+    }
         
-        #center-header-content-div {
-            justify-content: flex-start;
-            align-items: center;
-        }
+    #center-header-content-div {
+        justify-content: flex-start;
+        align-items: center;
+    }
 
-        #header-logo-text {
-            width: 338px;
-            margin-left: 2%;
-        }
+    #header-logo-text {
+        width: 338px;
+        margin-left: 2%;
+    }
 
-        #header-icon-container {
-            right: 4%;
-        }
+    #header-icon-container {
+        right: 4%;
+    }
 
-        /*Shopping cart and star icons*/
-        .header-icon {
-            width: 1.6em;
-            height: 1.6em;
-        }
+    /*Shopping cart and star icons*/
+    .header-icon {
+        width: 1.6em;
+        height: 1.6em;
+    }
 
-        /*Style for desktop verision of the searchbar*/
-        #desktop-header-searchbar {
-            height: 30px;
-            width: 250px;
+    /*Style for desktop verision of the searchbar*/
+    #desktop-header-searchbar {
+        height: 30px;
+        width: 250px;
 
-            font-size: 1em;
-        }
+        font-size: 1em;
+    }
         
-        nav {
-            margin: 0;
-            height: 5vh;
-        }
-
-        /*The <ul> list with category items in nav*/
-        #navigation-list {
-            flex-direction: row;
-            align-items: flex-start;
-            justify-content: center;
-        }
-
-        /*Each <li>-element or category item in the nav*/
-        .nav-category-text {
-            margin: 0 2% 4px 2%;
-            font-size: 1.1em;
-        }
-
-        /*Anchor tags inside <li> elements above*/
-        /*When on desktop, underline deocrations are animated*/
-        .nav-category-text a:hover {
-            color: #0032D2;
-        }
-
-        .nav-category-text a::before {
-            content: "";
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: blue;
-            transform: scaleX(0);
-            transform-origin: bottom left;
-            transition: transform 0.3s ease-out;
-            color: aqua;
-        }
-
-        .nav-category-text a:hover::before {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
+    nav {
+        margin: 0;
+        height: 5vh;
     }
-    /*For desktop up*/
-    @media screen and (min-width: 1200px) {
 
+    /*The <ul> list with category items in nav*/
+    #navigation-list {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
     }
-    /*For big desktop*/
-    @media screen and (min-width: 1800px) {
+
+    /*Each <li>-element or category item in the nav*/
+    .nav-category-text {
+        margin: 0 2% 4px 2%;
+        font-size: 1.1em;
     }
+
+    /*Anchor tags inside <li> elements above*/
+    /*When on desktop, underline deocrations are animated*/
+    .nav-category-text a:hover {
+        color: #0032D2;
+    }
+
+    .nav-category-text a::before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: blue;
+        transform: scaleX(0);
+        transform-origin: bottom left;
+        transition: transform 0.3s ease-out;
+        color: aqua;
+    }
+
+    .nav-category-text a:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+    /*#endregion Header & nav*/
+
+    /*#region Footer*/
+    footer {
+        height: 78vh;
+    }
+
+    .footer-hand-container {
+        bottom: -12%;
+        width: 25%;
+    }
+
+    #footer-bar-code-container {
+        width: 15%;
+        top: 2%;
+    }
+
+    /*Needed to be able to set aspect ratio on pricetag*/
+    #footer-pricetag-container {
+        top: 15%;
+        left: 18%;
+        width: 12%;
+    }
+
+    /*Container of all "list"-rows in footer*/
+    #footer-list {
+        width: 40%;
+        margin-top: 2%;
+    }
+
+    /*#endregion Footer*/
+}
+/*For desktop up*/
+@media screen and (min-width: 1200px) {
+
+}
+/*For big desktop*/
+@media screen and (min-width: 1800px) {
+}

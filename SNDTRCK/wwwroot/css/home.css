@@ -187,6 +187,7 @@ body {
 @media screen and (min-width: 900px) {
     .home-section {
         width: 98%;
+        margin-bottom: 2vw;
     }
     
     /*Since I don't want all sections to have the same height, it is applied by id instead of class*/

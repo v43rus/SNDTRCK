@@ -60,11 +60,52 @@
 		</main>
 	<!--</div>-->
 
-	<footer class="border-top footer text-muted">
-		<div class="container">
-			&copy; 2024 - SNDTRCK - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+	<!--Css for home-section class can be found in home.css-->
+	<footer class="home-section">
+		<div id="footer-left-hand-container" class="footer-hand-container">
+            <img class="footer-hand" src="/media/pictures/left-hand.png" />
 		</div>
+		<div id="footer-right-hand-container" class="footer-hand-container">
+            <img class="footer-hand" src="/media/pictures/right-hand.png" />
+		</div>
+
+		<div id="footer-bar-code-container">
+            <img id="footer-bar-code" src="~/media/pictures/bar-code.png" />
+		</div>
+
+		<div id="footer-pricetag-container">
+			<img id="footer-pricetag" src="~/media/pictures/pricetag.png"/>
+		</div>
+
+		<!--flex-direction: column-->
+		<section id="footer-list">
+			<!--flex-direction: row-->
+			<div class="footer-list-row">
+				<p class="footer-list-p">1</p>
+				<a class="footer-list-a">ABOUT US</a>
+			</div>			
+			<div class="footer-list-row">
+				<p class="footer-list-p">2</p>
+				<a class="footer-list-a">CONACT US</a>
+			</div>			
+			<div class="footer-list-row">
+				<p class="footer-list-p">3</p>
+				<a class="footer-list-a">DELIVERY</a>
+			</div>			
+			<div class="footer-list-row">
+				<p class="footer-list-p">4</p>
+				<a class="footer-list-a">TERMS & CONDITIONS</a>
+			</div>			
+			<div class="footer-list-row">
+				<p class="footer-list-p">5</p>
+				<a class="footer-list-a">PRIVACY POLICY</a>
+			</div>
+		</section>
+		
+		
 	</footer>
+
+
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>

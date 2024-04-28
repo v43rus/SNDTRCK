@@ -24,15 +24,16 @@ html {
 }
 
 body {
-    /*display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 60px;*/
-
     /*min-height: 100vh;*/
-
     /*Necessary in order to set height to main*/
     min-height: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding-bottom: 0.5vh; /*to make space under footer*/
 }
 
 main {
@@ -41,9 +42,9 @@ main {
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    /*Ska tas bort så småningom*/
+    /*Ska tas bort så småningom;*/
     height: 100vh;
-    min-height: 100vh;
+    min-height: 100vh
 
 }
 
@@ -52,7 +53,7 @@ a:active{
 }
 
 footer {
-    bottom: 0px;
+    /*bottom: 0px;*/
 }
 
 #sndtrck-logo {
