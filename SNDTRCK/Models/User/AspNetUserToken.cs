@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SNDTRCK.Models.Users;
+namespace SNDTRCK.Models.User;
 
 public partial class AspNetUserToken
 {

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using SNDTRCK.Models.User;
-using SNDTRCK.Models.Users;
 
 namespace SNDTRCK.Models;
 
@@ -25,9 +24,9 @@ public partial class SNDTRCKContext : DbContext
 
 	public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
 
-	public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-
 	public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+
+	public virtual DbSet<NewsletterSignup> NewsletterSignups { get; set; }
 
 	public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
 
@@ -45,34 +44,6 @@ public partial class SNDTRCKContext : DbContext
 			entity.Property(e => e.Name).HasMaxLength(256);
 			entity.Property(e => e.NormalizedName).HasMaxLength(256);
 		});
-
-		modelBuilder.Entity<Product>(entity =>
-		{
-			entity.HasKey(e => e.ProductId).HasName("PK__Products__B40CC6CD38CB737A");
-
-			entity.Property(e => e.CoverImageLink)
-				.HasMaxLength(255)
-				.IsUnicode(false);
-			entity.Property(e => e.Description).HasColumnType("text");
-			entity.Property(e => e.Genre)
-				.HasMaxLength(50)
-				.IsUnicode(false);
-			entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
-			entity.Property(e => e.Title)
-				.HasMaxLength(255)
-				.IsUnicode(false);
-		});
-
-		{
-			modelBuilder.Entity<AspNetUserRole>(entity =>
-			{
-				entity.HasKey(e => new { e.UserId, e.RoleId });
-
-				entity.HasIndex(e => e.RoleId, "IX_AspNetUserRoles_RoleId");
-			});
-
-			OnModelCreatingPartial(modelBuilder);
-		};
 
 		modelBuilder.Entity<AspNetRoleClaim>(entity =>
 		{
@@ -93,6 +64,18 @@ public partial class SNDTRCKContext : DbContext
 			entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
 			entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
 			entity.Property(e => e.UserName).HasMaxLength(256);
+
+			entity.HasMany(d => d.Roles).WithMany(p => p.Users)
+				.UsingEntity<Dictionary<string, object>>(
+					"AspNetUserRole",
+					r => r.HasOne<AspNetRole>().WithMany().HasForeignKey("RoleId"),
+					l => l.HasOne<AspNetUser>().WithMany().HasForeignKey("UserId"),
+					j =>
+					{
+						j.HasKey("UserId", "RoleId");
+						j.ToTable("AspNetUserRoles");
+						j.HasIndex(new[] { "RoleId" }, "IX_AspNetUserRoles_RoleId");
+					});
 		});
 
 		modelBuilder.Entity<AspNetUserClaim>(entity =>
@@ -122,6 +105,37 @@ public partial class SNDTRCKContext : DbContext
 			entity.Property(e => e.Name).HasMaxLength(128);
 
 			entity.HasOne(d => d.User).WithMany(p => p.AspNetUserTokens).HasForeignKey(d => d.UserId);
+		});
+
+		modelBuilder.Entity<NewsletterSignup>(entity =>
+		{
+			entity.HasKey(e => e.NewsletterId).HasName("PK__Newslett__34A1DFFDD50BE1E7");
+
+			entity.ToTable("NewsletterSignup");
+
+			entity.Property(e => e.UserId).HasMaxLength(450);
+
+			entity.HasOne(d => d.User).WithMany(p => p.NewsletterSignups)
+				.HasForeignKey(d => d.UserId)
+				.OnDelete(DeleteBehavior.Cascade)
+				.HasConstraintName("FK__Newslette__UserI__04E4BC85");
+		});
+
+		modelBuilder.Entity<Product>(entity =>
+		{
+			entity.HasKey(e => e.ProductId).HasName("PK__Products__B40CC6CD38CB737A");
+
+			entity.Property(e => e.CoverImageLink)
+				.HasMaxLength(255)
+				.IsUnicode(false);
+			entity.Property(e => e.Description).HasColumnType("text");
+			entity.Property(e => e.Genre)
+				.HasMaxLength(50)
+				.IsUnicode(false);
+			entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
+			entity.Property(e => e.Title)
+				.HasMaxLength(255)
+				.IsUnicode(false);
 		});
 
 		OnModelCreatingPartial(modelBuilder);
