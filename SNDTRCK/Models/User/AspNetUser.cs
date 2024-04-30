@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SNDTRCK.Models.Users;
+namespace SNDTRCK.Models;
 
 public partial class AspNetUser
 {
@@ -40,6 +40,8 @@ public partial class AspNetUser
     public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; } = new List<AspNetUserLogin>();
 
     public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; } = new List<AspNetUserToken>();
+
+    public virtual ICollection<NewsletterSignup> NewsletterSignups { get; set; } = new List<NewsletterSignup>();
 
     public virtual ICollection<AspNetRole> Roles { get; set; } = new List<AspNetRole>();
 }

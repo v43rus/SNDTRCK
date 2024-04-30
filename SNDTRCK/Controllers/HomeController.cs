@@ -53,5 +53,10 @@ namespace SNDTRCK.Controllers
 
 			return View(model);
 		}
+
+		public IActionResult Newsletter()
+		{
+			return View(_context);
+		}
 	}
 }

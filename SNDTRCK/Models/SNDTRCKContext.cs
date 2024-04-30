@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using SNDTRCK.Models.User;
-using SNDTRCK.Models.Users;
 
 namespace SNDTRCK.Models;
 
@@ -19,10 +18,6 @@ public partial class SNDTRCKContext : DbContext
 
 	public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
 
-	public virtual DbSet<Product> Products { get; set; }
-
-	public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
-
 	public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
 
 	public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
@@ -32,6 +27,10 @@ public partial class SNDTRCKContext : DbContext
 	public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
 
 	public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
+
+	public virtual DbSet<NewsletterSignup> NewsletterSignups { get; set; }
+
+	public virtual DbSet<Product> Products { get; set; }
 
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -61,6 +60,20 @@ public partial class SNDTRCKContext : DbContext
 			entity.Property(e => e.Title)
 				.HasMaxLength(255)
 				.IsUnicode(false);
+		});
+
+		modelBuilder.Entity<NewsletterSignup>(entity =>
+		{
+			entity.HasKey(e => e.NewsletterId).HasName("PK__Newslett__34A1DFFDD50BE1E7");
+
+			entity.ToTable("NewsletterSignup");
+
+			entity.Property(e => e.UserId).HasMaxLength(450);
+
+			entity.HasOne(d => d.User).WithMany(p => p.NewsletterSignups)
+				.HasForeignKey(d => d.UserId)
+				.OnDelete(DeleteBehavior.Cascade)
+				.HasConstraintName("FK__Newslette__UserI__04E4BC85");
 		});
 
 		{

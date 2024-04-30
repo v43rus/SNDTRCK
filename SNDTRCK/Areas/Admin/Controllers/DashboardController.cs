@@ -1,33 +1,32 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Manage.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SNDTRCK.Controllers;
 using SNDTRCK.Models;
 using SNDTRCK.Models.User;
+using System.Diagnostics;
 
 namespace SNDTRCK.Areas.Admin.Controllers
 {
 	[Area("Admin")]
 	[Route("Admin/[controller]/[action]")]
 	[Authorize(Roles = "Admin")]
-	public class DashboardController: Controller
+	public class DashboardController : Controller
 	{
-
 		private readonly UserManager<IdentityUser> _userManager;
 		private readonly ILogger<HomeController> _logger;
 		private readonly SNDTRCKContext _context;
-		private readonly SNDTRCKContext _context2;
 
 
 		public DashboardController(SNDTRCKContext context, UserManager<IdentityUser> userManager, ILogger<HomeController> logger)
 		{
 			_logger = logger;
 			_context = context;
-			_context2 = context;
 			_userManager = userManager;
 		}
-		
+
 		public IActionResult Index()
 		{
 			return View();
@@ -38,19 +37,11 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			return View();
 		}
 
-		public IActionResult ManageProducts()
+		public IActionResult ManageUsers()
 		{
 			return View();
 		}
 
-		public IActionResult ManageUsers()
-		{
-			var viewModel = new ManageUsersViewModel
-			{
-				Users = _context.AspNetUsers.ToList(),
-				Roles = _context2.AspNetUserRoles.ToList(),
-			};
-			return View(viewModel);
-		}
+
 	}
 }
