@@ -17,9 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Pages\Dashboard\" />
-    <Folder Include="Areas\Admin\Views\NewFolder\" />
     <Folder Include="Areas\Identity\Pages\Account\NewFolder\" />
+    <Folder Include="wwwroot\media\pictures\album-covers\" />
   </ItemGroup>
 
 </Project>

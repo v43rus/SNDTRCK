@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SNDTRCK.Models.Users;
+namespace SNDTRCK.Models;
 
 public partial class AspNetUserLogin
 {

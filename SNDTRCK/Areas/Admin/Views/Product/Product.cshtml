@@ -1,0 +1,18 @@
+﻿@page "/Product/{productId}"
+@using SNDTRCK.Models
+
+@model Product
+
+@{
+	Layout = "../_Shared/_Layout";
+}
+
+
+@if (Model != null)
+{
+	<h1>@Model.ProductId</h1>
+}
+else
+{
+	<h1>Model not found</h1>
+}

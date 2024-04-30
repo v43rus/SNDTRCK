@@ -2,9 +2,8 @@
 @using SNDTRCK.Models.User
 
 
-@model ManageUsersViewModel
 @{
-	Layout = "_Layout";
+	Layout = "../_Shared/_Layout";
 }
 
 <h2>Manage Users</h2>
@@ -19,19 +18,17 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var user in Model.Users!)
-		{
+
 			<tr>
-				<th scope="col">@user.Email</th>
-				<th scope="col">@user.PhoneNumber</th>
+				<th scope="col">Email</th>
+				<th scope="col">PhoneNumber</th>
 				<th scope="col">Roles</th>
 
 				
 				<th scope="col">
 					<button type="button" class="btn btn-success">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
 				</th>
 			</tr>
-		}
+
 	</tbody>
 </table>
