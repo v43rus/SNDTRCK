@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SNDTRCK.Models.User;
+namespace SNDTRCK.Models.Users;
 
 public partial class AspNetRoleClaim
 {

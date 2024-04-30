@@ -47,9 +47,10 @@ namespace SNDTRCK.Controllers
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 
-		public IActionResult Newsletter()
+		public IActionResult Newsletter(int? userName)
 		{
-			return View(_context);
+			//var user = _context.AspNetUsers.Where(u => u. == userName).First();
+			return View();
 		}
 	}
 }

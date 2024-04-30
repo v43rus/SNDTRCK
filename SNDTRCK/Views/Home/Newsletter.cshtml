@@ -1,37 +1,5 @@
-﻿@using Microsoft.AspNetCore.Identity
-
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
-
-@model SNDTRCKContext
-
+﻿
 @{
 	Layout = "/Views/Shared/_Layout.cshtml";
-
-	var user = await UserManager.GetUserAsync(User);
-	var userId = user!.Id;
 }
 
-
-@if (Model.NewsletterSignups.Where(n => n.UserId == userId) == null)
-{
-	<section class="card" style="width: 500px; text-align: center;">
-		<img class="card-img-top" src="~/media/pictures/placeholder.jpg" alt="Promo Image" style="height: 250px;"/>
-		<div class="card-body">
-			<h1 class="card-title">10% off your first order when you sign up for our newsletter!</h1>
-			<p class="card-text">Sign up to get weekly updates on sales, new album drops and personal recommendations based on your style!</p>
-
-			<div class="input-group mb-3">
-				<input type="email" class="form-control" placeholder="Your email" aria-label="Your email" aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">Subscribe</button>
-				</div>
-			</div>
-		</div>
-	</section>
-}
-else
-{
-
-}
