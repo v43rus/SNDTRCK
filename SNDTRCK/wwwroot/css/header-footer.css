@@ -200,7 +200,7 @@ footer {
     line-height: 0; /*Font was weird, so this was needed*/
     margin: 0;
     border: 2px solid black;
-    padding: 3% 2% 4% 2%; /*The space between border and number*/
+    padding: 3% 2% 4.5% 2%; /*The space between border and number*/
     user-select: none;
     color: black;
 }
