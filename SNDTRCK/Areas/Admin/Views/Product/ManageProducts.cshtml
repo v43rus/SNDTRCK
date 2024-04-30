@@ -5,7 +5,7 @@
 
 @model List<Product>
 @{
-	Layout = "_Layout";
+	Layout = "../_Shared/_Layout";
 }
 
 <h2>Manage Products</h2>
@@ -37,9 +37,13 @@
 
 
 					<th scope="col">
+						<form asp-area="Admin" asp-controller="Product" asp-action="Product" method="get">
+							<input type="hidden" name="productId" value="@product.ProductId" />
+							<button type="submit" class="btn btn-success">Edit</button>
+						</form>
 						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct">
 							<input type="hidden" name="productId" value="@product.ProductId" />
-							<button type="submit" id="@product.ProductId" class="btn btn-danger">Delete</button>
+							<button type="submit" class="btn btn-danger">Delete</button>
 						</form>
 					</th>
 				</tr>

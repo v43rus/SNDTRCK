@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SNDTRCK.Controllers;
 using SNDTRCK.Models;
@@ -88,6 +89,13 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			}
 
 			return RedirectToAction("ManageProducts");
+		}
+
+		public IActionResult Product(int? productId)
+		{
+			var product =  _context.Products.Where(p => p.ProductId == productId).First()!;
+
+			return View(product);
 		}
 	}
 }
