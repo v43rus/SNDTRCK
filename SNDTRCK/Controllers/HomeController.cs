@@ -47,12 +47,32 @@ namespace SNDTRCK.Controllers
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 
-		public IActionResult ShoppingCart()
-		{
-			var model = "CartData";
+        public IActionResult ShoppingCart()
+        {
+            return View();
+        }
 
-			return View(model);
-		}
+        [HttpPost]
+        public ActionResult BuildShoppingCartRows(Dictionary<string, int> cartData)
+		{
+			//Stores html for each product line in cart
+			List<string> productLines = new List<string>();
+
+			foreach(var entry in cartData)
+			{
+				string productId = entry.Key;
+				int quantity = entry.Value;
+				/*
+				Product product = _context.Products.FirstOrDefault(p => p.Id === productId);
+
+				if(product is not null)
+				{
+					string productLine = $"<div>{product.Name} - Quantity: {quantity}";
+					productLines.Add(productLine);
+				}*/
+			}
+            return Json(productLines); // Returnera HTML-produktrader som JSON-respons
+        }
 
 		public IActionResult Newsletter()
 		{
