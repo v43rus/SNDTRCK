@@ -22,7 +22,7 @@ namespace SNDTRCK.Controllers
 		}
 
 
-
+		[Route("/")]
 		public async Task<IActionResult> Index()
 		{
 			// Checks if user is authenticated before returning IsAdmin to the view
@@ -47,7 +47,8 @@ namespace SNDTRCK.Controllers
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 
-        public IActionResult ShoppingCart()
+		[Route("cart")]
+		public IActionResult ShoppingCart()
         {
             return View();
         }
