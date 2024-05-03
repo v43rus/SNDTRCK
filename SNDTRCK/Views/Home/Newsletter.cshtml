@@ -23,12 +23,11 @@
 			<h1 class="card-title">10% off your first order when you sign up for our newsletter!</h1>
 			<p class="card-text">Sign up to get weekly updates on sales, new album drops and personal recommendations based on your style!</p>
 
-			<div class="input-group mb-3">
-				<input type="email" class="form-control" placeholder="Your email" aria-label="Your email" aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">Subscribe</button>
-				</div>
-			</div>
+			<form asp-action="Subscribe" asp-controller="Home">
+					<input type="hidden" name="userId" value="@userId" />
+						<button class="btn btn-primary" type="submit">Subscribe</button>
+			</form>
+
 		</div>
 	</section>
 }
@@ -41,9 +40,7 @@ else
 			<p class="card-text">If you'd like to unsubscribe to our newsletter you can do so using the button below</p>
 
 			<form asp-action="Unsubscribe" asp-controller="Home" method="post">
-				<div class="input-group mb-3">
 					<button class="btn btn-primary" type="submit">Unsubscribe</button>
-				</div>
 			</form>
 		</div>
 	</section>

@@ -27,11 +27,11 @@ namespace SNDTRCK.Controllers
 		{
 			// Checks if user is authenticated before returning IsAdmin to the view
 			if (User.Identity!.IsAuthenticated)
-			{ 
-			var user = await _userManager.GetUserAsync(User);
-			var isAdmin = await _userManager.IsInRoleAsync(user!, "Admin");
+			{
+				var user = await _userManager.GetUserAsync(User);
+				var isAdmin = await _userManager.IsInRoleAsync(user!, "Admin");
 
-			ViewBag.IsAdmin = isAdmin;
+				ViewBag.IsAdmin = isAdmin;
 			}
 			return View();
 		}
@@ -50,6 +50,20 @@ namespace SNDTRCK.Controllers
 		public IActionResult Newsletter()
 		{
 			return View(_context);
+		}
+
+		public IActionResult Subscribe(string? userId)
+		{
+			var newSignUp = new NewsletterSignup()
+			{
+				UserId = userId,
+				IsSignedUp = true,
+			};
+
+			_context.NewsletterSignups.Add(newSignUp);
+			_context.SaveChanges();
+
+			return RedirectToAction("Newsletter");
 		}
 	}
 }
