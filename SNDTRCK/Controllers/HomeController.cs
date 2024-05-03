@@ -79,7 +79,7 @@ namespace SNDTRCK.Controllers
 			return View(_context);
 		}
 
-		public IActionResult Subscribe(string? userId)
+		public IActionResult SubscribeNewsletter(string? userId)
 		{
 			var newSignUp = new NewsletterSignup()
 			{
@@ -88,6 +88,16 @@ namespace SNDTRCK.Controllers
 			};
 
 			_context.NewsletterSignups.Add(newSignUp);
+			_context.SaveChanges();
+
+			return RedirectToAction("Newsletter");
+		}
+
+		public IActionResult UnsubscribeNewsletter(string? userId)
+		{
+			var subToDelete = _context.NewsletterSignups.Where(s => s.UserId == userId).First();
+
+			_context.NewsletterSignups.Remove(subToDelete);
 			_context.SaveChanges();
 
 			return RedirectToAction("Newsletter");
