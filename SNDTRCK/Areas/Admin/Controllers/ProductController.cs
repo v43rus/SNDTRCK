@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SNDTRCK.Controllers;
 using SNDTRCK.Models;
 using System.Drawing;
@@ -30,6 +31,12 @@ namespace SNDTRCK.Areas.Admin.Controllers
 		{
 			var products = _context.Products.ToList();
 			return View(products);
+		}
+		public async Task<IActionResult> Product(int? productId)
+		{
+			var product = await _context.Products.Where(p => p.ProductId == productId).FirstAsync();
+
+			return View(product);
 		}
 
 		[HttpPost]
@@ -89,13 +96,6 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			}
 
 			return RedirectToAction("ManageProducts");
-		}
-
-		public IActionResult Product(int? productId)
-		{
-			var product =  _context.Products.Where(p => p.ProductId == productId).First()!;
-
-			return View(product);
 		}
 	}
 }

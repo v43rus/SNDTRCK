@@ -37,10 +37,11 @@
 
 
 					<th scope="col">
-						<form asp-area="Admin" asp-controller="Product" asp-action="Product" method="get">
-							<input type="hidden" name="productId" value="@product.ProductId" />
+						<!-- TODO:  Model is null when loading Product page, to be fixed. -->
+						<!--<form asp-area="Admin" asp-controller="Product" asp-action="Product" method="get">
+							<input type="hidden" name="productId" value="productId" />
 							<button type="submit" class="btn btn-success">Edit</button>
-						</form>
+						</form>-->
 						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct">
 							<input type="hidden" name="productId" value="@product.ProductId" />
 							<button type="submit" class="btn btn-danger">Delete</button>
