@@ -129,6 +129,7 @@ body {
     /*"Complete your stack" header in orange section*/
     #home-section-1 article h2 {
         font-size: 3.5em !important;
+        font-size: 3em !important; /*For galaxy fold*/
         /*margin: 5% 0 0 6%;*/
     }
 
@@ -170,7 +171,7 @@ body {
     #album-stack-gif-container {
         width: 65%;
         margin: auto;
-        margin-top: 0;
+        /*margin-top: 0;*/
     }
 
     /*The link "See all categories"*/
@@ -178,6 +179,7 @@ body {
         font-size: 2.8em;
         margin: auto;
         margin-top: 0;
+        margin-bottom: 8%;
     }
 }
 

@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/header.css" asp-append-version="true"/>
+	<link rel="stylesheet" href="~/css/header-footer.css" asp-append-version="true"/>
 	<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
 </head>
 <body>
@@ -32,7 +32,7 @@
 					<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" placeholder="Search..">
 					<partial name="_LoginPartial" class="hide-in-mobile"/>
 					<img class="header-icon hide-in-mobile" src="~/media/icons/star.png" />
-					<img class="header-icon" src="~/media/icons/cart.png" />
+					<a asp-area="Controllers" asp-page="/Home/ShoppingCart" title="Shopping Cart"><img class="header-icon" src="~/media/icons/cart.png" /></a>
 				</div>
 			</div>
 		</section>	
@@ -115,6 +115,7 @@
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	<script src="~/js/header.js" asp-append-version="true"></script>
+	<script src="~/js/ShoppingCart.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
