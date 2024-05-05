@@ -5,4 +5,37 @@
     ViewData["Title"] = "Your shopping cart";
 }
 
-<section id="product-container"></section>
+<main id="ShoppingCart-main"> 
+
+    <h1>Your cart:</h1>
+
+    <section id="Shoppingcart-product-container">
+
+        <!--Example of html for a product row in the cart, the true html is generated in the controller-->
+        <!--
+        <div id="row-product-10" class="product-row"> 
+            <img class="image" src="/media/pictures/album-covers/heads.jpg" alt="Alternate Text" />
+            
+            <div class="information-container"> 
+                <div class="title-price-container">
+                    <p class="title">Heads will roll</p>
+                    <p class="price-paragraph"><span class="color-of-price">299</span> kr</p>
+                </div>
+
+                <div class="edit-productrow-container"> 
+                    <div class="quantity-container"> 
+                        <button class="change-quantity-button" onclick="RemoveFromCart(10)">-</button> 
+                        <p class="quantity-indicator">x</p>
+                        <button class="change-quantity-button" onclick="AddToCart(10)">+</button>    
+                    </div>
+                    <button class="DeleteProductFromCartButton" onclick="DeleteProductFromCart(10)">Delete</button>
+                </div>
+            </div>
+        </div>-->
+
+    </section>
+</main>
+<!--Temporärt till jag har skapat en produktsida-->
+<button onclick="AddToCart(1)">Lägg till en produkt i cookien</button>
+<!---->
+<script src="~/js/RenderShoppingCartRows.js" asp-append-version="true"></script>

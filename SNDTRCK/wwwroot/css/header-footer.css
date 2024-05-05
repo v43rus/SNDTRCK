@@ -125,6 +125,9 @@ footer {
     justify-content: flex-start;
     align-items: center;
     z-index: 1;
+    /*Changes made since <main> was moved into individual pages from _Layout*/
+    display: flex;
+    width: 98%;
 }
 
 /*More styles in queries*/
@@ -221,7 +224,6 @@ footer {
     color: black;
     cursor:pointer;
 }
-
 
 /*#endregion Footer*/
 
@@ -447,6 +449,7 @@ footer {
     /*#region Footer*/
     footer {
         height: 88vh;
+        width: 94%;
     }
 
     .footer-hand-container {
@@ -561,6 +564,8 @@ footer {
     /*#region Footer*/
     footer {
         height: 78vh;
+        margin-bottom: 2vw;
+        
     }
 
     .footer-hand-container {

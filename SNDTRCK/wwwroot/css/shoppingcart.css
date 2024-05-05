@@ -1,0 +1,213 @@
+﻿:root {
+    --main-blue: #0032D2;
+    --main-orange: #FF3300;
+}
+/*Bör läggas i en root-css fil*/
+@font-face {
+    font-family: inter;
+    src: url(/fonts/Inter/Inter-VariableFont_slnt,wght.ttf)
+}
+
+body {
+}
+
+/*The html main-tag for the shopping cart page*/
+#ShoppingCart-main{
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /*min-height: 82vh;*/
+}
+
+#ShoppingCart-main h1{
+    font-family: inter;
+}
+/*The container for the product rows in the cart*/
+#Shoppingcart-product-container {
+    margin: 2% auto 0 auto;
+}
+
+/*Each product row in the cart*/
+.product-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+
+    padding-bottom: 1%;
+    border-bottom: 1px solid black;
+    margin-bottom: 2%;
+}
+
+/*The container with all the information about the product in the row*/
+.product-row .information-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/*The image for the product row*/
+.product-row .image {
+    width: 120px;
+    height: 120px;
+}
+
+/*The container with the title and price of the product*/
+.product-row .information-container .title-price-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 0 0 5%;
+}
+
+/*Title of the product*/
+.product-row .title {
+    margin: 0;
+    margin-left: 0;
+    font-weight: 500;
+}
+
+/*Container for the "substract", "add" and "delete" operation-buttons of the product*/
+.product-row .edit-productrow-container{
+    display: flex;
+    flex-direction: row;
+    margin: 2% 0 0 5%;
+}
+
+/*Container for displaying the quantity of the product*/
+.product-row .quantity-container {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    justify-content: flex-start;
+}
+
+/*Buttons to raise or lower quantity*/
+.change-quantity-button{
+    background: none;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+/*The text of the quantity*/
+.product-row .quantity-indicator {
+    margin: 0 10px 0 10px;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+/*Button that delets product entirely from cart*/
+.DeleteProductFromCartButton{
+    background-color: white;
+    background: none;
+    font-weight: 500;
+}
+
+.DeleteProductFromCartButton:hover, .change-quantity-button:hover{
+    background-color: lightgray;
+}
+
+/*The price in the product row*/
+.product-row .price-paragraph {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 650;
+}
+
+/*The span tag coloring the number part of the price*/
+.color-of-price {
+    color: var(--main-orange);
+}
+
+
+/* #region Media queries*/
+/*For phones*/
+@media screen and (max-width: 599px) {
+    /*Only used in special cases for really small screens*/
+
+    /*The image for the product row*/
+    .product-row .image {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    /*Title of the product*/
+    .product-row .title {
+        font-size: 1.2em !important;
+    }
+
+    /*Container for the "substract", "add" and "delete" operation-buttons of the product*/
+    .product-row .edit-productrow-container {
+        width: 100% !important;
+    }
+
+    /*The price in the product row*/
+    .product-row .price-paragraph {
+        font-size: 1.2em !important;
+    }
+
+}
+/*For tablet potrait up (used as standard mobile verision of site)*/
+@media screen and (max-width: 899px) {
+    #ShoppingCart-main h1 {
+        margin: 2% 0 0 0;
+    }
+
+    /*The container for the product rows in the cart*/
+    #Shoppingcart-product-container {
+        width: 90%;
+    }
+
+    /*Title of the product*/
+    .product-row .title {
+        font-size: 1.5em;
+    }
+
+    /*Container for the "substract", "add" and "delete" operation-buttons of the product*/
+    .product-row .edit-productrow-container {
+        width: 50%;
+    }
+
+    /*The price in the product row*/
+    .product-row .price-paragraph {
+        font-size: 1.5em;
+    }
+}
+
+/*Breakpoint for mobile verision of site*/
+
+/*For tablet landscape up + small computers*/
+@media screen and (min-width: 900px) {
+    #ShoppingCart-main h1 {
+        margin: 2% 0 0 10%;
+    }
+
+    /*The container for the product rows in the cart*/
+    #Shoppingcart-product-container {
+        width: 65%;
+    }
+
+    /*Title of the product*/
+    .product-row .title {
+        font-size: 1.5em;
+    }
+
+    /*Container for the "substract", "add" and "delete" operation-buttons of the product*/
+    .product-row .edit-productrow-container {
+        width: 40%;
+    }
+
+    /*The price in the product row*/
+    .product-row .price-paragraph {
+        font-size: 1.5em;
+    }
+
+}
+/*For desktop up*/
+@media screen and (min-width: 1200px) {
+}
+/*For big desktop*/
+@media screen and (min-width: 1800px) {
+}

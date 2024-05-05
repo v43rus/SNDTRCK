@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/header-footer.css" asp-append-version="true"/>
 	<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/shoppingcart.css" asp-append-version="true" />
 </head>
 <body>
 
@@ -23,7 +24,7 @@
 				<label class="hamburger hide-in-desktop" for="mobile-menu-checkbox"><span class="hamburger-line"></span></label>
 
 				<!--Logo-->
-				<a id="logo-anchor-container" href="/Home/index"><img id="header-logo-text" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>
+				<a id="logo-anchor-container" asp-controller="Home" asp-action="Index"><img id="header-logo-text" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>
 
 				<!--Star and cart icon-->
 				<div id="header-icon-container">
@@ -55,13 +56,13 @@
 	</header>
 
 	<!--<div class="container">-->
-		<main role="main" >
+		<!--<main role="main" >-->
 			@RenderBody()
-		</main>
+		<!--</main>-->
 	<!--</div>-->
 
 	<!--Css for home-section class can be found in home.css-->
-	<footer class="home-section">
+	<footer>
 		<div id="footer-left-hand-container" class="footer-hand-container">
             <img class="footer-hand" src="/media/pictures/left-hand.png" />
 		</div>

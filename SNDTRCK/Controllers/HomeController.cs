@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SNDTRCK.Data;
 using SNDTRCK.Models;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace SNDTRCK.Controllers
 {
@@ -54,24 +55,48 @@ namespace SNDTRCK.Controllers
         }
 
         [HttpPost]
-        public ActionResult BuildShoppingCartRows(Dictionary<string, int> cartData)
+        public ActionResult BuildShoppingCartRows([FromBody] string cartData) //[FromBody] säger åt controllern att informationen från kroppen på http-förfrågan och inte t.ex. url:n eller headern. xhr.setRequestHeader("Content-Type", "application/json") behövs för att detta ska fungera
 		{
+
+			//Konventera JSON-strängen till en Dictionary<int, int>
+			Dictionary<int, int> cartDataDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(cartData);
+
 			//Stores html for each product line in cart
 			List<string> productLines = new List<string>();
 
-			foreach(var entry in cartData)
+			foreach(var entry in cartDataDict)
 			{
-				string productId = entry.Key;
+				int productId = entry.Key;
 				int quantity = entry.Value;
-				/*
-				Product product = _context.Products.FirstOrDefault(p => p.Id === productId);
+				
+				//Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
 
-				if(product is not null)
-				{
-					string productLine = $"<div>{product.Name} - Quantity: {quantity}";
+				/*if(product is not null)
+				{*/
+					string productLine = $@"
+
+					<div id=""row-product-{entry.Key}"" class=""product-row"">
+						<img class=""image"" src=""/media/pictures/album-covers/beegees.jpg"" alt=""Album cover"" />
+            
+						<div class=""information-container"">
+							<div class=""title-price-container"">
+								<p class=""title"">Led Zeppelin - Led Zeppelin</p>
+								<p class=""price-paragraph""><span class=""color-of-price"">299</span> kr</p>
+							</div>
+
+							<div class=""edit-productrow-container"">
+								<div class=""quantity-container"">
+									<button class=""change-quantity-button"" onclick=""RemoveFromCart({entry.Key})"">-</button>
+									<p class=""quantity-indicator"">{entry.Value}</p>
+									<button class=""change-quantity-button"" onclick=""AddToCart({entry.Key})"">+</button>    
+								</div>
+								<button class=""DeleteProductFromCartButton"" onclick=""DeleteProductFromCart({entry.Key})"">Delete</button>
+							</div>
+						</div>";
 					productLines.Add(productLine);
-				}*/
+				/*}*/
 			}
+
             return Json(productLines); // Returnera HTML-produktrader som JSON-respons
         }
 

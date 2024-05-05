@@ -1,8 +1,6 @@
 ﻿
 //Client cookie CRUD operations
 
-
-
 //GetCookie
 function GetCookie(name) {
 
@@ -29,17 +27,26 @@ function GetCookie(name) {
 
 
 //Add product to cart cookie
-function AddToCart(productId = "1", quantity = 2) {
+function AddToCart(productId = 1, quantity = 1) {
 
     //Gets existing cookie
-    var existingUserCart = getCookie("userCart");
+    var existingUserCart = GetCookie("userCart");
 
     //Om existingUserCart är sann (alltså innehåller data) fortsätt med JSON.parse, annars skapa tomt js-objekt (: {})
     var cartObj = existingUserCart ? JSON.parse(existingUserCart) : {};
 
     //Öka kvantiteten om produkten redan finns i korgen, annars lägg till den med kvantiteten 1
     //I ett js-objekt består av nyckel-värde-par, ex i vårt fall: {"1":3, "5":1}
-    cartObj[productId] = (cartObj[productId] || 0) + quantity;
+    //cartObj[productId] = (cartObj[productId] || 0) + quantity;
+    if (cartObj[productId]) {
+        cartObj[productId] += quantity;
+    }
+    else {
+        cartObj[productId] = quantity;
+    }
+
+    //Uppdatera quantity-texten på produktraden
+    UpdateQuantityIndicator(productId, cartObj[productId], "Add");
 
     //Konventera JS-objektet åter till JSON
     var jsonCart = JSON.stringify(cartObj);
@@ -48,46 +55,76 @@ function AddToCart(productId = "1", quantity = 2) {
     document.cookie = "userCart=" + jsonCart;
 }
 
-//On load, Read cookie and send request to controller for product-cart-lines
-window.addEventListener("load", (event) => {
+//Remove one quantity of product from cart cookie
+function RemoveFromCart(productId = 1, quantity = 1) {
+    //Gets existing cookie
+    var existingUserCart = GetCookie("userCart");
 
-    //Lagrar en JSON sträng som denna: "{"1":1,"45":2,"22":5}", först siffran är productId och den andra är antal
-    cartData = GetCookie(userCart);
+    //Om existingUserCart är sann (alltså innehåller data) fortsätt med JSON.parse, annars return
+    var cartObj = existingUserCart ? JSON.parse(existingUserCart) : null;
 
-    if (cart !== null) {
-        var xhr = new XMLHttpRequest(); //nytt XMLHttpRequest-objekt skapas, vilket är en inbyggd webbläsarobjekt som används för att skicka HTTP-förfrågningar och ta emot svar från en server utan att ladda om hela sidan.
-        xhr.open("POST", "/Controller/Action", true); //asynkron POST-förfrågan till en viss URL (/Controller/Action) öppnas. Detta är den URL där servern förväntas ta emot förfrågan för att behandla varukorgen.
-        xhr.setRequestHeader("Content-Type", "application/json"); //ställer in HTTP-headers för förfrågan. Här specificeras att den skickade datan är i JSON-format.
-
-        //händelselyssnare som lyssnar på förändringar i xhr-objektets status
-        //När statusen ändras, kontrollerar koden om förfrågan är klar (status 4) och om svaret från servern är OK (status 200).
-        xhr.onreadystatechange = function () { 
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText); //När svaret från servern tas emot tolkas det som JSON-data med JSON-parse
-
-                console.log(response);
-            }
-        };
-        xhr.send(JSON.stringify(cartData)); //Här skickas den faktiska cart-datan till servern, först så säkerställs det att det är i JSON-format, även fast GetCookie() returnerar JSON
+    //Minska kvantiteten med 1 eller ta bort produkten helt
+    if ((cartObj[productId] - quantity) > 0) {
+        cartObj[productId] -= quantity;
     }
     else {
-        //Display "Your shopping cart is empty"
+        delete cartObj[productId];
     }
 
-});
+    //Konventera JS-objektet åter till JSON
+    var jsonCart = JSON.stringify(cartObj);
 
-//AJAX requests to controller to get product data
+    //Uppdatera cookien med nya JSON-strängen
+    document.cookie = "userCart=" + jsonCart;
 
+    //Uppdatera quantity-texten på produktraden
+    UpdateQuantityIndicator(productId, cartObj[productId], "Sub");
+}
 
+//Remove product entirely from cart
+function DeleteProductFromCart(productId){
 
-//Render items in shoppingcart
+    //Delete product from cookie
 
+    //Gets existing cookie
+    var existingUserCart = GetCookie("userCart");
+    var cartObj = existingUserCart ? JSON.parse(existingUserCart) : null;
 
+    //Delete key and value
+    delete cartObj[productId];
 
-//User CRUD operations for items in shopping cart (Add, update quantity, delete)
+    //Konventera JS-objektet åter till JSON
+    var jsonCart = JSON.stringify(cartObj);
 
+    //Uppdatera cookien med nya JSON-strängen
+    document.cookie = "userCart=" + jsonCart;
 
-//OnPageLoad
-function OnPageLoad() {
+    //Get product row in cart and delete it
+    var id = "row-product-" + productId;
+    var row = document.getElementById(id);
+    row.remove();
+}
+
+function UpdateQuantityIndicator(productId, newQuantity) {
+
+    //The user uses the function "AddToCart" but is on a product page where quantity indicator dont exists
+    try {
+        //Get the product row in question
+        var id = "row-product-" + productId;
+        var row = document.getElementById(id);
+        var quantityTextCollection = row.getElementsByClassName("quantity-indicator");
+        var quantityText = quantityTextCollection[0];
+
+        //Remove row if quantity == 0 (undefined)
+        if (newQuantity === undefined) {
+            DeleteProductFromCart(productId);
+        }
+        else {
+            quantityText.innerText = newQuantity;
+        }
+    }
+    catch {
+        //Nothing needed here
+    }
 
 }

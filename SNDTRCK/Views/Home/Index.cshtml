@@ -7,6 +7,8 @@
 
 @model List<AspNetUser>
 
+<main id="index-main">
+
 @if (User.Identity!.IsAuthenticated && ViewBag.IsAdmin)
 {
 	<div id="admin-header">
@@ -30,6 +32,7 @@
 		<!--Only shown in mobile, needed for a better look with the album stack-->
 		<a class="hide-in-desktop see-categories-link" href="">SEE ALL CATEGORIES</a>
 	</section>
+
 	<!--
 	<section class="home-section" id="home-top-5">
 		<h3>
@@ -60,3 +63,5 @@
 		</article>
 	</section>-->
 <!--</div>-->
+
+</main>

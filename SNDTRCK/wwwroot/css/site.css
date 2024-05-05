@@ -24,25 +24,29 @@ html {
 }
 
 body {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 60px;*/
-    /*min-height: 100vh;*/
     /*Necessary in order to set height to main*/
     min-height: 100%;
     overflow-x: hidden;
     margin: 0;
     padding-bottom: 0.5vh; /*to make space under footer*/
+
+    /*Changes made since <main> was moved into individual pages from _Layout*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 main {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
+    /*Each page has its own main-tag, more specific flex-rules for it can be found at respective page's css */
+
+    /*Changes made since <main> was moved into individual pages from _Layout*/
+    width: 98%;
+    min-height: 82vh;
 }
+
 
 a:active{
     color: var(--main-blue);
@@ -68,7 +72,8 @@ footer {
         /*To make header not cover any content in mobile verision*/
         padding-top: 10vh;
         height: 100vh;
-        min-height: 100vh
+        min-height: 100vh;  
+        width: 94%;
     }
 
     /*Hides all elements on site that shouldn't be displayed on mobile verision*/

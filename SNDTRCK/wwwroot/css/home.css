@@ -11,6 +11,12 @@
 body {
 }
 
+#index-main {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 #admin-header {
     width: 960px;
     text-align: center;
@@ -146,7 +152,8 @@ body {
 /*For tablet potrait up (used as standard mobile verision of site)*/
 @media screen and (max-width: 899px) {
     .home-section {
-        width: 95%;
+        width: 95%; /*Before <main> was moved into individual pages from _Layout*/
+        width: 100%;
     }
 
     #home-section-1 {
@@ -188,7 +195,8 @@ body {
 /*For tablet landscape up + small computers*/
 @media screen and (min-width: 900px) {
     .home-section {
-        width: 98%;
+        width: 98%; /*Before <main> was moved into individual pages from _Layout*/
+        width: 100%;
         margin-bottom: 2vw;
     }
     
