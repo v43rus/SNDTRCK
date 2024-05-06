@@ -17,6 +17,7 @@
     background-color: var(--main-orange);
     padding: 25px 0;
     margin: 10px;
+    text-align: center;
 }
 
 #account {

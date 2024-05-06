@@ -1,35 +1,32 @@
 ﻿@{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
-    {
-        Layout = parentLayout.ToString();
-    }
-    else
-    {
-        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
-    }
+	if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
+	{
+		Layout = parentLayout.ToString();
+	}
+	else
+	{
+		Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+	}
 }
+<section id="login-main">
+	<section id="login-heading">
+		<h1>Manage your account</h1>
+		<h2>Change your account settings</h2>
+	</section>
+
+	<div id="account-content">
+	<div id="account-ul">
+		<partial name="_ManageNav" />
+	</div>
+		@RenderBody()
+	</div>
 
 
-
-<h1>Manage your account</h1>
-
-<div>
-    <h2>Change your account settings</h2>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
-        </div>
-    </div>
-</div>
-
-<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-    <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
-</form>
+	<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+		<button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
+	</form>
+</section>
 
 @section Scripts {
-    @RenderSection("Scripts", required: false)
+	@RenderSection("Scripts", required: false)
 }
