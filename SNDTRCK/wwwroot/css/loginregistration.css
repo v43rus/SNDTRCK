@@ -1,0 +1,42 @@
+﻿:root {
+    --main-orange: #FF3300;
+    --main-blue: #0132D2;
+}
+
+#login-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 98%;
+    text-align: center;
+}
+
+#login-heading {
+    width: 100%;
+    color: white;
+    background-color: var(--main-orange);
+    padding: 25px 0;
+    margin: 10px;
+}
+
+#account {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#account button {
+    background-color: var(--main-blue);
+    border-color: var(--main-blue);
+    margin: 10px 0;
+}
+
+#login-content {
+    width: 35%;
+}
+
+button {
+
+}
