@@ -1,4 +1,11 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<IdentityUser> _userManager
+
+@{
+	var user = await _userManager.GetUserAsync(User);
+	var isAdmin = await _userManager.IsInRoleAsync(user!, "Admin");
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +41,12 @@
 				<div id="header-icon-container">
 					<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" placeholder="Search..">
 					<partial name="_LoginPartial" class="hide-in-mobile" />
+					@if (User.Identity!.IsAuthenticated && isAdmin)
+					{
+						<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" title="Admin" class="">
+							<img class="header-icon" src="~/media/icons/crown.png" />
+						</a>
+					}
 					<img class="header-icon hide-in-mobile" src="~/media/icons/star.png" />
 					<a asp-controller="Home" asp-action="ShoppingCart" title="Shopping Cart"><img class="header-icon" src="~/media/icons/cart.png" /></a>
 				</div>

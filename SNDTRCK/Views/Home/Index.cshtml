@@ -1,6 +1,8 @@
 ﻿@using SNDTRCK.Models.User
 @using Microsoft.AspNetCore.Identity
 
+
+
 @{
 	ViewData["Title"] = "Home Page";
 }
@@ -8,13 +10,6 @@
 @model List<AspNetUser>
 
 <main id="index-main">
-
-@if (User.Identity!.IsAuthenticated && ViewBag.IsAdmin)
-{
-	<div id="admin-header">
-		<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" title="Admin">Access admin dashboard</a>
-	</div>
-}
 
 <!--<div class="text-center">-->
 	<section class="home-section" id="home-section-1">
