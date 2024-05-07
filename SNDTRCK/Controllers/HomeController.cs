@@ -69,19 +69,19 @@ namespace SNDTRCK.Controllers
 				int productId = entry.Key;
 				int quantity = entry.Value;
 				
-				//Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
+				Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
 
-				/*if(product is not null)
-				{*/
+				if(product is not null)
+				{
 					string productLine = $@"
 
 					<div id=""row-product-{entry.Key}"" class=""product-row"">
-						<img class=""image"" src=""/media/pictures/album-covers/beegees.jpg"" alt=""Album cover"" />
+						<img class=""image"" src=""{product.CoverImageLink}"" alt=""Album cover"" />
             
 						<div class=""information-container"">
 							<div class=""title-price-container"">
-								<p class=""title"">Led Zeppelin - Led Zeppelin</p>
-								<p class=""price-paragraph""><span class=""color-of-price"">299</span> kr</p>
+								<p class=""title"">{product.Title} - {product.Artist}</p>
+								<p class=""price-paragraph""><span class=""color-of-price"">{product.Price}</span> kr</p>
 							</div>
 
 							<div class=""edit-productrow-container"">
@@ -94,7 +94,7 @@ namespace SNDTRCK.Controllers
 							</div>
 						</div>";
 					productLines.Add(productLine);
-				/*}*/
+				}
 			}
 
             return Json(productLines); // Returnera HTML-produktrader som JSON-respons
