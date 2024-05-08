@@ -8,3 +8,12 @@
 #admin-wrapper h2 {
     width: fit-content;
 }
+
+.product-image {
+    width: 48px;
+    height: 48px;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(230, 230, 230, 100);
+}

@@ -7,9 +7,7 @@
 	var user = await _userManager.GetUserAsync(User);
 
 	if (user != null)
-	{
 		isAdmin = await _userManager.IsInRoleAsync(user!, "Admin");
-	}
 }
 
 <!DOCTYPE html>

@@ -7,28 +7,25 @@
 	var user = await _userManager.GetUserAsync(User);
 	
 	if (user != null)
-	{
 		isAdmin = await _userManager.IsInRoleAsync(user!, "Admin");
-	}
 }
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>@ViewData["Title"] - SNDTRCK</title>
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/header-footer.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/shoppingcart.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/loginregistration.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/manageaccount.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true"/>
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+	<link rel="stylesheet" href="~/css/header-footer.css" asp-append-version="true"/>
+	<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true"/>
+	<link rel="stylesheet" href="~/css/shoppingcart.css" asp-append-version="true"/>
+	<link rel="stylesheet" href="~/css/loginregistration.css" asp-append-version="true"/>
+	<link rel="stylesheet" href="~/css/manageaccount.css" asp-append-version="true"/>
 </head>
 <body>
-
 	<header>
 		<!--Checkbox needs to be put here in order to control nav style-->
 		<input id="mobile-menu-checkbox" class="mobile-menu-checkbox hide-in-desktop" type="checkbox" onclick="checkIfScroll()" />
