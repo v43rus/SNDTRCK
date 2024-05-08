@@ -3,10 +3,14 @@
 @inject UserManager<IdentityUser> _userManager
 
 @{
+	var isAdmin = false;
 	var user = await _userManager.GetUserAsync(User);
-	var isAdmin = await _userManager.IsInRoleAsync(user!, "Admin");
-}
 
+	if (user != null)
+	{
+		isAdmin = await _userManager.IsInRoleAsync(user!, "Admin");
+	}
+}
 
 <!DOCTYPE html>
 <html lang="en">
