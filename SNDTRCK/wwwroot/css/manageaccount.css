@@ -31,6 +31,6 @@
     display: flex;
 }
 
-#personal-data-buttons button {
+#personal-data-buttons .btn {
     margin: 10px;
 }

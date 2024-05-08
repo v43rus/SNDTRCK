@@ -10,30 +10,20 @@ namespace SNDTRCK.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly UserManager<IdentityUser> _userManager;
 		private readonly ILogger<HomeController> _logger;
 		private readonly SNDTRCKContext _context;
 
 
-		public HomeController(SNDTRCKContext context, UserManager<IdentityUser> userManager, ILogger<HomeController> logger)
+		public HomeController(SNDTRCKContext context, ILogger<HomeController> logger)
 		{
 			_logger = logger;
 			_context = context;
-			_userManager = userManager;
 		}
 
 
 		[Route("/")]
 		public async Task<IActionResult> Index()
 		{
-			// Checks if user is authenticated before returning IsAdmin to the view
-			if (User.Identity!.IsAuthenticated)
-			{
-				var user = await _userManager.GetUserAsync(User);
-				var isAdmin = await _userManager.IsInRoleAsync(user!, "Admin");
-
-				ViewBag.IsAdmin = isAdmin;
-			}
 			return View();
 		}
 
@@ -50,12 +40,12 @@ namespace SNDTRCK.Controllers
 
 		[Route("cart")]
 		public IActionResult ShoppingCart()
-        {
-            return View();
-        }
+		{
+			return View();
+		}
 
-        [HttpPost]
-        public ActionResult BuildShoppingCartRows([FromBody] string cartData) //[FromBody] säger åt controllern att informationen från kroppen på http-förfrågan och inte t.ex. url:n eller headern. xhr.setRequestHeader("Content-Type", "application/json") behövs för att detta ska fungera
+		[HttpPost]
+		public ActionResult BuildShoppingCartRows([FromBody] string cartData) //[FromBody] säger åt controllern att informationen från kroppen på http-förfrågan och inte t.ex. url:n eller headern. xhr.setRequestHeader("Content-Type", "application/json") behövs för att detta ska fungera
 		{
 
 			//Konventera JSON-strängen till en Dictionary<int, int>
@@ -64,20 +54,20 @@ namespace SNDTRCK.Controllers
 			//Stores html for each product line in cart
 			List<string> productLines = new List<string>();
 
-			foreach(var entry in cartDataDict)
+			foreach (var entry in cartDataDict)
 			{
 				int productId = entry.Key;
 				int quantity = entry.Value;
-				
+
 				Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
 
-				if(product is not null)
+				if (product is not null)
 				{
 					string productLine = $@"
 
 					<div id=""row-product-{entry.Key}"" class=""product-row"">
 						<img class=""image"" src=""{product.CoverImageLink}"" alt=""Album cover"" />
-            
+			
 						<div class=""information-container"">
 							<div class=""title-price-container"">
 								<p class=""title"">{product.Title} - {product.Artist}</p>
@@ -97,8 +87,8 @@ namespace SNDTRCK.Controllers
 				}
 			}
 
-            return Json(productLines); // Returnera HTML-produktrader som JSON-respons
-        }
+			return Json(productLines); // Returnera HTML-produktrader som JSON-respons
+		}
 
 		public IActionResult Newsletter()
 		{
