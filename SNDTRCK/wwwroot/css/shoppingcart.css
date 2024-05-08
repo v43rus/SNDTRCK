@@ -25,6 +25,17 @@ body {
 /*The container for the product rows in the cart*/
 #Shoppingcart-product-container {
     margin: 2% auto 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Empty cart text*/
+#empty-cart-text{
+    display: none;
+    font-family: inter;
+    margin-top: 15%;
 }
 
 /*Each product row in the cart*/
@@ -34,7 +45,6 @@ body {
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-
     padding-bottom: 1%;
     border-bottom: 1px solid black;
     margin-bottom: 2%;

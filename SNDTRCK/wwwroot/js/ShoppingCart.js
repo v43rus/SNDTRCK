@@ -45,8 +45,11 @@ function AddToCart(productId = 1, quantity = 1) {
         cartObj[productId] = quantity;
     }
 
+    //Update cart icon quantity indicator
+    UpdateCartQuantityIndicatorByAction("raise")
+
     //Uppdatera quantity-texten på produktraden
-    UpdateQuantityIndicator(productId, cartObj[productId], "Add");
+    UpdateProductQuantityIndicator(productId, cartObj[productId], "Add");
 
     //Konventera JS-objektet åter till JSON
     var jsonCart = JSON.stringify(cartObj);
@@ -77,8 +80,11 @@ function RemoveFromCart(productId = 1, quantity = 1) {
     //Uppdatera cookien med nya JSON-strängen
     document.cookie = "userCart=" + jsonCart;
 
+    //Update cart icon quantity indicator
+    UpdateCartQuantityIndicatorByAction("lower")
+
     //Uppdatera quantity-texten på produktraden
-    UpdateQuantityIndicator(productId, cartObj[productId], "Sub");
+    UpdateProductQuantityIndicator(productId, cartObj[productId], "Sub");
 }
 
 //Remove product entirely from cart
@@ -99,13 +105,27 @@ function DeleteProductFromCart(productId){
     //Uppdatera cookien med nya JSON-strängen
     document.cookie = "userCart=" + jsonCart;
 
+    //Remove product's quantity value from cart quantity indicator
+        //Get the product row in question
+        var id = "row-product-" + productId;
+        var row = document.getElementById(id);
+        var quantityTextCollection = row.getElementsByClassName("quantity-indicator");
+        var quantityText = quantityTextCollection[0];
+        //Gets the indicator value as a number
+        let quanityIndicatorText = quantityText.innerText;
+        let quantityValue = parseInt(quanityIndicatorText);
+        for (let i = 0; i < quantityValue; i++) {
+            UpdateCartQuantityIndicatorByAction("lower")
+        }
+
     //Get product row in cart and delete it
     var id = "row-product-" + productId;
     var row = document.getElementById(id);
     row.remove();
 }
 
-function UpdateQuantityIndicator(productId, newQuantity) {
+//Each product row's quantity indicator in the cart
+function UpdateProductQuantityIndicator(productId, newQuantity) {
 
     //The user uses the function "AddToCart" but is on a product page where quantity indicator dont exists
     try {
@@ -126,5 +146,96 @@ function UpdateQuantityIndicator(productId, newQuantity) {
     catch {
         //Nothing needed here
     }
-
 }
+
+//The quantity indicator on the cart icon
+function UpdateCartQuantityIndicatorByAction(action) {
+
+    //Gets the "your cart is empty-text"
+    let emptyCartText = document.getElementById("empty-cart-text")
+
+    //Gets the quantity indicator
+    let quanityIndicator = document.getElementById("cart-quantity-indicator");
+    //Gets the indicator value as a number
+    let quanityIndicatorText = quanityIndicator.innerText;
+    let quantityValue = parseInt(quanityIndicatorText);
+
+    if (action === "raise") {
+        quanityIndicator.innerText = quantityValue + 1;
+
+        quanityIndicator.style.display = "initial"; //If the indicator was hidden because cart was empty
+        emptyCartText.style.display = "none"; //If the cart was empty
+    }
+    else if (action === "lower") {
+
+        if (quantityValue - 1 === 0){
+            //Hide indicator
+            quanityIndicator.style.display = "none";
+
+            //Tries to display "your cart is empty" if the user is on the cart-page
+            try {
+                emptyCartText.style.display = "initial";
+            }
+            catch {
+                //No code needed
+            }
+
+            quanityIndicator.innerText = quantityValue - 1;
+        }
+        else if (quantityValue === 0) {
+            //Do nothing
+        }
+        else {
+            quanityIndicator.innerText = quantityValue - 1;
+        }
+    }
+}
+
+//The quantity indicator on the cart icon
+function UpdateCartQuantityIndicatorByCookie() {
+
+    //Calculates how many products there are in the cart
+    let jsonObj = JSON.parse(GetCookie("userCart"));
+    let totalProducts = 0; //Stores the number of products in cart
+    for (var key in jsonObj) {
+        if (jsonObj.hasOwnProperty(key)) {
+            totalProducts += jsonObj[key];
+        }
+    }
+
+    //Gets the quantity indicator
+    let quanityIndicator = document.getElementById("cart-quantity-indicator");
+    //Gets the indicator value as a number
+    let quanityIndicatorText = quanityIndicator.innerText;
+    let quantityValue = parseInt(quanityIndicatorText);
+
+    //Gets the "your cart is empty-text"
+    let emptyCartText = document.getElementById("empty-cart-text");
+
+    if (totalProducts > 0) {
+        quanityIndicator.style.display = "initial"; //If the indicator was hidden because cart was empty
+        emptyCartText.style.display = "none"; //If the cart was empty
+        quanityIndicator.innerText = totalProducts;
+    }
+    else if (totalProducts === 0) {
+
+        //hide indicator, try to display empty cart
+        quanityIndicator.style.display = "none";
+        quanityIndicator.innerText = totalProducts;
+
+        //Tries to display "your cart is empty" if the user is on the cart-page
+        try {
+            emptyCartText.style.display = "initial";
+        }
+        catch {
+            //No code needed
+        }
+    }
+}
+
+//Startup
+//Since the page needs to be reloaded for the cookie to update,
+//two different methods are needed to upsate the cart quantity indicator.
+//One that gets the info from the cookie when the page is loaded and one that
+//updates the indicator manually when a button is pressed
+UpdateCartQuantityIndicatorByCookie();
