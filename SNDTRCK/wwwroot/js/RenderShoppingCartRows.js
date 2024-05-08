@@ -31,9 +31,9 @@ window.addEventListener("load", (event) => {
     //Lagrar en JSON sträng som denna: "{1:1,45:2,22:5}", först siffran är productId och den andra är antal
     cartData = GetCookie("userCart");
 
-    console.log("cartData:" + cartData)
+    console.log("cartData:" + cartData.length)
 
-    if (cartData !== null) {
+    if (cartData.length > 2) {
         var xhr = new XMLHttpRequest(); //nytt XMLHttpRequest-objekt skapas, vilket är en inbyggd webbläsarobjekt som används för att skicka HTTP-förfrågningar och ta emot svar från en server utan att ladda om hela sidan.
         xhr.open("POST", "/Home/BuildShoppingCartRows", false); //asynkron POST-förfrågan till en viss URL (/Controller/Action) öppnas. Detta är den URL där servern förväntas ta emot förfrågan för att behandla varukorgen.
         xhr.setRequestHeader("Content-Type", "application/json"); //ställer in HTTP-headers för förfrågan. Här specificeras att den skickade datan är i JSON-format.
@@ -56,8 +56,5 @@ window.addEventListener("load", (event) => {
         xhr.send(JSON.stringify(cartData)); //Här skickas den faktiska cart-datan till servern, först så säkerställs det att det är i JSON-format, även fast GetCookie() returnerar JSON
         console.log("cartData sent:");
         console.log(JSON.stringify(cartData));
-    }
-    else {
-        //Display empty cart
     }
 });

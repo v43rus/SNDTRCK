@@ -33,7 +33,7 @@
 					<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" placeholder="Search..">
 					<partial name="_LoginPartial" class="hide-in-mobile"/>
 					<img class="header-icon hide-in-mobile" src="~/media/icons/star.png" />
-					<a asp-controller="Home" asp-action="ShoppingCart" title="Shopping Cart"><img class="header-icon" src="~/media/icons/cart.png" /></a>
+					<a id="shopping-cart-link" asp-controller="Home" asp-action="ShoppingCart" title="Shopping Cart"><img class="header-icon" src="~/media/icons/cart.png" /><span id="cart-quantity-indicator"> </span></a>
 				</div>
 			</div>
 		</section>	
