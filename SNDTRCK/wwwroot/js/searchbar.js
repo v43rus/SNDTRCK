@@ -1,4 +1,6 @@
 ﻿
+//The button to "See all" in the search field
+let searchSeeAllButton = "";
 
 function ShowSearchSuggestions(query, device) {
 
@@ -10,7 +12,7 @@ function ShowSearchSuggestions(query, device) {
     //Clear the seach suggestion container
     ClearSearchSuggestionContainer(device);
 
-    if (query.length > 2) {
+    if (query.length > 1) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/Home/BuildSearchSuggestions", false);
         xhr.setRequestHeader("Content-Type", "application/json");
@@ -21,18 +23,25 @@ function ShowSearchSuggestions(query, device) {
 
                 //To determine in what search-field to render suggestions
                 let searchSuggestionContainer = "";
+
                 if (device === "desktop" && response !== null) {
                     searchSuggestionContainer = document.getElementById("desktop-search-suggestions-container");
-                    document.getElementById("desktop-search-suggestions-container").style.display = "block";
+                    searchSeeAllButton = document.getElementById("desktop-search-see-all-button");
                 }
                 else if (device === "mobile" && response !== null) {
                     searchSuggestionContainer = document.getElementById("mobile-search-suggestions-container");
-                    document.getElementById("mobile-search-suggestions-container").style.display = "block";
+                    searchSeeAllButton = document.getElementById("mobile-search-see-all-button");
                 }
+                //searchSuggestionContainer.style.display = "block";
 
                 //Displays "See all" button in search container
-                if (response !== null) {
-                    document.getElementById("search-see-all-button").style.display = "block";
+                if (response.length > 0) {
+                    searchSeeAllButton.style.display = "block";
+                    searchSuggestionContainer.style.display = "block"
+                }
+                else {
+                    searchSeeAllButton.style.display = "none";
+                    searchSuggestionContainer.style.display = "none"
                 }
 
                 //Renderar raderna
@@ -40,28 +49,40 @@ function ShowSearchSuggestions(query, device) {
 
                     let suggestionNode = document.createElement("div")
                     suggestionNode.innerHTML = response;
-                    //searchSuggestionContainer.innerHTML += suggestion;
-                    let seeAllButton = document.getElementById("search-see-all-button");
-                    searchSuggestionContainer.insertBefore(suggestionNode, seeAllButton);
+                    searchSuggestionContainer.insertBefore(suggestionNode, searchSeeAllButton);
                 });
             }
         };
         xhr.send(JSON.stringify(query));
     }
     else {
-        document.getElementById("desktop-search-suggestions-container").style.display = "none"
+        //If the query wasn't long enough the following will be hidden
+        document.getElementById("desktop-search-suggestions-container").style.display = "none";
+        document.getElementById("mobile-search-suggestions-container").style.display = "none";
+        searchSeeAllButton.style.display = "none";
     }
 }
 
 function HideSuggestionsContainer(device) {
 
+    let searchSuggestionsContainer = "";
+    let searchBar = "";
+
     //To determine what container that should be hidden
     if (device === "desktop") {
-        document.getElementById("desktop-search-suggestions-container").style.display = "none"
+        searchSuggestionsContainer = document.getElementById("desktop-search-suggestions-container");
+        searchBar = document.getElementById("desktop-header-searchbar");
     }
     else if (device === "mobile") {
-        document.getElementById("mobile-search-suggestions-container").style.display = "none"
+        searchSuggestionsContainer = document.getElementById("mobile-search-suggestions-container");
+        searchBar = document.getElementById("mobile-header-searchbar");
     }
+
+    searchSuggestionsContainer.style.display = "none";
+
+    //Clears user input
+    searchBar.value = "";
+
 }
 
 //Clears search suggestion container
@@ -70,9 +91,11 @@ function ClearSearchSuggestionContainer(device) {
     let searchSuggestionContainer = "";
     if (device === "desktop") {
         searchSuggestionContainer = document.getElementById("desktop-search-suggestions-container");
+        searchSeeAllButton = document.getElementById("desktop-search-see-all-button");
     }
     else if (device === "mobile") {
         searchSuggestionContainer = document.getElementById("mobile-search-suggestions-container");
+        searchSeeAllButton = document.getElementById("mobile-search-see-all-button");
     }
     
     var children = searchSuggestionContainer.children;
@@ -84,5 +107,5 @@ function ClearSearchSuggestionContainer(device) {
     }
 
     //Hides "See all" button in search container
-    document.getElementById("search-see-all-button").style.display = "none";
+    searchSeeAllButton.style.display = "none";
 }
