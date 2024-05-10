@@ -42,7 +42,7 @@
 				<div id="header-icon-container">
 					<!--Searchbar in desktop-->
 					<form id="desktop-searchbar-form" method="post">
-						<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" placeholder="Search.." onkeyup='ShowSearchSuggestions(this.value, "desktop")' onblur="HideSuggestionsContainer('desktop')">
+						<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" placeholder="Search.." autocomplete="off" onkeyup='ShowSearchSuggestions(this.value, "desktop")' onblur="HideSuggestionsContainer('desktop')">
 						
 						<div id="desktop-search-suggestions-container" class="search-suggestions-container">
 							
@@ -80,7 +80,7 @@
 		<nav class="nav">
 			<ul id="navigation-list">
 				<form id="mobile-header-searchbar-form" class="hide-in-desktop">
-					<input id="mobile-header-searchbar" class="searchbar hide-in-desktop" type="text" placeholder="Search.." onkeyup='ShowSearchSuggestions(this.value, "mobile")' onblur="HideSuggestionsContainer('mobile')">
+					<input id="mobile-header-searchbar" class="searchbar hide-in-desktop" type="text" placeholder="Search.." autocomplete="off" onkeyup='ShowSearchSuggestions(this.value, "mobile")' onblur="HideSuggestionsContainer('mobile')">
 					<div id ="mobile-search-suggestions-container" class="search-suggestions-container">
 						<!--Example of search suggestion-->
 						<a class="search-suggestion" href="#">

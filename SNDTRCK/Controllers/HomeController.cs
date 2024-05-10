@@ -67,7 +67,7 @@ namespace SNDTRCK.Controllers
 					string productLine = $@"
 
 					<div id=""row-product-{entry.Key}"" class=""product-row"">
-						<img class=""image"" src=""{product.CoverImageLink}"" alt=""Album cover"" />
+						<img class=""image"" src=""{product.CoverImageLink}"" alt=""{product.Title}"" />
 			
 						<div class=""information-container"">
 							<div class=""title-price-container"">
@@ -127,11 +127,11 @@ namespace SNDTRCK.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult BuildSearchSuggestions([FromBody] string jsonSearchQuery)
+		public ActionResult BuildSearchSuggestions([FromBody] string searchQuery)
 		{
 
 			//Konventera JSON-strängen till en vanlig sträng
-			string searchQuery = JsonConvert.DeserializeObject<string>(jsonSearchQuery);
+			//string searchQuery = JsonConvert.DeserializeObject<string>(jsonSearchQuery);
 
 			//Stores html for each product line in cart
 			List<string> searchSuggestions = new List<string>();
@@ -149,10 +149,10 @@ namespace SNDTRCK.Controllers
 					{
 						string suggestion = $@"
 								<a class=""search-suggestion"" href=""#"">
-									< div class=""search-suggestion-image-container"">
-										<img src = ""/media/pictures/album-covers/zeppelin.jpg"" />
-									</ div >
-									< div class=""search-suggestion-text-container"">
+									<div class=""search-suggestion-image-container"">
+										<img src = ""{result[i].CoverImageLink}""  alt=""{result[i].Title}""/>
+									</div >
+									<div class=""search-suggestion-text-container"">
 										<ul>
 											<li>{result[i].Title} - {result[i].Artist}</li>
 											<li><span class=""color-of-price"">{result[i].Price}</span> kr</li>
