@@ -24,7 +24,8 @@ namespace SNDTRCK.Controllers
 		[Route("/")]
 		public IActionResult Index()
 		{
-			return View();
+
+			return View(_context.Products.ToList());
 		}
 
 		public IActionResult Privacy()

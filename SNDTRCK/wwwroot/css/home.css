@@ -64,10 +64,12 @@ body {
     color: white;
 }
 
-/*The div containing the img gif*/
+/*The div containing the img gif
 #album-stack-gif-container {
     aspect-ratio: 1/1;
 }
+    aspect-ratio is not a valid css property so it doesn't change anything, delete?
+    */
 
     #album-stack-gif{
 
@@ -76,7 +78,12 @@ body {
 #home-top-5 {
     background-color: #D8D8D8;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
+
+
 
     #home-top-5 h3 {
         color: black;
@@ -85,6 +92,57 @@ body {
 
     #home-top-5 img {
         width: 200px;
+    }
+
+    #home-top-5 article {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #home-top-5 img {
+        border: 1px solid black;
+        filter: drop-shadow(-5px 4px 3px #949494);
+        width: 200px;
+        height: 200px;
+    }
+
+    #home-top-5 .top5-ranking {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+        text-align: center;
+        color: white;
+        background-color: black;
+        border: 0px solid;
+        border-radius: 20px;
+    }
+
+    #home-top-5 .product-card {
+        position: relative;
+        display: flex;
+        background-color: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        margin: 5px;
+        border: 0px solid;
+        border-radius: 8px;
+    }
+
+    #home-top-5 div {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 10px;
+        margin: 5px;
+        border: 0px solid;
+        border-radius: 8px;
     }
 
 #home-heart-house {

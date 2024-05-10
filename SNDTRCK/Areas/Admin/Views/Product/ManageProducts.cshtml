@@ -25,15 +25,15 @@
 		
 			@if (Model != null)
 			{
-				@foreach (var product in Model)
+				@foreach (var p in Model)
 				{
 				<tr>
-					<th scope="col"><img src="~/@product.CoverImageLink" class="product-image"/>
+					<th scope="col"><img src="~/@p.CoverImageLink" class="product-image"/>
 					</th>
-					<th scope="col">@product.Title</th>
-					<th scope="col">@product.Artist</th>
-					<th scope="col">@product.Genre</th>
-					<th scope="col">@product.Price</th>
+					<th scope="col">@p.Title</th>
+					<th scope="col">@p.Artist</th>
+					<th scope="col">@p.Genre</th>
+					<th scope="col">@p.Price</th>
 
 
 					<th scope="col">
@@ -43,7 +43,7 @@
 							<button type="submit" class="btn btn-success">Edit</button>
 						</form>-->
 						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct">
-							<input type="hidden" name="productId" value="@product.ProductId" />
+							<input type="hidden" name="productId" value="@p.ProductId" />
 							<button type="submit" class="btn btn-danger">Delete</button>
 						</form>
 					</th>

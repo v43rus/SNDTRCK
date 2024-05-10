@@ -1,17 +1,41 @@
-﻿@using SNDTRCK.Models.User
-@using Microsoft.AspNetCore.Identity
+﻿@{
+	List<Product> top5 = new List<Product>
+	{
+		Model[0],
+		Model[11],
+		Model[3],
+		Model[4],
+		Model[15]
+	};
 
+	static List<T> GetRandomElements<T>(List<T> originalList, int count)
+	{
+		if (count > originalList.Count)
+		{
+			throw new ArgumentException("Count cannot be greater than the number of elements in the list.");
+		}
 
+		Random rand = new Random();
+		List<T> randomElements = new List<T>();
 
-@{
+		for (int i = 0; i < count; i++)
+		{
+			int index = rand.Next(originalList.Count);
+			randomElements.Add(originalList[index]);
+			originalList.RemoveAt(index);
+		}
+		return randomElements;
+	}
+
 	ViewData["Title"] = "Home Page";
 }
 
-@model List<AspNetUser>
+@using Microsoft.EntityFrameworkCore
+@model List<Product>
 
 <main id="index-main">
 
-<!--<div class="text-center">-->
+	<!--<div class="text-center">-->
 	<section class="home-section" id="home-section-1">
 
 		<article>
@@ -28,16 +52,30 @@
 		<a class="hide-in-desktop see-categories-link" href="">SEE ALL CATEGORIES</a>
 	</section>
 
-	<!--
 	<section class="home-section" id="home-top-5">
 		<h3>
 			TOP 5 ALBUMS NOW
 		</h3>
 		<article>
-			<img src="~/media/pictures/placeholder.jpg">
-			<img src="~/media/pictures/placeholder.jpg">
-			<img src="~/media/pictures/placeholder.jpg">
-			<img src="~/media/pictures/placeholder.jpg">
+			@foreach (var p in top5)
+			{
+				<article class="product-card">
+					<img src="~/@p.CoverImageLink">
+					<p class="top5-ranking">
+						@{int pTop5 = top5.IndexOf(p) + 1; }
+						@pTop5
+					</p>
+
+
+					<h4>@p.Title</h4>
+					<i>@p.Artist</i>
+
+					<div>
+						<p>@p.Price SEK</p>
+						<p>BUY</p>
+					</div>
+				</article>
+			}
 		</article>
 	</section>
 
@@ -56,7 +94,7 @@
 		<article>
 			<img src="~/media/pictures/placeholder.jpg">
 		</article>
-	</section>-->
-<!--</div>-->
+	</section>
+	<!--</div>-->
 
 </main>
