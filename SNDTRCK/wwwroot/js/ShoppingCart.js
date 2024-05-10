@@ -214,7 +214,7 @@ function UpdateCartQuantityIndicatorByCookie() {
 
     if (totalProducts > 0) {
         quanityIndicator.style.display = "initial"; //If the indicator was hidden because cart was empty
-        emptyCartText.style.display = "none"; //If the cart was empty
+        //emptyCartText.style.display = "none"; //If the cart was empty
         quanityIndicator.innerText = totalProducts;
     }
     else if (totalProducts === 0) {

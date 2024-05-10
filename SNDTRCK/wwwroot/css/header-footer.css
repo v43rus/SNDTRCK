@@ -42,16 +42,6 @@ header {
     flex-direction: row;
 }
 
-/*Shared styles of searchbar for both desktop and mobile verision*/
-.searchbar {
-    background-image: url('/media/icons/search.png');
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: auto 80%;
-    background-position: 98% 20%;
-    padding: 0 5% 0 1%;
-}
-
 #header-icon-container {
     margin: 0;
     display: flex;
@@ -77,17 +67,15 @@ header {
 
 /*Quantity indicator on cart icon*/
 #cart-quantity-indicator {
-    font-size: 14px;
+    display: none;
     background: white;
     color: #fff;
     vertical-align: top;
     margin-left: -10px;
     margin-left: -8px;
-    padding-left: 5px;
-    padding-right: 5px;
-    -webkit-border-radius: 9px;
-    -moz-border-radius: 9px;
-    border-radius: 9px;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
     background-color: var(--main-orange);
     user-select: none;
     -webkit-user-drag: none;
@@ -138,6 +126,107 @@ nav {
     padding: 0;
 }
 /*#endregion Header & nav*/
+
+/*#region Searchbar*/
+
+/*Shared styles of searchbar for both desktop and mobile verision*/
+.searchbar {
+    background-image: url('/media/icons/search.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 80%;
+    background-position: 98% 20%;
+    padding: 0 5% 0 1%;
+}
+
+#desktop-searchbar-form{
+    position: relative;
+}
+
+#mobile-header-searchbar-form {
+    width: 80%;
+    margin: 8% 0 0 5%;
+}
+
+.search-suggestions-container {
+    background-color: white;
+    position: absolute;
+    z-index: 10;
+    padding: 8px;
+    border: 1px solid black;
+    border-top: 0;
+    height: 70vh;
+    height: fit-content;
+}
+
+#desktop-search-suggestions-container {
+    display: none;
+}
+
+#mobile-search-suggestions-container {
+    display: none;
+}
+
+.search-suggestion{
+    display: inline-flex;
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    text-decoration: none;
+    flex-direction: row;
+}
+
+.search-suggestion:hover{
+    outline: 0.5px solid black;
+}
+
+.search-suggestion-image-container{
+    height: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.search-suggestion-image-container img{
+    width: 100%;
+    height: 100%;
+}
+
+.search-suggestion-text-container ul{
+    list-style: none;
+    padding: 0 0 0 5%;
+}
+.search-suggestion-text-container{
+
+}
+
+.search-suggestion-text-container ul li{
+    font-size: 0.85em;
+    font-weight: 500;
+    margin-bottom: 1%;
+    color: black;
+}
+
+/*The span tag coloring the number part of the price in search suggestion*/
+.color-of-price {
+    color: var(--main-orange);
+}
+
+#search-see-all-button {
+    display: inline-block;
+    text-align: center;
+    color: white;
+    font-family: inter;
+    font-weight: 500;
+    background-color: var(--main-blue);
+    text-decoration: none;
+    width: 100%;
+}
+
+#search-see-all-button:hover{
+    text-decoration: underline;
+}
+
+
+/*#endregion*/
 
 /*#region Footer*/
 footer {
@@ -258,6 +347,7 @@ footer {
 @media screen and (max-width: 599px) {
     /*!important is needed because the next query otherwise will override it.*/
     /*Since this query wont be many styles anyway, I think this is a better solution than to mess with the other queries*/
+
     /*#region Header & nav*/
     /*Shopping cart and star icons*/
     .header-icon {
@@ -270,11 +360,30 @@ footer {
         font-size: 1.4em !important;
     }
 
+    /*Quantity indicator on cart icon*/
+    #cart-quantity-indicator {
+        font-size: 1.25em !important;
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+    }
+    /*#endregion Header & nav*/
+
+    /*#region Searchbar*/
     /*Style for mobile searchbar*/
     #mobile-header-searchbar {
         font-size: 1.4em !important;
     }
-    /*#endregion Header & nav*/
+
+    .search-suggestion {
+        height: 60px !important;
+        margin-bottom: 2px;
+    }
+
+    .search-suggestion-text-container ul li {
+        font-size: 0.9em !important;
+        margin-bottom: 1%;
+    }
+    /*#endregion*/
 
     /*#region Footer*/
 
@@ -334,7 +443,7 @@ footer {
 
     /*The white menu that slides in from the right*/
     nav {
-        overflow: hidden;
+        overflow: scroll;
         width: 75%;
         height: 90%;
         background-color: white;
@@ -362,6 +471,7 @@ footer {
         position: absolute;
         top: 0;
         right: 0;
+        padding-bottom: 40px;
     }
 
     /*Each <li>-element or category item in the nav*/
@@ -392,14 +502,6 @@ footer {
         margin: 0 0 0 0;
         width: 1.5em;
         height: 1.5em;
-    }
-
-    /*Style for mobile searchbar*/
-    #mobile-header-searchbar {
-        width: 80%;
-        aspect-ratio: 7/1;
-        margin: 8% 0 0 5%;
-        font-size: 1.8em;
     }
 
     /*Mobile menu toggle icon*/
@@ -469,7 +571,38 @@ footer {
         top: 0;
     }
 
+    /*Quantity indicator on cart icon*/
+    #cart-quantity-indicator {
+        font-size: 1.5em;
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
     /*#endregion Header & nav*/
+
+    /*#region Searchbar*/
+    /*Style for mobile searchbar*/
+    #mobile-header-searchbar {
+        width: 100%;
+        aspect-ratio: 8/1;
+        font-size: 1.8em;
+    }
+
+    .search-suggestions-container {
+        width: 76%;
+    }
+
+    .search-suggestion {
+        height: 120px;
+        margin-bottom: 8px;
+    }
+
+    .search-suggestion-text-container ul li {
+        font-size: 1.6em;
+        margin-bottom: 1%;
+    }
+
+    /*#endregion*/
 
     /*#region Footer*/
     footer {
@@ -532,14 +665,6 @@ footer {
         width: 1.6em;
         height: 1.6em;
     }
-
-    /*Style for desktop verision of the searchbar*/
-    #desktop-header-searchbar {
-        height: 30px;
-        width: 250px;
-
-        font-size: 1em;
-    }
         
     nav {
         margin: 0;
@@ -584,7 +709,39 @@ footer {
         transform: scaleX(1);
         transform-origin: bottom left;
     }
+
+    /*Quantity indicator on cart icon*/
+    #cart-quantity-indicator {
+        font-size: 0.8em;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
     /*#endregion Header & nav*/
+
+    /*#region Searchbar*/
+    /*Style for desktop verision of the searchbar*/
+    #desktop-header-searchbar {
+        height: 30px;
+        width: 260px;
+        font-size: 1em;
+    }
+
+    .search-suggestions-container {
+        width: 100%;
+    }
+
+    .search-suggestion {
+        height: 80px;
+        margin-bottom: 8px;
+    }
+
+    .search-suggestion-text-container ul li {
+        font-size: 0.85em;
+        margin-bottom: 1%;
+    }
+
+    /*#endregion*/
 
     /*#region Footer*/
     footer {

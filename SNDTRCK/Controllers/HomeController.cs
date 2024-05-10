@@ -5,6 +5,7 @@ using SNDTRCK.Data;
 using SNDTRCK.Models;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using System;
 
 namespace SNDTRCK.Controllers
 {
@@ -117,6 +118,52 @@ namespace SNDTRCK.Controllers
 			_context.SaveChanges();
 
 			return RedirectToAction("Newsletter");
+		}
+
+		/*Get the search-result page*/
+		public IActionResult SearchResults()
+		{
+			return View(_context);
+		}
+
+		[HttpPost]
+		public ActionResult BuildSearchSuggestions([FromBody] string jsonSearchQuery)
+		{
+
+			//Konventera JSON-strängen till en vanlig sträng
+			string searchQuery = JsonConvert.DeserializeObject<string>(jsonSearchQuery);
+
+			//Stores html for each product line in cart
+			List<string> searchSuggestions = new List<string>();
+
+			//Seraches for matches of the query
+			List<Product>? result = _context.Products.Where(p => p.Title.Contains(searchQuery) || p.Artist.Contains(searchQuery)).ToList();
+
+			if (result is not null)
+			{
+				//We only want three suggestions returned to client
+				for(int i = 0; i < 3; i++)
+				{
+					//If there are fewer reults than three
+					if(searchSuggestions.Count != result.Count)
+					{
+						string suggestion = $@"
+								<a class=""search-suggestion"" href=""#"">
+									< div class=""search-suggestion-image-container"">
+										<img src = ""/media/pictures/album-covers/zeppelin.jpg"" />
+									</ div >
+									< div class=""search-suggestion-text-container"">
+										<ul>
+											<li>{result[i].Title} - {result[i].Artist}</li>
+											<li><span class=""color-of-price"">{result[i].Price}</span> kr</li>
+										</ul>
+									</div>
+								</a>";			
+						searchSuggestions.Add(suggestion);
+					}
+				}
+			}	
+			return Json(searchSuggestions); // Returnera HTML-produktrader som JSON-respons
 		}
 	}
 }
