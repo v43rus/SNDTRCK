@@ -58,9 +58,9 @@
 </table>
 
 <h3>Add New Product</h3>
-<form asp-area="Admin" asp-controller="Product" asp-action="SaveNewProduct" enctype="multipart/form-data">
+<form id="add-admin" asp-area="Admin" asp-controller="Product" asp-action="SaveNewProduct" enctype="multipart/form-data">
 
-	<table id="add-admin">
+	<table >
 		<tbody>
 
 			<tr>
@@ -74,7 +74,7 @@
 
 			<tr>
 				<th>
-					<label for="genre">Artist: </label>
+					<label for="artist">Artist: </label>
 				</th>
 				<th>
 					<input type="text" id="artist" name="artist" placeholder="Album Artist..." required />
@@ -86,7 +86,7 @@
 					<label for="genre">Genre: </label>
 				</th>
 				<th>
-					<select id="price" name="price" required>
+					<select id="genre" name="genre" required>
 						<option value="Rock">Rock</option>
 						<option value="Classical">Classical</option>
 						<option value="Country">Country</option>
@@ -109,7 +109,7 @@
 
 			<tr>
 				<th>
-					<label for="genre">Description: </label>
+					<label for="description">Description: </label>
 				</th>
 				<th>
 					<input type="text" id="description" name="description" placeholder="Album Description..." required />

@@ -49,6 +49,8 @@ namespace SNDTRCK.Areas.Admin.Controllers
 				Genre = Request.Form["genre"],
 				Description = Request.Form["description"],
 				Price = Decimal.Parse(Request.Form["price"]!),
+				RecordLabel = Request.Form["label"],
+				ReleaseYear = int.Parse(Request.Form["release-year"])
 			};
 
 			if (image != null)
@@ -68,8 +70,11 @@ namespace SNDTRCK.Areas.Admin.Controllers
 				ModelState.AddModelError(string.Empty, "Invalid image format");
 			}
 
-			_context.Add(product);
-			_context.SaveChanges();
+			if (ValidateProduct(product))
+			{
+				_context.Add(product);
+				_context.SaveChanges();
+			}
 
 			return RedirectToAction("ManageProducts");
 		}
@@ -90,12 +95,32 @@ namespace SNDTRCK.Areas.Admin.Controllers
 
 
 			if (productToRemove != null)
-			{ 
+			{
 				_context.Products.Remove(productToRemove);
 				_context.SaveChanges();
 			}
 
 			return RedirectToAction("ManageProducts");
+		}
+
+		private static bool ValidateProduct(Product p)
+		{
+			bool validated = true;
+
+			if (p.Title == null || p.Title.Length <= 0 ||
+				p.Artist == null || p.Artist.Length <= 0 ||
+				p.Genre == null || p.Genre.Length <= 0 ||
+				p.Description == null || p.Description.Length <= 0 ||
+				p.RecordLabel == null || p.RecordLabel.Length <= 0 ||
+				p.ReleaseYear == null || p.ReleaseYear <= 1900 || p.ReleaseYear >= 2025 ||
+				p.Price == null || p.Price <= 0 ||
+				p.CoverImageLink == null)
+			{
+				validated = false;
+			}
+
+
+			return validated;
 		}
 	}
 }
