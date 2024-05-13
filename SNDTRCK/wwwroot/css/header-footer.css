@@ -221,8 +221,9 @@ nav {
     width: 100%;
 }
 
-#search-see-all-button:hover{
+.search-see-all-button:hover{
     text-decoration: underline;
+    color: white;
 }
 
 

@@ -47,6 +47,10 @@ main {
     min-height: 82vh;
 }
 
+/*The span tag coloring the number part of the price*/
+.color-of-price {
+    color: var(--main-orange);
+}
 
 a:active{
     color: var(--main-blue);

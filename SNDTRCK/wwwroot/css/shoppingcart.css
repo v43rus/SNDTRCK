@@ -38,6 +38,8 @@ body {
     margin-top: 15%;
 }
 
+/*#region product rows*/
+
 /*Each product row in the cart*/
 .product-row {
     display: flex;
@@ -126,17 +128,39 @@ body {
     font-weight: 650;
 }
 
-/*The span tag coloring the number part of the price*/
-.color-of-price {
-    color: var(--main-orange);
+/*#endregion*/
+
+/*Price container at bottom of page*/
+#cart-total-cost-container{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 10px;
+    margin: 2% 10% 0 auto;
 }
 
+#cart-total-cost-container p, #cart-total-cost-container a {
+    font-size: 1.5em;
+    font-weight: 650;
+    margin: 0;
+    color: black;
+}
+
+#cart-total-cost-container a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#cart-checkout-arrow{
+    height: 25px;
+    margin-bottom: 5px;
+}
 
 /* #region Media queries*/
 /*For phones*/
 @media screen and (max-width: 599px) {
     /*Only used in special cases for really small screens*/
-
     /*The image for the product row*/
     .product-row .image {
         width: 80px !important;

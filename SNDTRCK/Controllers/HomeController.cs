@@ -6,6 +6,7 @@ using SNDTRCK.Models;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using System;
+using System.Web;
 
 namespace SNDTRCK.Controllers
 {
@@ -131,14 +132,14 @@ namespace SNDTRCK.Controllers
 		public ActionResult BuildSearchSuggestions([FromBody] string searchQuery)
 		{
 
-			//Konventera JSON-strängen till en vanlig sträng
-			//string searchQuery = JsonConvert.DeserializeObject<string>(jsonSearchQuery);
+			//Sanitize user input
+			string encodedQuery = HttpUtility.HtmlEncode(searchQuery);
 
 			//Stores html for each product line in cart
 			List<string> searchSuggestions = new List<string>();
 
 			//Seraches for matches of the query
-			List<Product>? result = _context.Products.Where(p => p.Title.Contains(searchQuery) || p.Artist.Contains(searchQuery)).ToList();
+			List<Product>? result = _context.Products.Where(p => p.Title.Contains(searchQuery) || p.Artist.Contains(encodedQuery)).ToList();
 
 			if (result is not null)
 			{
