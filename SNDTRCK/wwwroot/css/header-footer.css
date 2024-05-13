@@ -176,9 +176,10 @@ nav {
     flex-direction: row;
 }
 
-.search-suggestion:hover{
-    outline: 0.5px solid black;
-}
+    .search-suggestion:hover {
+        /*outline: 0.5px solid black;*/
+        background-color: #E8E8E8;
+    }
 
 .search-suggestion-image-container{
     height: 100%;
