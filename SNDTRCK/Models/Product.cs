@@ -11,7 +11,10 @@ public partial class Product
 
     public string? Description { get; set; }
 
-    public string? Genre { get; set; }
+    public string? RecordLabel { get; set; }
+    public int ReleaseYear { get; set; }
+
+	public string? Genre { get; set; }
 
     public decimal? Price { get; set; }
 

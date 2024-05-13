@@ -60,6 +60,11 @@ public partial class SNDTRCKContext : DbContext
 			entity.Property(e => e.Title)
 				.HasMaxLength(255)
 				.IsUnicode(false);
+			entity.Property(e => e.RecordLabel)
+				.HasMaxLength(250)
+				.IsUnicode(false);
+			entity.Property(e => e.ReleaseYear)
+				.HasColumnType("int");
 		});
 
 		modelBuilder.Entity<NewsletterSignup>(entity =>
