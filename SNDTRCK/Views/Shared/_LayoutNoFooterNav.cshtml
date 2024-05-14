@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="~/css/shoppingcart.css" asp-append-version="true"/>
 	<link rel="stylesheet" href="~/css/loginregistration.css" asp-append-version="true"/>
 	<link rel="stylesheet" href="~/css/manageaccount.css" asp-append-version="true"/>
+	<link rel="stylesheet" href="~/css/contactus.css" asp-append-version="true" />
 </head>
 <body>
 	<header>
@@ -41,18 +42,76 @@
 
 				<!--Star and cart icon-->
 				<div id="header-icon-container">
-					<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" placeholder="Search..">
+					<!--Searchbar in desktop-->
+					<form id="desktop-searchbar-form" method="post">
+						<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" placeholder="Search.." autocomplete="off" onkeyup='ShowSearchSuggestions(this.value, "desktop")' onblur="HideSuggestionsContainer('desktop')">
+
+						<div id="desktop-search-suggestions-container" class="search-suggestions-container">
+
+							<!--Example of search suggestion-->
+							<a class="search-suggestion" href="#">
+								<div class="search-suggestion-image-container">
+									<img src="/media/pictures/album-covers/zeppelin.jpg" />
+								</div>
+								<div class="search-suggestion-text-container">
+									<ul>
+										<li>Led Zeppelin - Led Zeppelin</li>
+										<li><span class="color-of-price">299</span> kr</li>
+									</ul>
+								</div>
+							</a>
+
+							<!--"See all" button -->
+							<a id="desktop-search-see-all-button" class="search-see-all-button" href="#">See all</a>
+						</div>
+					</form>
 					<partial name="_LoginPartial" class="hide-in-mobile" />
 					@if (User.Identity!.IsAuthenticated && isAdmin)
 					{
-						<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" title="Admin" class="">
+						<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" title="Admin" class="hide-in-mobile">
 							<img class="header-icon" src="~/media/icons/crown.png" />
 						</a>
 					}
-					<a asp-controller="Home" asp-action="ShoppingCart" title="Shopping Cart"><img class="header-icon" src="~/media/icons/cart.png" /></a>
+					<!--<img class="header-icon hide-in-mobile" src="~/media/icons/star.png" />-->
+					<a id="shopping-cart-link" asp-controller="Home" asp-action="ShoppingCart" title="Shopping Cart"><img class="header-icon" src="~/media/icons/cart.png" /><span id="cart-quantity-indicator"> </span></a>
 				</div>
 			</div>
 		</section>
+
+
+		<nav class="nav">
+			<ul id="navigation-list">
+				<form id="mobile-header-searchbar-form" class="hide-in-desktop">
+					<input id="mobile-header-searchbar" class="searchbar hide-in-desktop" type="text" placeholder="Search.." autocomplete="off" onkeyup='ShowSearchSuggestions(this.value, "mobile")' onblur="HideSuggestionsContainer('mobile')">
+					<div id="mobile-search-suggestions-container" class="search-suggestions-container">
+						<!--Example of search suggestion-->
+						<a class="search-suggestion" href="#">
+							<div class="search-suggestion-image-container">
+								<img src="/media/pictures/album-covers/zeppelin.jpg" />
+							</div>
+							<div class="search-suggestion-text-container">
+								<ul>
+									<li>Led Zeppelin - Led Zeppelin</li>
+									<li><span class="color-of-price">299</span> kr</li>
+								</ul>
+							</div>
+						</a>
+
+						<!--"See all" button -->
+						<a id="mobile-search-see-all-button" class="search-see-all-button" href="#">See all</a>
+					</div>
+				</form>
+				<li class="nav-category-text hide-in-desktop"><a>Log in/Sign up</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				@if (User.Identity!.IsAuthenticated && isAdmin)
+				{
+					<li class="nav-category-text hide-in-desktop">
+						<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" title="Admin" class="hide-in-desktop">Admin view</a>
+						<img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" />
+					</li>
+				}
+			</ul>
+
+		</nav>
 		<label id="close-mobile-menu-label" class="hide-in-desktop" for="mobile-menu-checkbox" />
 	</header>
 

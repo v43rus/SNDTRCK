@@ -115,9 +115,7 @@ namespace SNDTRCK.Areas.Admin.Controllers
 				p.ReleaseYear == null || p.ReleaseYear <= 1900 || p.ReleaseYear >= 2025 ||
 				p.Price == null || p.Price <= 0 ||
 				p.CoverImageLink == null)
-			{
 				validated = false;
-			}
 
 
 			return validated;
