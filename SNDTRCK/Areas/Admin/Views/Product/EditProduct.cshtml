@@ -1,0 +1,11 @@
+﻿@page "/Product/{productId}"
+
+@using SNDTRCK.Models
+
+@{
+	var product = ViewBag.Product as Product;
+
+	Layout = "../_Shared/_Layout";
+}
+
+<h1>@product.Title</h1>

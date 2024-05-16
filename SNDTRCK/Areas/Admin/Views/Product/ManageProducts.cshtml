@@ -39,12 +39,13 @@
 
 
 					<th scope="col">
-						<!--<form asp-area="Admin" asp-controller="Product" asp-action="Product" method="get">
-							<input type="hidden" name="productId" value="productId" />
+						<form asp-area="Admin" asp-controller="Product" asp-action="EditProduct" method="get">
+							<input type="hidden" name="productId" value="@p.ProductId" />
 							<button type="submit" class="btn btn-success">Edit</button>
-						</form>-->
+						</form>
 						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" method="post" class="delete-form">
 							<input type="hidden" name="productId" value="@p.ProductId" />
+
 							<button type="button" class="btn btn-danger" onclick="confirmDelete('@p.ProductId')">Delete</button>
 						</form>
 					</th>

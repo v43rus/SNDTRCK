@@ -32,11 +32,13 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			var products = _context.Products.ToList();
 			return View(products);
 		}
-		public async Task<IActionResult> Product(int? productId)
+		public async Task<IActionResult> EditProduct(int? productId)
 		{
-			var product = await _context.Products.Where(p => p.ProductId == productId).FirstAsync();
+			var product = await _context.Products.Where(p => p.ProductId == productId).FirstOrDefaultAsync();
 
-			return View(product);
+			ViewBag.Product = product!;
+
+			return View();
 		}
 
 		[HttpPost]
