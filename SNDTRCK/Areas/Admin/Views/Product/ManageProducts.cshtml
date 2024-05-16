@@ -39,11 +39,11 @@
 
 
 					<th scope="col">
-						<form asp-area="Admin" asp-controller="Product" asp-action="EditProduct" method="get">
+						<form class="inline-button" asp-area="Admin" asp-controller="Product" asp-action="EditProduct" method="get">
 							<input type="hidden" name="productId" value="@p.ProductId" />
 							<button type="submit" class="btn btn-success">Edit</button>
 						</form>
-						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" method="post" class="delete-form">
+						<form class="inline-button" asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" method="post" class="delete-form">
 							<input type="hidden" name="productId" value="@p.ProductId" />
 
 							<button type="button" class="btn btn-danger" onclick="confirmDelete('@p.ProductId')">Delete</button>
@@ -103,6 +103,7 @@
 						<option value="Hip Hop & Rap">Hip Hop & Rap</option>
 						<option value="Indie">Indie</option>
 						<option value="Chiptune">Chiptune</option>
+						<option value="OST">OST</option>
 						<option value="New Age">New Age</option>
 					</select>
 				</th>

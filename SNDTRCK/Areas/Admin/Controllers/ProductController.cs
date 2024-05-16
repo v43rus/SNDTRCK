@@ -20,7 +20,8 @@ namespace SNDTRCK.Areas.Admin.Controllers
 		private readonly IWebHostEnvironment _hostingEnvironment;
 
 
-		public ProductController(SNDTRCKContext context, IWebHostEnvironment hostingEnvironment, ILogger<HomeController> logger)
+		public ProductController(SNDTRCKContext context, IWebHostEnvironment hostingEnvironment,
+			ILogger<HomeController> logger)
 		{
 			_logger = logger;
 			_context = context;
@@ -32,6 +33,7 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			var products = _context.Products.ToList();
 			return View(products);
 		}
+
 		public async Task<IActionResult> EditProduct(int? productId)
 		{
 			var product = await _context.Products.Where(p => p.ProductId == productId).FirstOrDefaultAsync();
@@ -103,6 +105,68 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			}
 
 			return RedirectToAction("ManageProducts");
+		}
+
+		public async Task<IActionResult> ModifyExistingProduct(IFormFile image, int? productId)
+		{
+			if (productId == null)
+				return BadRequest("Product ID is required.");
+
+			var productToUpdate = await _context.Products.FindAsync(productId);
+
+			if (productToUpdate == null)
+				return NotFound("Product not found.");
+
+			if (image != null)
+			{
+				var filePath = _hostingEnvironment.WebRootPath;
+				filePath += $"/{productToUpdate!.CoverImageLink!}";
+
+				if (System.IO.File.Exists(filePath))
+					System.IO.File.Delete(filePath);
+
+				var uploadsDirectory = Path.Combine(_hostingEnvironment.WebRootPath, "media/pictures/album-covers");
+				Guid guid = Guid.NewGuid();
+				filePath = Path.Combine(uploadsDirectory, guid + Path.GetExtension(image.FileName));
+
+				using (var stream = new FileStream(filePath, FileMode.Create))
+				{
+					productToUpdate.CoverImageLink = $"media/pictures/album-covers/{guid + Path.GetExtension(image.FileName)}";
+					await image.CopyToAsync(stream);
+				}
+			}
+
+			if (Request.Form["title"] != "")
+				productToUpdate.Title = Request.Form["title"].ToString();
+
+			if (Request.Form["artist"] != "")
+				productToUpdate.Artist = Request.Form["artist"].ToString();
+
+			if (Request.Form["genre"] != "")
+				productToUpdate.Genre = Request.Form["genre"].ToString();
+
+			if (Request.Form["description"] != "")
+				productToUpdate.Description = Request.Form["description"].ToString();
+
+			if (Request.Form["price"] != "")
+				productToUpdate.Price = int.Parse(Request.Form["Price"].ToString());
+
+			if (Request.Form["label"] != "")
+				productToUpdate.RecordLabel = Request.Form["label"].ToString();
+
+			if (Request.Form["release-year"] != "")
+				productToUpdate.ReleaseYear = int.Parse(Request.Form["releaseYear"].ToString());
+
+
+			try
+			{
+				await _context.SaveChangesAsync();
+				return RedirectToAction("ManageProducts");
+			}
+			catch (DbUpdateException)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError, "Failed to update the product.");
+			}
 		}
 
 		private static bool ValidateProduct(Product p)
