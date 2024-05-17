@@ -14,7 +14,7 @@
     height: 48px;
 }
 
-#manage-admin tr:nth-child(even) {
+.manage-admin tr:nth-child(even) {
     background-color: rgba(230, 230, 230, 100);
 }
 

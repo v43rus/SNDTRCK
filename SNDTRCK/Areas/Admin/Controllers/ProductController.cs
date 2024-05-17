@@ -157,7 +157,6 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			if (Request.Form["release-year"] != "")
 				productToUpdate.ReleaseYear = int.Parse(Request.Form["releaseYear"].ToString());
 
-
 			try
 			{
 				await _context.SaveChangesAsync();
