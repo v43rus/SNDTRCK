@@ -19,9 +19,6 @@ body {
     /*min-height: 82vh;*/
 }
 
-#ShoppingCart-main h1{
-    font-family: inter;
-}
 /*The container for the product rows in the cart*/
 #Shoppingcart-product-container {
     margin: 2% auto 0 auto;

@@ -233,6 +233,14 @@ function UpdateCartQuantityIndicatorByCookie() {
     }
 }
 
+//Called from console in browser for testing purposes
+function ClearCart() {
+    //Uppdatera cookien med nya JSON-strängen
+    document.cookie = "userCart=";
+    console.log("Cart cleared")
+
+}
+
 //Startup
 //Since the page needs to be reloaded for the cookie to update,
 //two different methods are needed to upsate the cart quantity indicator.

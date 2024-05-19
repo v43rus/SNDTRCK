@@ -1,3 +1,10 @@
+
+/*Bör läggas i en root-css fil*/
+@font-face {
+    font-family: inter;
+    src: url(/fonts/Inter/Inter-VariableFont_slnt,wght.ttf)
+}
+
 :root {
     --main-blue: #0032D2;
     --main-orange: #FF3300;
@@ -64,6 +71,12 @@ footer {
     width: 200px;
 }
 
+h1, h2, h3, h4 {
+    font-family: inter;
+}
+
+
+
 
 /* #region Media queries*/
 /*For phones*/
@@ -97,6 +110,10 @@ footer {
 }
 /*For desktop up*/
 @media screen and (min-width: 1200px) {
+    h1 {
+        font-size: 2.5em;
+        font-size: 2.2em;
+    }
 }
 /*For big desktop*/
 @media screen and (min-width: 1800px) {
