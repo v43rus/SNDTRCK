@@ -37,15 +37,16 @@
 					<th scope="col">@p.Price</th>
 
 
+
 					<th scope="col">
-						<!-- TODO:  Model is null when loading Product page, to be fixed. -->
-						<!--<form asp-area="Admin" asp-controller="Product" asp-action="Product" method="get">
-							<input type="hidden" name="productId" value="productId" />
-							<button type="submit" class="btn btn-success">Edit</button>
-						</form>-->
-						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct">
+						<form class="inline-button" asp-area="Admin" asp-controller="Product" asp-action="EditProduct" method="get">
 							<input type="hidden" name="productId" value="@p.ProductId" />
-							<button type="submit" class="btn btn-danger">Delete</button>
+							<button type="submit" class="btn btn-success">Edit</button>
+						</form>
+						<form class="inline-button" asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" method="post" class="delete-form">
+							<input type="hidden" name="productId" value="@p.ProductId" />
+
+							<button type="button" class="btn btn-danger" onclick="confirmDelete('@p.ProductId')">Delete</button>
 						</form>
 					</th>
 				</tr>
@@ -60,7 +61,7 @@
 <h3>Add New Product</h3>
 <form id="add-admin" asp-area="Admin" asp-controller="Product" asp-action="SaveNewProduct" enctype="multipart/form-data">
 
-	<table >
+	<table>
 		<tbody>
 
 			<tr>
@@ -102,11 +103,11 @@
 						<option value="Hip Hop & Rap">Hip Hop & Rap</option>
 						<option value="Indie">Indie</option>
 						<option value="Chiptune">Chiptune</option>
+						<option value="OST">OST</option>
 						<option value="New Age">New Age</option>
 					</select>
 				</th>
 			</tr>
-
 			<tr>
 				<th>
 					<label for="description">Description: </label>
@@ -157,3 +158,13 @@
 
 	<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Save Album" />Save Album</button>
 </form>
+
+<script>
+	function confirmDelete(productId) {
+		if (confirm("Are you sure you want to delete this product?")) {
+			// Find the form associated with the delete button
+			var form = document.querySelector('.delete-form input[name="productId"][value="' + productId + '"]').parentNode;
+			form.submit();
+		}
+	}
+</script>

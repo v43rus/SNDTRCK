@@ -1,6 +1,7 @@
 ﻿@using SNDTRCK.Models
 @using SNDTRCK.Models.User
 
+@model List<AspNetUser>
 
 @{
 	Layout = "../_Shared/_Layout";
@@ -11,24 +12,26 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th scope="col">Email</th>
+			<th scope="col">Username (email)</th>
 			<th scope="col">Phone Nr</th>
-			<th scope="col">Role</th>
 			<th scope="col">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
+		
+	@foreach(var user in Model)
+	{
+	<tr>
+		<th scope="col">@user.Email</th>
+		<th scope="col">@user.PhoneNumber</th>
 
-			<tr>
-				<th scope="col">Email</th>
-				<th scope="col">PhoneNumber</th>
-				<th scope="col">Roles</th>
 
-				
-				<th scope="col">
-					<button type="button" class="btn btn-success">Edit</button>
-				</th>
-			</tr>
+		<th scope="col">
+			<button type="button" class="btn btn-success">Edit</button>
+			<button type="button" class="btn btn-danger">Delete User</button>
+		</th>
+	</tr>
+	}
 
 	</tbody>
 </table>

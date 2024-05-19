@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SNDTRCK.Controllers;
+using SNDTRCK.Models;
 
 namespace SNDTRCK.Areas.Admin.Controllers
 {
@@ -8,9 +10,21 @@ namespace SNDTRCK.Areas.Admin.Controllers
 	[Authorize(Roles = "Admin")]
 	public class UserController : Controller
 	{
+		private readonly ILogger<HomeController> _logger;
+		private readonly SNDTRCKContext _context;
+
+
+		public UserController(SNDTRCKContext context, ILogger<HomeController> logger)
+		{
+			_logger = logger;
+			_context = context;
+		}
+
 		public IActionResult ManageUsers()
 		{
-			return View();
+			var listOfUsers = _context.AspNetUsers.ToList();
+
+			return View(listOfUsers);
 		}
 	}
 }

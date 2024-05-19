@@ -35,7 +35,6 @@ body {
     min-height: 100%;
     overflow-x: hidden;
     margin: 0;
-    padding-bottom: 0.5vh; /*to make space under footer*/
 
     /*Changes made since <main> was moved into individual pages from _Layout*/
     display: flex;
@@ -64,7 +63,7 @@ a:active{
 }
 
 footer {
-    /*bottom: 0px;*/
+    padding-bottom: 0.5vh;
 }
 
 #sndtrck-logo {
