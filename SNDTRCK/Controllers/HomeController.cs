@@ -7,6 +7,8 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using System;
 using System.Web;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Logging;
 
 namespace SNDTRCK.Controllers
 {
@@ -67,10 +69,10 @@ namespace SNDTRCK.Controllers
 			{
 				int productId = entry.Key;
 				int quantity = entry.Value;
-
-				Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
-
-				if (product is not null)
+                
+                Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
+                _logger.LogInformation("Product: " + product);
+                if (product is not null)
 				{
 					string productLine = $@"
 
@@ -129,9 +131,43 @@ namespace SNDTRCK.Controllers
 		}
 
 		/*Get the search-result page*/
-		public IActionResult SearchResults()
+		//[HttpGet("search/{query}")]
+		[HttpGet("search")]
+		public IActionResult SearchResults(string query)
 		{
-			return View(_context);
+            //Sanitize user input
+            string encodedQuery = HttpUtility.HtmlEncode(query);
+
+			if (string.IsNullOrEmpty(encodedQuery))
+			{
+				return View(new List<Product>());
+			}
+
+			//Gets the products
+			var products = _context.Products.Where(p => p.Title.Contains(query) || p.Artist.Contains(encodedQuery)).ToList();
+
+			ViewBag.Query = query;
+            return View(products);
+		}
+
+		/*Get the genre page*/
+		//[HttpGet("search/{query}")]
+		[HttpGet("/genre/{genre}")]
+		public IActionResult GenrePage(string genre)
+		{
+            //Sanitize user input
+            string encodedQuery = HttpUtility.HtmlEncode(genre);
+
+			if (string.IsNullOrEmpty(encodedQuery))
+			{
+				return View(new List<Product>());
+			}
+
+			//Gets the products
+			var products = _context.Products.Where(p => p.Genre == genre).ToList();
+
+			ViewBag.Query = genre.ToUpper();
+            return View(products);
 		}
 
 		[HttpPost]
@@ -158,7 +194,7 @@ namespace SNDTRCK.Controllers
 						string suggestion = $@"
 								<a class=""search-suggestion"" href=""#"">
 									<div class=""search-suggestion-image-container"">
-										<img src = ""{result[i].CoverImageLink}""  alt=""{result[i].Title}""/>
+										<img src = ""/{result[i].CoverImageLink}""  alt=""{result[i].Title}""/>
 									</div >
 									<div class=""search-suggestion-text-container"">
 										<ul>

@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="~/css/header-footer.css" asp-append-version="true"/>
 	<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/shoppingcart.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/resultspage.css" asp-append-version="true" />
 </head>
 <body>
 
@@ -41,8 +42,8 @@
 				<!--Star and cart icon-->
 				<div id="header-icon-container">
 					<!--Searchbar in desktop-->
-					<form id="desktop-searchbar-form" method="post">
-						<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" placeholder="Search.." autocomplete="off" onkeyup='ShowSearchSuggestions(this.value, "desktop")' onblur="HideSuggestionsContainer('desktop')">
+					<form id="desktop-searchbar-form" action="/search" method="get">
+						<input id="desktop-header-searchbar" class="searchbar hide-in-mobile" type="text" name="query" placeholder="Search.." autocomplete="off" onkeyup='ShowSearchSuggestions(this.value, "desktop")' onblur="HideSuggestionsContainer('desktop')">
 						
 						<div id="desktop-search-suggestions-container" class="search-suggestions-container">
 							
@@ -60,7 +61,7 @@
 							</a>							
 							
 							<!--"See all" button -->
-							<a id="desktop-search-see-all-button" class="search-see-all-button" href="#">See all</a>
+							<a id="desktop-search-see-all-button" class="search-see-all-button" type="submit">See all</a>
 						</div>
 					</form>
 					<partial name="_LoginPartial" class="hide-in-mobile"/>
@@ -79,8 +80,8 @@
 
 		<nav class="nav">
 			<ul id="navigation-list">
-				<form id="mobile-header-searchbar-form" class="hide-in-desktop">
-					<input id="mobile-header-searchbar" class="searchbar hide-in-desktop" type="text" placeholder="Search.." autocomplete="off" onkeyup='ShowSearchSuggestions(this.value, "mobile")' onblur="HideSuggestionsContainer('mobile')">
+				<form id="mobile-header-searchbar-form" class="hide-in-desktop" action="/search" method="get">
+					<input id="mobile-header-searchbar" class="searchbar hide-in-desktop" type="text" name="query" placeholder="Search.." autocomplete="off" onkeyup='ShowSearchSuggestions(this.value, "mobile")' onblur="HideSuggestionsContainer('mobile')">
 					<div id ="mobile-search-suggestions-container" class="search-suggestions-container">
 						<!--Example of search suggestion-->
 						<a class="search-suggestion" href="#">
@@ -108,13 +109,13 @@
 					</li>
 				}
 				<li class="nav-category-text hide-in-desktop"><a href="#">Favourites</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="#">Rock</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="#">Pop</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="#">House</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="#">Hip-hop</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="#">Disco</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="#">Electronic</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="#">New Age</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="/genre/rock">Rock</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="/genre/pop">Pop</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="/genre/house">House</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="/genre/hip-hop">Hip-hop</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="/genre/disco">Disco</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="/genre/electronic">Electronic</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text"><a href="/genre/new age">New Age</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
 			</ul>
 
 		</nav>
@@ -168,11 +169,8 @@
 				<a class="footer-list-a">PRIVACY POLICY</a>
 			</div>
 
-
-
 		</section>
-		
-		
+				
 	</footer>
 
 

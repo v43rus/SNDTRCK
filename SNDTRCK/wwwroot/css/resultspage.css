@@ -1,0 +1,142 @@
+﻿:root {
+    --main-blue: #0032D2;
+    --main-orange: #FF3300;
+}
+/*Bör läggas i en root-css fil*/
+@font-face {
+    font-family: inter;
+    src: url(/fonts/Inter/Inter-VariableFont_slnt,wght.ttf)
+}
+
+body {
+}
+
+#ResultsPage-main {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#ResultsPage-main h1 {
+    margin: 3% 0 0 4%;
+}
+
+#search-results-container {
+    margin: 2% auto 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.search-result {
+    margin: 1%;
+    padding: 1%;
+    text-decoration: none;
+}
+
+.search-result:hover {
+    background-color: #E8E8E8;
+}
+
+.search-result img{
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 10px;
+}
+
+.search-result h3{
+    text-decoration: none;
+    color: black;
+}
+
+.search-result p {
+    font-weight: 500;
+    margin: 0;
+    color: black;
+}
+
+#no-results-h3{
+    margin: 5% auto 0 auto;
+    text-align: center;
+}
+
+/* #region Media queries*/
+/*For phones*/
+@media screen and (max-width: 599px) {
+    /*Only used in special cases for really small screens*/
+    #ResultsPage-main {
+        flex-direction: row !important;
+        height: fit-content !important;
+    }
+
+    .search-result {
+        width: 48% !important;
+    }
+}
+/*For tablet potrait up (used as standard mobile verision of site)*/
+@media screen and (max-width: 899px) {
+    #ResultsPage-main {
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    #ResultsPage-main h1 {
+        margin: 3% 0 0 0;
+    }
+
+    #search-results-container {
+        width: 90%;
+        margin-bottom: 10%;
+    }
+
+    .search-result {
+        width: 30%;
+    }
+
+
+    .search-result h3 {
+        font-size: 1.6em;
+    }
+
+    .search-result p {
+        font-size: 1.6em;
+    }
+
+}
+
+/*Breakpoint for mobile verision of site*/
+
+/*For tablet landscape up + small computers*/
+@media screen and (min-width: 900px) {
+    #ResultsPage-main {
+        flex-direction: column; 
+    }
+
+    #ResultsPage-main h1 {
+        margin: 3% 0 0 4%;
+    }
+    
+    #search-results-container {
+        width: 80%;
+    }
+
+    .search-result {
+        width: 22%;
+    }
+
+    .search-result h3 {
+        font-size: 1.1em;
+    }
+
+    .search-result p {
+        font-size: 1.1em;
+    }
+
+}
+/*For desktop up*/
+@media screen and (min-width: 1200px) {
+}
+/*For big desktop*/
+@media screen and (min-width: 1800px) {
+}

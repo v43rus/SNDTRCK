@@ -72,7 +72,8 @@ body {
     */
 
     #album-stack-gif{
-
+        -webkit-user-drag: none;
+        user-select: none;
     }
 
 #home-top-5 {
