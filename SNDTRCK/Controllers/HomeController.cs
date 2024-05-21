@@ -9,6 +9,7 @@ using System;
 using System.Web;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace SNDTRCK.Controllers
 {
@@ -171,7 +172,7 @@ namespace SNDTRCK.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult BuildSearchSuggestions([FromBody] string searchQuery)
+		public async Task<ActionResult> BuildSearchSuggestions([FromBody] string searchQuery)
 		{
 
 			//Sanitize user input
@@ -181,7 +182,8 @@ namespace SNDTRCK.Controllers
 			List<string> searchSuggestions = new List<string>();
 
 			//Seraches for matches of the query
-			List<Product>? result = _context.Products.Where(p => p.Title.Contains(searchQuery) || p.Artist.Contains(encodedQuery)).ToList();
+			//List<Product>? result = _context.Products.Where(p => p.Title.Contains(searchQuery) || p.Artist.Contains(encodedQuery)).ToList(); - gammal
+			List<Product>? result = await _context.Products.Where(p => p.Title.StartsWith(searchQuery) || p.Artist.StartsWith(encodedQuery)).Take(50).ToListAsync();
 
 			if (result is not null)
 			{
