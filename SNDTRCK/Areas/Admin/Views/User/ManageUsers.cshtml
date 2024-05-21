@@ -5,11 +5,12 @@
 
 @{
 	Layout = "../_Shared/_Layout";
+	var registerModel = ViewBag.RegisterModel as SNDTRCK.Areas.Identity.Pages.Account.RegisterModel;
 }
 
 <h2>Manage Users</h2>
 
-<table class="table table-hover">
+<table class="table table-hover manage-admin">
 	<thead>
 		<tr>
 			<th scope="col">Username (email)</th>
@@ -18,20 +19,73 @@
 		</tr>
 	</thead>
 	<tbody>
-		
-	@foreach(var user in Model)
-	{
-	<tr>
-		<th scope="col">@user.Email</th>
-		<th scope="col">@user.PhoneNumber</th>
+
+		@foreach (var user in Model)
+		{
+			<tr>
+				<th scope="col">@user.Email</th>
+				<th scope="col">@user.PhoneNumber</th>
 
 
-		<th scope="col">
-			<button type="button" class="btn btn-success">Edit</button>
-			<button type="button" class="btn btn-danger">Delete User</button>
-		</th>
-	</tr>
-	}
+				<th scope="col">
+					<button type="button" class="btn btn-success">Edit</button>
+					<button type="button" class="btn btn-danger">Delete User</button>
+				</th>
+			</tr>
+		}
 
 	</tbody>
 </table>
+
+<h2>Add New user</h2>
+
+
+<form id="add-admin" asp-area="Admin" asp-controller="User" asp-action="SaveNewUser">
+
+	<table>
+		<tbody>
+
+		<tr>
+			<th>
+				<label for="username">Username: </label>
+			</th>
+			<th>
+				<input type="text" id="username" name="username" placeholder="Username..." required />
+			</th>
+		</tr>
+
+		<tr>
+			<th>
+				<label for="role">Role: </label>
+			</th>
+			<th>
+				<select id="role" name="role" required>
+					<option value="Regular User">Regular User</option>
+					<option value="Admin">Admin</option>
+				</select>
+			</th>
+		</tr>
+
+		<tr>
+			<th>
+				<label for="password">Password: </label>
+			</th>
+			<th>
+				<input type="password" id="password" name="password" autocomplete="new-password" aria-required="true" placeholder="password" />
+			</th>
+		</tr>
+
+		<tr>
+			<th>
+				<label for="repeat-password">Repeat Password: </label>
+			</th>
+			<th>
+				<input type="password" id="repeat-password" name="repeat-password" autocomplete="new-password" aria-required="true" placeholder="password" />
+			</th>
+		</tr>
+
+		</tbody>
+	</table>
+
+	<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Create User">Create User</button>
+</form>

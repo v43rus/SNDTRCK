@@ -26,5 +26,10 @@ namespace SNDTRCK.Areas.Admin.Controllers
 
 			return View(listOfUsers);
 		}
+
+		private bool ValidateUser(AspNetUser user)
+		{
+			return true;
+		}
 	}
 }
