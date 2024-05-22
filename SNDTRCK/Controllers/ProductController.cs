@@ -1,6 +1,11 @@
 ﻿using System.Drawing.Text;
+using System.Reactive.Linq;
+using DiscogsClient;
+using DiscogsClient.Data.Query;
+using DiscogsClient.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using NuGet.Protocol;
 using SNDTRCK.Models;
 
 namespace SNDTRCK.Controllers
@@ -17,8 +22,6 @@ namespace SNDTRCK.Controllers
 		// Variables for building API Call
 		private String title = "title=";
 		private String artist = "&artist=";
-		private String consumerKey = "&key=AiPjOXzHDfBidtypjDMy";
-		private String consumerSecret = "&secret=kazcSyuJSuoRkXRVJEnUWnXgOombLicA";
 		private String token = "&token=QWuYKorVuMMdqMDfjqtsuvGiXjThRhMZJakGGbrK";
 
 		// Json Object
@@ -38,26 +41,26 @@ namespace SNDTRCK.Controllers
 				return NotFound(); // Handle case where product is not found
 			}
 
-			// BUILD STRING FOR API CALL
-			title += product.Title.Replace(' ', '-');
-			artist += product.Artist.Replace(' ', '-');
+			// Authentication
+			var tokenInformation = new TokenAuthenticationInformation(token);
 
-			apiPath += (title + artist + token);
+			//Create discogs client using the authentication
+			var DiscogsClient = new DiscogsClient.DiscogsClient(tokenInformation);
 
-			// Make HTTP request
-			using (var httpClient = new HttpClient())
+			var discogsSearch = new DiscogsSearch()
 			{
-				var response = await httpClient.GetStringAsync(apiPath);
-				var album = JObject.Parse(response);
+				title = product.Title,
+				artist = product.Artist
+			};
+			// HAS TO BE FIXED TO GET TRACKLIST
 
-				Console.WriteLine(apiPath);
+			//var observable = DiscogsClient.SearchAsEnumerable(discogsSearch);
+			//var master = await DiscogsClient.GetMasterAsync(observable.id);
 
-				ViewBag.Product = product;
-				ViewBag.Album = album;
+			ViewBag.Product = product;
+			//ViewBag.Album = album;
 
-				return View();
-			}
+			return View();
 		}
-
 	}
 }
