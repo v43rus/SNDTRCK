@@ -70,10 +70,10 @@ namespace SNDTRCK.Controllers
 			{
 				int productId = entry.Key;
 				int quantity = entry.Value;
-                
-                Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
-                _logger.LogInformation("Product: " + product);
-                if (product is not null)
+				
+				Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
+				_logger.LogInformation("Product: " + product);
+				if (product is not null)
 				{
 					string productLine = $@"
 
@@ -131,13 +131,19 @@ namespace SNDTRCK.Controllers
 			return RedirectToAction("Newsletter");
 		}
 
+		public IActionResult Product(int? productId)
+		{
+			ViewBag.Product = _context.Products.Find(productId)!;
+			return View();
+		}
+
 		/*Get the search-result page*/
 		//[HttpGet("search/{query}")]
 		[HttpGet("search")]
 		public IActionResult SearchResults(string query)
 		{
-            //Sanitize user input
-            string encodedQuery = HttpUtility.HtmlEncode(query);
+			//Sanitize user input
+			string encodedQuery = HttpUtility.HtmlEncode(query);
 
 			if (string.IsNullOrEmpty(encodedQuery))
 			{
@@ -148,7 +154,7 @@ namespace SNDTRCK.Controllers
 			var products = _context.Products.Where(p => p.Title.Contains(query) || p.Artist.Contains(encodedQuery)).ToList();
 
 			ViewBag.Query = query;
-            return View(products);
+			return View(products);
 		}
 
 		/*Get the genre page*/
@@ -156,8 +162,8 @@ namespace SNDTRCK.Controllers
 		[HttpGet("/genre/{genre}")]
 		public IActionResult GenrePage(string genre)
 		{
-            //Sanitize user input
-            string encodedQuery = HttpUtility.HtmlEncode(genre);
+			//Sanitize user input
+			string encodedQuery = HttpUtility.HtmlEncode(genre);
 
 			if (string.IsNullOrEmpty(encodedQuery))
 			{
@@ -168,7 +174,7 @@ namespace SNDTRCK.Controllers
 			var products = _context.Products.Where(p => p.Genre == genre).ToList();
 
 			ViewBag.Query = genre.ToUpper();
-            return View(products);
+			return View(products);
 		}
 
 		[HttpPost]
