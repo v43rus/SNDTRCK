@@ -8,7 +8,7 @@ namespace SNDTRCK.Controllers
 	public class ProductController : Controller
 	{
 		// Sample request from API
-		// https://api.discogs.com/database/search?title=abbey_road&artist=beatles&key=AiPjOXzHDfBidtypjDMy&secret=kazcSyuJSuoRkXRVJEnUWnXgOombLicA
+		// https://api.discogs.com/database/search?title=abbey_road&artist=beatles&token=QWuYKorVuMMdqMDfjqtsuvGiXjThRhMZJakGGbrK
 
 		private readonly ILogger<HomeController> _logger;
 		private readonly SNDTRCKContext _context;
@@ -19,6 +19,7 @@ namespace SNDTRCK.Controllers
 		private String artist = "&artist=";
 		private String consumerKey = "&key=AiPjOXzHDfBidtypjDMy";
 		private String consumerSecret = "&secret=kazcSyuJSuoRkXRVJEnUWnXgOombLicA";
+		private String token = "&token=QWuYKorVuMMdqMDfjqtsuvGiXjThRhMZJakGGbrK";
 
 		// Json Object
 
@@ -41,7 +42,7 @@ namespace SNDTRCK.Controllers
 			title += product.Title.Replace(' ', '-');
 			artist += product.Artist.Replace(' ', '-');
 
-			apiPath += (title + artist + consumerKey + consumerSecret);
+			apiPath += (title + artist + token);
 
 			// Make HTTP request
 			using (var httpClient = new HttpClient())
@@ -52,7 +53,7 @@ namespace SNDTRCK.Controllers
 				Console.WriteLine(apiPath);
 
 				ViewBag.Product = product;
-				ViewBag.Album = album; // Pass the album data to the view if needed
+				ViewBag.Album = album;
 
 				return View();
 			}
