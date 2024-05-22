@@ -56,7 +56,9 @@ namespace SNDTRCK.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult BuildShoppingCartRows([FromBody] string cartData) //[FromBody] säger åt controllern att informationen från kroppen på http-förfrågan och inte t.ex. url:n eller headern. xhr.setRequestHeader("Content-Type", "application/json") behövs för att detta ska fungera
+		public ActionResult
+			BuildShoppingCartRows(
+				[FromBody] string cartData) //[FromBody] säger åt controllern att informationen från kroppen på http-förfrågan och inte t.ex. url:n eller headern. xhr.setRequestHeader("Content-Type", "application/json") behövs för att detta ska fungera
 		{
 
 			//Konventera JSON-strängen till en Dictionary<int, int>
@@ -69,10 +71,10 @@ namespace SNDTRCK.Controllers
 			{
 				int productId = entry.Key;
 				int quantity = entry.Value;
-                
-                Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
-                _logger.LogInformation("Product: " + product);
-                if (product is not null)
+
+				Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
+				_logger.LogInformation("Product: " + product);
+				if (product is not null)
 				{
 					string productLine = $@"
 
@@ -135,8 +137,8 @@ namespace SNDTRCK.Controllers
 		[HttpGet("search")]
 		public IActionResult SearchResults(string query)
 		{
-            //Sanitize user input
-            string encodedQuery = HttpUtility.HtmlEncode(query);
+			//Sanitize user input
+			string encodedQuery = HttpUtility.HtmlEncode(query);
 
 			if (string.IsNullOrEmpty(encodedQuery))
 			{
@@ -144,10 +146,18 @@ namespace SNDTRCK.Controllers
 			}
 
 			//Gets the products
-			var products = _context.Products.Where(p => p.Title.Contains(query) || p.Artist.Contains(encodedQuery)).ToList();
+			var products = _context.Products.Where(p => p.Title.Contains(query) || p.Artist.Contains(encodedQuery))
+				.ToList();
 
 			ViewBag.Query = query;
-            return View(products);
+			return View(products);
+		}
+
+		public IActionResult Product(int? productId)
+		{
+			ViewBag.Product = _context.Products.Find(productId);
+
+			return View();
 		}
 
 		/*Get the genre page*/
@@ -155,8 +165,8 @@ namespace SNDTRCK.Controllers
 		[HttpGet("/genre/{genre}")]
 		public IActionResult GenrePage(string genre)
 		{
-            //Sanitize user input
-            string encodedQuery = HttpUtility.HtmlEncode(genre);
+			//Sanitize user input
+			string encodedQuery = HttpUtility.HtmlEncode(genre);
 
 			if (string.IsNullOrEmpty(encodedQuery))
 			{
@@ -167,7 +177,7 @@ namespace SNDTRCK.Controllers
 			var products = _context.Products.Where(p => p.Genre == genre).ToList();
 
 			ViewBag.Query = genre.ToUpper();
-            return View(products);
+			return View(products);
 		}
 
 		[HttpPost]
@@ -181,15 +191,16 @@ namespace SNDTRCK.Controllers
 			List<string> searchSuggestions = new List<string>();
 
 			//Seraches for matches of the query
-			List<Product>? result = _context.Products.Where(p => p.Title.Contains(searchQuery) || p.Artist.Contains(encodedQuery)).ToList();
+			List<Product>? result = _context.Products
+				.Where(p => p.Title.Contains(searchQuery) || p.Artist.Contains(encodedQuery)).ToList();
 
 			if (result is not null)
 			{
 				//We only want three suggestions returned to client
-				for(int i = 0; i < 3; i++)
+				for (int i = 0; i < 3; i++)
 				{
 					//If there are fewer reults than three
-					if(searchSuggestions.Count != result.Count)
+					if (searchSuggestions.Count != result.Count)
 					{
 						string suggestion = $@"
 								<a class=""search-suggestion"" href=""#"">
@@ -202,11 +213,12 @@ namespace SNDTRCK.Controllers
 											<li><span class=""color-of-price"">{result[i].Price}</span> kr</li>
 										</ul>
 									</div>
-								</a>";			
+								</a>";
 						searchSuggestions.Add(suggestion);
 					}
 				}
-			}	
+			}
+
 			return Json(searchSuggestions); // Returnera HTML-produktrader som JSON-respons
 		}
 	}

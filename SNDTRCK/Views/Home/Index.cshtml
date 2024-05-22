@@ -59,6 +59,7 @@
 		<article>
 			@foreach (var p in top5)
 			{
+				<a asp-controller="Home" asp-action="Product" asp-route-productId="@p.ProductId">
 				<article class="product-card">
 					<img src="~/@p.CoverImageLink">
 					<p class="top5-ranking">
@@ -75,6 +76,7 @@
 						<p>BUY</p>
 					</div>
 				</article>
+				</a>
 			}
 		</article>
 	</section>

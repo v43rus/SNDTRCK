@@ -123,6 +123,8 @@ body {
 
     #home-top-5 .product-card {
         position: relative;
+        width: 220px;
+        height: 380px;
         display: flex;
         background-color: white;
         flex-direction: column;
