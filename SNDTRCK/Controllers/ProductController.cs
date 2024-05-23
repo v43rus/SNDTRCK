@@ -2,6 +2,7 @@
 using System.Reactive.Linq;
 using DiscogsClient;
 using DiscogsClient.Data.Query;
+using DiscogsClient.Data.Result;
 using DiscogsClient.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -19,13 +20,12 @@ namespace SNDTRCK.Controllers
 		private readonly SNDTRCKContext _context;
 		public String apiPath = "https://api.discogs.com/database/search?";
 
-		// Variables for building API Call
-		private String title = "title=";
-		private String artist = "&artist=";
+		// Verification token against API
 		private String token = "&token=QWuYKorVuMMdqMDfjqtsuvGiXjThRhMZJakGGbrK";
 
 		// Json Object
-
+		private DiscogsMaster master;
+		
 		public ProductController(SNDTRCKContext context, ILogger<HomeController> logger)
 		{
 			_logger = logger;
@@ -46,18 +46,16 @@ namespace SNDTRCK.Controllers
 			//Create discogs client using the authentication
 			var DiscogsClient = new DiscogsClient.DiscogsClient(tokenInformation);
 
-			var discogsSearch = new DiscogsSearch()
-			{
-				title = product.Title,
-				artist = product.Artist
-			};
-			// HAS TO BE FIXED TO GET TRACKLIST
 
-			//var observable = DiscogsClient.SearchAsEnumerable(discogsSearch);
-			//var master = await DiscogsClient.GetMasterAsync(observable.id);
+			if (product.DiscogId != 0) 
+			{
+				master = await DiscogsClient.GetMasterAsync(product.DiscogId);
+			}
 
 			ViewBag.Product = product;
-			//ViewBag.Album = album;
+
+			if (master != null)
+				ViewBag.Album = master;
 
 			return View();
 		}

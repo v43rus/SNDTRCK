@@ -1,11 +1,15 @@
 ﻿@page "/{productId}"
 
+@using DiscogsClient.Data.Result
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using SNDTRCK.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
+	int trackLoop = 1;
+
 	var product = ViewBag.Product as Product;
+	var album = ViewBag.Album as DiscogsMaster;
 
 	Layout = "/Views/Shared/_Layout.cshtml";
 }
@@ -37,5 +41,25 @@
 	<div id="tracklist-divider">
 		<h3>Tracklist</h3>
 	</div>
+	
+
+	@if (album != null)
+	{
+		<section id="tracklist">
+			@foreach (var track in album.tracklist)
+			{
+				<article class="track-container">
+					<p>@trackLoop - @track.title</p>
+					<p>@track.duration</p>
+				</article>
+
+				trackLoop++;
+			}
+		</section>
+	}
+	else
+	{
+		<h2>Album was not found in the API</h2>
+	}
 
 </main>

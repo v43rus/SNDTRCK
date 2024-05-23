@@ -65,6 +65,8 @@ public partial class SNDTRCKContext : DbContext
 				.IsUnicode(false);
 			entity.Property(e => e.ReleaseYear)
 				.HasColumnType("int");
+			entity.Property(e => e.DiscogId)
+				.HasColumnType("int");
 		});
 
 		modelBuilder.Entity<NewsletterSignup>(entity =>

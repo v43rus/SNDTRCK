@@ -54,7 +54,8 @@ namespace SNDTRCK.Areas.Admin.Controllers
 				Description = Request.Form["description"],
 				Price = Decimal.Parse(Request.Form["price"]!),
 				RecordLabel = Request.Form["label"],
-				ReleaseYear = int.Parse(Request.Form["release-year"])
+				ReleaseYear = int.Parse(Request.Form["release-year"]),
+				DiscogId = int.Parse(Request.Form["discog-id"])
 			};
 
 			if (image != null)
@@ -155,7 +156,10 @@ namespace SNDTRCK.Areas.Admin.Controllers
 				productToUpdate.RecordLabel = Request.Form["label"].ToString();
 
 			if (Request.Form["release-year"] != "")
-				productToUpdate.ReleaseYear = int.Parse(Request.Form["releaseYear"].ToString());
+				productToUpdate.ReleaseYear = int.Parse(Request.Form["release-year"].ToString());
+
+			if (Request.Form["discog-id"] != "")
+				productToUpdate.DiscogId = int.Parse(Request.Form["discog-id"].ToString());
 
 			try
 			{
