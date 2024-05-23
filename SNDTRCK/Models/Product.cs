@@ -14,7 +14,7 @@ public partial class Product
 	public string RecordLabel { get; set; }
 	public int ReleaseYear { get; set; }
 
-	public int? DiscogId { get; set; }
+	public int DiscogId { get; set; }
 
 	public string Genre { get; set; }
 
