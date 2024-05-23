@@ -150,7 +150,7 @@ function UpdateProductQuantityIndicator(productId, newQuantity) {
 
 //The quantity indicator on the cart icon
 function UpdateCartQuantityIndicatorByAction(action) {
-
+    console.log("hello")
     //Gets the "your cart is empty-text"
     let emptyCartText = document.getElementById("empty-cart-text")
 
@@ -164,7 +164,11 @@ function UpdateCartQuantityIndicatorByAction(action) {
         quanityIndicator.innerText = quantityValue + 1;
 
         quanityIndicator.style.display = "initial"; //If the indicator was hidden because cart was empty
-        emptyCartText.style.display = "none"; //If the cart was empty
+
+        try {
+            emptyCartText.style.display = "none"; //If the cart was empty
+        }
+        catch { }
     }
     else if (action === "lower") {
 
@@ -202,6 +206,8 @@ function UpdateCartQuantityIndicatorByCookie() {
             totalProducts += jsonObj[key];
         }
     }
+
+    console.log(jsonObj)
 
     //Gets the quantity indicator
     let quanityIndicator = document.getElementById("cart-quantity-indicator");
