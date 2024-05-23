@@ -82,6 +82,7 @@
     width: 100%;
     padding: 2% 5%;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .track-container {
