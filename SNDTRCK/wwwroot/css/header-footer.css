@@ -181,9 +181,12 @@ nav {
         background-color: #E8E8E8;
     }
 
-.search-suggestion-image-container{
+.search-suggestion-image-container {
     height: 100%;
-    aspect-ratio: 1 / 1;
+    /*
+        aspect-ratio: 1 / 1;
+        PROPERTY DOESN'T EXIST IN CSS
+    */
 }
 
 .search-suggestion-image-container img{
@@ -414,7 +417,7 @@ footer {
     /*#region Header & nav*/
     header {
         height: 10%;
-        position: fixed;    
+        position: sticky;    
     }
 
     /*This div is necessary to position elements in the center*/
