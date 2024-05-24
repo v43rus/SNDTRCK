@@ -50,6 +50,7 @@
 
     #product-container img {
         width: 100%;
+        max-width: 395px;
         outline: 1px solid grey;
     }
 
