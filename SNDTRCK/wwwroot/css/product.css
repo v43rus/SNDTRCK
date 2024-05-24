@@ -109,8 +109,22 @@
 }
 
 @media screen and (max-width: 899px) {
+    #product-container h2 {
+        margin-top: 20px;
+        font-size: 1.8rem;
+    }
 
+    #product-container h3 {
+        font-size: 1.2rem;
+    }
 
+    #product-container p {
+        margin: 10px 0;
+    }
+
+    #product-container section {
+        height: fit-content;
+    }
 }
 
 @media screen and (max-width: 599px) {
