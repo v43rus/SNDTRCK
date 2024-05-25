@@ -86,10 +86,12 @@ h1, h2, h3, h4 {
 @media screen and (max-width: 899px) {
     main {
         /*To make header not cover any content in mobile verision*/
+        /*
         padding-top: 10vh;
         height: 100vh;
-        min-height: 100vh;  
+        min-height: 100vh;
         width: 94%;
+            */
     }
 
     /*Hides all elements on site that shouldn't be displayed on mobile verision*/

@@ -82,19 +82,13 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px;
+    width: 90%;
 }
-
-
 
     #home-top-5 h3 {
         color: black;
         font-weight: 700;
     }
-
-    #home-top-5 img {
-        width: 200px;
-    }
-
     #home-top-5 article {
         display: flex;
         flex-direction: row;
@@ -103,14 +97,16 @@ body {
     #home-top-5 img {
         border: 1px solid black;
         filter: drop-shadow(-5px 4px 3px #949494);
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
+        max-width: 200px;
+        max-height: 200px;
     }
 
     #home-top-5 .top5-ranking {
         position: absolute;
-        top: 15px;
-        left: 15px;
+        top: 30px;
+        left: 30px;
         width: 35px;
         height: 35px;
         font-size: 20px;
@@ -123,12 +119,12 @@ body {
 
     #home-top-5 .product-card {
         position: relative;
-        width: 220px;
+        width: 90%;
         height: 380px;
         display: flex;
         background-color: white;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         padding: 10px;
         margin: 5px;
@@ -147,6 +143,12 @@ body {
         border: 0px solid;
         border-radius: 8px;
     }
+
+.product-card h4 {
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+}
 
 #home-heart-house {
     background-color: #0032D2;
