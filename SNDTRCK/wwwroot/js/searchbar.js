@@ -12,7 +12,7 @@ function ShowSearchSuggestions(query, device) {
     //Clear the seach suggestion container
     ClearSearchSuggestionContainer(device);
 
-    if (query.length > 1) {
+    if (query.length > 0) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/Home/BuildSearchSuggestions", false);
         xhr.setRequestHeader("Content-Type", "application/json");

@@ -11,6 +11,8 @@
 
     <section id="Shoppingcart-product-container">
 
+        <div id="loader"></div>
+
         <!--Display: none by default, displayed by javascipt in RenderShoppingCartRows.js-->
         <h3 id="empty-cart-text">No products (yet)</h3>
 
@@ -37,13 +39,9 @@
         </div>-->
 
     </section>
-    <aside id="cart-total-cost-container">
-        <p>Total: <span class="color-of-price">599</span> kr</p>
-        <a>Continue to checkout <img src="/media/icons/thin-arrow-right.png" id="cart-checkout-arrow" /></a>
+    <aside id="proceed-to-checkout-container">
+        <a>Proceed to checkout <img src="/media/icons/thin-arrow-right.png" id="cart-checkout-arrow" /></a>
     </aside>
 </main>
-<!--Temporärt till jag har skapat en produktsida-->
-<button onclick="AddToCart(32)">Add to cart</button>
-<button onclick="AddToCart(33)">Lägg till en produkt i cookien</button>
-<!---->
+
 <script src="~/js/RenderShoppingCartRows.js" asp-append-version="true"></script>

@@ -18,6 +18,7 @@ function GetCookie(name) {
         if (cookiePair[0] === name) {
 
             //dekodar värdet från Base64 (som cookie data lagras i) till JSON
+            console.log("GetCookie: " + decodeURIComponent(cookiePair[1]));
             return decodeURIComponent(cookiePair[1]);
             //"{"1":1,"45":2,"22":5}"
         }
@@ -55,7 +56,7 @@ function AddToCart(productId = 1, quantity = 1) {
     var jsonCart = JSON.stringify(cartObj);
 
     //Uppdatera cookien med nya JSON-strängen, om cookien inte finns skapas den här
-    document.cookie = "userCart=" + jsonCart;
+    document.cookie = "userCart=" + jsonCart + "; path=/; SameSite=None; Secure";
 }
 
 //Remove one quantity of product from cart cookie
@@ -150,12 +151,14 @@ function UpdateProductQuantityIndicator(productId, newQuantity) {
 
 //The quantity indicator on the cart icon
 function UpdateCartQuantityIndicatorByAction(action) {
-    console.log("hello")
+    console.log("Updated cart quantity by action")
     //Gets the "your cart is empty-text"
     let emptyCartText = document.getElementById("empty-cart-text")
 
     //Gets the quantity indicator
     let quanityIndicator = document.getElementById("cart-quantity-indicator");
+    //Gets total cost container
+    let totalCostContainer = document.getElementById("proceed-to-checkout-container");
     //Gets the indicator value as a number
     let quanityIndicatorText = quanityIndicator.innerText;
     let quantityValue = parseInt(quanityIndicatorText);
@@ -167,6 +170,7 @@ function UpdateCartQuantityIndicatorByAction(action) {
 
         try {
             emptyCartText.style.display = "none"; //If the cart was empty
+            totalCostContainer.style.display = "flex";
         }
         catch { }
     }
@@ -179,6 +183,7 @@ function UpdateCartQuantityIndicatorByAction(action) {
             //Tries to display "your cart is empty" if the user is on the cart-page
             try {
                 emptyCartText.style.display = "initial";
+                totalCostContainer.style.display = "none";
             }
             catch {
                 //No code needed
@@ -198,7 +203,7 @@ function UpdateCartQuantityIndicatorByAction(action) {
 //The quantity indicator on the cart icon
 function UpdateCartQuantityIndicatorByCookie() {
 
-    //Calculates how many products there are in the cart
+    //Calculates how many products there are in the cart;
     let jsonObj = JSON.parse(GetCookie("userCart"));
     let totalProducts = 0; //Stores the number of products in cart
     for (var key in jsonObj) {
@@ -211,6 +216,8 @@ function UpdateCartQuantityIndicatorByCookie() {
 
     //Gets the quantity indicator
     let quanityIndicator = document.getElementById("cart-quantity-indicator");
+    //Gets total cost container
+    let totalCostContainer = document.getElementById("proceed-to-checkout-container")
     //Gets the indicator value as a number
     let quanityIndicatorText = quanityIndicator.innerText;
     let quantityValue = parseInt(quanityIndicatorText);
@@ -220,8 +227,11 @@ function UpdateCartQuantityIndicatorByCookie() {
 
     if (totalProducts > 0) {
         quanityIndicator.style.display = "initial"; //If the indicator was hidden because cart was empty
-        //emptyCartText.style.display = "none"; //If the cart was empty
         quanityIndicator.innerText = totalProducts;
+        try {
+            totalCostContainer.style.display = "flex";
+        }
+        catch { }
     }
     else if (totalProducts === 0) {
 
@@ -244,7 +254,6 @@ function ClearCart() {
     //Uppdatera cookien med nya JSON-strängen
     document.cookie = "userCart=";
     console.log("Cart cleared")
-
 }
 
 //Startup

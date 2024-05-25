@@ -38,6 +38,10 @@ window.addEventListener("load", (event) => {
         xhr.open("POST", "/Home/BuildShoppingCartRows", false); //asynkron POST-förfrågan till en viss URL (/Controller/Action) öppnas. Detta är den URL där servern förväntas ta emot förfrågan för att behandla varukorgen.
         xhr.setRequestHeader("Content-Type", "application/json"); //ställer in HTTP-headers för förfrågan. Här specificeras att den skickade datan är i JSON-format.
 
+        //Displays loader 
+        let loader = document.getElementById("loader");
+        loader.style.display = "initial";
+
         //händelselyssnare som lyssnar på förändringar i xhr-objektets status
         //När statusen ändras, kontrollerar koden om förfrågan är klar (status 4) och om svaret från servern är OK (status 200).
         xhr.onreadystatechange = function () { 
@@ -46,6 +50,8 @@ window.addEventListener("load", (event) => {
 
                 //Hämtar container för produktraderna i varukorgen
                 var productContainer = document.getElementById("Shoppingcart-product-container")
+
+                loader.style.display = "none";
 
                 //Renderar raderna
                 response.forEach(function (productRow) {

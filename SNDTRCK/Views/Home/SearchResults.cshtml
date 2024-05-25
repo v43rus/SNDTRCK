@@ -17,7 +17,7 @@
         @if(Model.Any()){
 
             @foreach(var product in Model){
-                <a href="#" class="search-result">
+                <a class="search-result" asp-controller="Product" asp-action="Product" asp-route-productId="@product.ProductId">
                     <img src="/@product.CoverImageLink" alt="@product.Title"/>
                     <h3>@product.Title - @product.Artist</h3>
                     <p><span class="color-of-price">@product.Price</span> kr</p>

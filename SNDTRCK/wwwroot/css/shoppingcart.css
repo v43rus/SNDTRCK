@@ -11,6 +11,10 @@
 body {
 }
 
+main{
+    flex-wrap: nowrap !important;
+}
+
 /*The html main-tag for the shopping cart page*/
 #ShoppingCart-main{
     flex-direction: column;
@@ -128,30 +132,62 @@ body {
 /*#endregion*/
 
 /*Price container at bottom of page*/
-#cart-total-cost-container{
+#proceed-to-checkout-container {
     border: 1px solid black;
-    display: flex;
+    display: none;
     flex-direction: column;
-    width: 25%;
+    width: fit-content;
     padding: 10px;
-    margin: 2% 10% 0 auto;
+    margin: 2% 10% 2% auto;
+    user-select: none;
 }
 
-#cart-total-cost-container p, #cart-total-cost-container a {
-    font-size: 1.5em;
-    font-weight: 650;
-    margin: 0;
-    color: black;
-}
+    #proceed-to-checkout-container a {
+        font-size: 1.5em;
+        font-weight: 650;
+        margin: 0;
+        color: black;
+    }
 
-#cart-total-cost-container a:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
+        #proceed-to-checkout-container a:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
 
 #cart-checkout-arrow{
     height: 25px;
     margin-bottom: 5px;
+}
+
+#loader {
+    width: 80px;
+    height: 80px;
+    margin: 10% 0 10% 0;
+    border: 12px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid var(--main-blue);
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* #region Media queries*/
@@ -205,6 +241,10 @@ body {
     .product-row .price-paragraph {
         font-size: 1.5em;
     }
+
+    #proceed-to-checkout-container {
+        margin: 5% auto 2% auto;
+    }
 }
 
 /*Breakpoint for mobile verision of site*/
@@ -233,6 +273,10 @@ body {
     /*The price in the product row*/
     .product-row .price-paragraph {
         font-size: 1.5em;
+    }
+
+    #proceed-to-checkout-container {
+        margin: 2% 10% 2% auto;
     }
 
 }
