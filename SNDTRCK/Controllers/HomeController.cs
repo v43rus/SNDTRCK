@@ -200,7 +200,7 @@ namespace SNDTRCK.Controllers
 					if(searchSuggestions.Count != result.Count)
 					{
 						string suggestion = $@"
-								<a class=""search-suggestion"" href=""#"">
+								<a class=""search-suggestion"" asp-controller=""Product"" asp-action =""Product"" asp-route-productId=""{result[i].ProductId}"">
 									<div class=""search-suggestion-image-container"">
 										<img src = ""/{result[i].CoverImageLink}""  alt=""{result[i].Title}""/>
 									</div >
