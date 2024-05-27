@@ -59,25 +59,25 @@
 		<article>
 			@foreach (var p in top5)
 			{
-				<a asp-controller="Product" asp-action ="Product" asp-route-productId="@p.ProductId">
-					<article class="product-card">
-							<img src="~/@p.CoverImageLink">
-						
-						<p class="top5-ranking">
-							@{ int pTop5 = top5.IndexOf(p) + 1; }
-							@pTop5
-						</p>
+				<article class="product-card">
+					<a asp-controller="Product" asp-action ="Product" asp-route-productId="@p.ProductId">
+					<img src="~/@p.CoverImageLink">
+					</a>
+					<p class="top5-ranking">
+						@{ int pTop5 = top5.IndexOf(p) + 1; }
+						@pTop5
+					</p>
 
 
-						<h4>@p.Title</h4>
-						<i>@p.Artist</i>
+					<h4>@p.Title</h4>
+					<i>@p.Artist</i>
 
-						<div>
-							<p>@p.Price SEK</p>
-							<p>BUY</p>
-						</div>
-					</article>
-				</a>
+					<div class="buy-section">
+						<p>@p.Price SEK</p>
+						<button class="buy-button" onclick="AddToCart(@p.ProductId)">BUY</button>
+					</div>
+				</article>
+				
 			}
 		</article>
 	</section>

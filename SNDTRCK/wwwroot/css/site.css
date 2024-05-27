@@ -53,6 +53,22 @@ main {
     min-height: 82vh;
 }
 
+.buy-button {
+    color: var(--main-orange);
+    background-color: #1C1F23;
+    border: 1px solid #1C1F23;
+    padding: 0px 10px !important;
+    border-radius: 10px;
+    margin-left: 25px;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+    .buy-button:hover {
+        color: #1C1F23;
+        background-color: orangered;
+    }
+
 /*The span tag coloring the number part of the price*/
 .color-of-price {
     color: var(--main-orange);
@@ -86,12 +102,14 @@ h1, h2, h3, h4 {
 @media screen and (max-width: 899px) {
     main {
         /*To make header not cover any content in mobile verision*/
-        /*
         padding-top: 10vh;
+        /*
+            Can't have fixed height on main since it cuts out objects that exceeds that
+            makes the page exceed that height.
         height: 100vh;
+            */
         min-height: 100vh;
         width: 94%;
-            */
     }
 
     /*Hides all elements on site that shouldn't be displayed on mobile verision*/
