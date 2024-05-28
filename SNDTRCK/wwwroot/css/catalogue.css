@@ -1,0 +1,8 @@
+﻿.all-albums-list {
+    width: 80%;
+}
+
+    .all-albums-list a {
+        color: #212529;
+        text-decoration: none;
+    }

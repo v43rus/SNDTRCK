@@ -1,0 +1,52 @@
+﻿@using DiscogsClient.Data.Result
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using SNDTRCK.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+	var productList = ViewBag.ProductList;
+
+	Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<h3>
+	ALL ALBUMS
+</h3>
+
+
+<table class="table table-hover all-albums-list">
+	<thead>
+		<tr>
+			<th scope="col"></th>
+			<th scope="col">Title</th>
+			<th scope="col">Artist</th>
+			<th scope="col">Genre</th>
+			<th scope="col">Price</th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		@foreach (var p in productList)
+		{
+
+			<tr>
+				<th scope="col">
+					<a asp-controller="Product" asp-action="Product" asp-route-productId="@p.ProductId">
+					<img src="~/@p.CoverImageLink" class="product-image"/>
+					</a>
+				</th>
+				
+				<th scope="col">
+					<a asp-controller="Product" asp-action="Product" asp-route-productId="@p.ProductId">@p.Title</a>
+				</th>
+				<th scope="col">@p.Artist</th>
+				<th scope="col">
+					<a href="/genre/@p.Genre">@p.Genre</a>
+				</th>
+				<th scope="col">@p.Price</th>
+			</tr>
+		}
+
+	</tbody>
+</table>

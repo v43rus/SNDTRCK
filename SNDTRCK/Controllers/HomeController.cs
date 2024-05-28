@@ -44,6 +44,13 @@ namespace SNDTRCK.Controllers
 			return View();
 		}
 
+		public IActionResult Catalogue()
+		{
+			ViewBag.ProductList = _context.Products.ToList();
+
+			return View();
+		}
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
