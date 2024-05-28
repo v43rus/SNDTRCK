@@ -8,23 +8,13 @@
 		Model[12]
 	};
 
-	static List<T> GetRandomElements<T>(List<T> originalList, int count)
+	var lengthOfList = Model.Count;
+
+	List<Product> latestAdditions = new List<Product>();
+
+	for (int i = 1; i < 11; i++)
 	{
-		if (count > originalList.Count)
-		{
-			throw new ArgumentException("Count cannot be greater than the number of elements in the list.");
-		}
-
-		Random rand = new Random();
-		List<T> randomElements = new List<T>();
-
-		for (int i = 0; i < count; i++)
-		{
-			int index = rand.Next(originalList.Count);
-			randomElements.Add(originalList[index]);
-			originalList.RemoveAt(index);
-		}
-		return randomElements;
+		latestAdditions.Add(Model[Model.Count - i]);
 	}
 
 	ViewData["Title"] = "Home Page";
@@ -101,5 +91,22 @@
 		</article>
 	</section>
 	<!--</div>-->
+	<section class="home-section" id="latest-additions">
+		<h3>
+			LATEST ADDITIONS
+		</h3>
+		<article>
+			@foreach (var p in latestAdditions)
+			{
+				<article class="product-card">
+					<a asp-controller="Product" asp-action ="Product" asp-route-productId="@p.ProductId">
+						<img src="~/@p.CoverImageLink">
+					</a>
+
+					<h4>@p.Title - @p.Artist</h4>
+				</article>
+			}
+		</article>
+	</section>
 
 </main>
