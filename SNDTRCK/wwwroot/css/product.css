@@ -30,7 +30,7 @@
         width: fit-content;
         font-size: 1.0rem;
         margin-top: 20px;
-        border-bottom: 1px solid grey;
+        text-decoration: underline;
     }
 
     #product-container section {
@@ -60,14 +60,6 @@
     display: flex;
     align-items: center;
 }
-
-    #price-container button {
-        color: orangered;
-        padding: 0px 10px !important;
-        border-radius: 10px;
-        margin-left: 25px;
-        font-weight: bold;
-    }
 
     #price-container h3:nth-child(1) {
         color: orangered;

@@ -31,6 +31,8 @@ namespace SNDTRCK.Controllers
 			_logger = logger;
 			_context = context;
 		}
+
+		[Route("Product")]
 		public async Task<IActionResult> Product(int? productId)
 		{
 			// Assign product

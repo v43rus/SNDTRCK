@@ -8,23 +8,13 @@
 		Model[12]
 	};
 
-	static List<T> GetRandomElements<T>(List<T> originalList, int count)
+	var lengthOfList = Model.Count;
+
+	List<Product> latestAdditions = new List<Product>();
+
+	for (int i = 1; i < 11; i++)
 	{
-		if (count > originalList.Count)
-		{
-			throw new ArgumentException("Count cannot be greater than the number of elements in the list.");
-		}
-
-		Random rand = new Random();
-		List<T> randomElements = new List<T>();
-
-		for (int i = 0; i < count; i++)
-		{
-			int index = rand.Next(originalList.Count);
-			randomElements.Add(originalList[index]);
-			originalList.RemoveAt(index);
-		}
-		return randomElements;
+		latestAdditions.Add(Model[Model.Count - i]);
 	}
 
 	ViewData["Title"] = "Home Page";
@@ -40,7 +30,7 @@
 
 		<article>
 			<h2>COMPLETE <br />YOUR <br />STACK</h2>
-			<a class="hide-in-mobile see-categories-link" href="">SEE ALL CATEGORIES</a>
+			<a asp-controller="Home" asp-action="Catalogue" class="hide-in-mobile see-categories-link">SEE ALL CATEGORIES</a>
 		</article>
 
 		<!--Container needed to set size and aspect ratio of gif-->
@@ -49,7 +39,7 @@
 		</div>
 
 		<!--Only shown in mobile, needed for a better look with the album stack-->
-		<a class="hide-in-desktop see-categories-link" href="">SEE ALL GENRES</a>
+		<a asp-controller="Home" asp-action="Catalogue"  class="hide-in-desktop see-categories-link">SEE ALL GENRES</a>
 	</section>
 
 	<section class="home-section" id="home-top-5">
@@ -59,25 +49,25 @@
 		<article>
 			@foreach (var p in top5)
 			{
-				<a asp-controller="Product" asp-action ="Product" asp-route-productId="@p.ProductId">
-					<article class="product-card">
-							<img src="~/@p.CoverImageLink">
-						
-						<p class="top5-ranking">
-							@{ int pTop5 = top5.IndexOf(p) + 1; }
-							@pTop5
-						</p>
+				<article class="product-card">
+					<a asp-controller="Product" asp-action ="Product" asp-route-productId="@p.ProductId">
+					<img src="~/@p.CoverImageLink">
+					</a>
+					<p class="top5-ranking">
+						@{ int pTop5 = top5.IndexOf(p) + 1; }
+						@pTop5
+					</p>
 
 
-						<h4>@p.Title</h4>
-						<i>@p.Artist</i>
+					<h4>@p.Title</h4>
+					<i>@p.Artist</i>
 
-						<div>
-							<p>@p.Price SEK</p>
-							<p>BUY</p>
-						</div>
-					</article>
-				</a>
+					<div class="buy-section">
+						<p>@p.Price SEK</p>
+						<button class="buy-button" onclick="AddToCart(@p.ProductId)">BUY</button>
+					</div>
+				</article>
+				
 			}
 		</article>
 	</section>
@@ -91,13 +81,32 @@
 				<h3>
 					IN 128 BPM
 				</h3>
-				<a class="home-shop-now-btn" href="">Shop Now</a>
+				<a class="home-shop-now-btn" href="/genre/house">Shop Now</a>
 			</article>
 		</section>
 		<article>
-			<img src="~/media/pictures/placeholder.jpg">
+			<video id="heartbeat-video" autoplay loop muted>
+				<source src="~/media/pictures/heartbeat.mp4">
+			</video>
 		</article>
 	</section>
 	<!--</div>-->
+	<section class="home-section" id="latest-additions">
+		<h3>
+			LATEST ADDITIONS
+		</h3>
+		<article>
+			@foreach (var p in latestAdditions)
+			{
+				<article class="product-card">
+					<a asp-controller="Product" asp-action ="Product" asp-route-productId="@p.ProductId">
+						<img src="~/@p.CoverImageLink">
+					</a>
+
+					<h4>@p.Title - @p.Artist</h4>
+				</article>
+			}
+		</article>
+	</section>
 
 </main>
