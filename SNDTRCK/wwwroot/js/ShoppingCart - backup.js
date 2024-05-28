@@ -54,10 +54,11 @@ function AddToCart(productId = 1, quantity = 1) {
 
     //Konventera JS-objektet åter till JSON
     var jsonCart = JSON.stringify(cartObj);
-    var uriCart = encodeURIComponent(jsonCart);
+    //var jsonCart = encodeURIComponent(cartObj);
+    console.log("Ny cart: " + jsonCart)
 
     //Uppdatera cookien med nya JSON-strängen, om cookien inte finns skapas den här
-    document.cookie = "userCart=" + uriCart + "; path=/; SameSite=None; Secure; max-age= 26000000";
+    document.cookie = "userCart=" + jsonCart + "; path=/; SameSite=None; Secure";
 }
 
 //Remove one quantity of product from cart cookie
@@ -78,10 +79,9 @@ function RemoveFromCart(productId = 1, quantity = 1) {
 
     //Konventera JS-objektet åter till JSON
     var jsonCart = JSON.stringify(cartObj);
-    var uriCart = encodeURIComponent(jsonCart);
 
     //Uppdatera cookien med nya JSON-strängen
-    document.cookie = "userCart=" + uriCart + "; path=/; SameSite=None; Secure; max-age= 26000000";
+    document.cookie = "userCart=" + jsonCart;
 
     //Update cart icon quantity indicator
     UpdateCartQuantityIndicatorByAction("lower")
@@ -104,10 +104,9 @@ function DeleteProductFromCart(productId){
 
     //Konventera JS-objektet åter till JSON
     var jsonCart = JSON.stringify(cartObj);
-    var uriCart = encodeURIComponent(jsonCart);
 
     //Uppdatera cookien med nya JSON-strängen
-    document.cookie = "userCart=" + uriCart + "; path=/; SameSite=None; Secure; max-age= 26000000";
+    document.cookie = "userCart=" + jsonCart;
 
     //Remove product's quantity value from cart quantity indicator
         //Get the product row in question

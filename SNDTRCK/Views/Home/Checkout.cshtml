@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model CheckoutViewModel
+@{
+    ViewData["Title"] = "Checkout";
+    var quantityWord = @Model.OrderQuantity == 1 ? "ITEM" : "ITEMS"; //condition ? "trueResult" : "falseResult"
+}
+
+<main id="checkout-main">
+        
+    <h1 id="checkout-header">Checkout</h1>
+
+    <div id="order-detail-container">
+        <p class="order-detail"><span class="countUp">@Model.OrderQuantity</span> @quantityWord FOR</p>
+        <p class="order-detail"><span class="countUp">@Model.OrderValue</span> KR</p>
+    </div>
+
+    <section id="Shoppingcart-product-container">
+
+        <div id="loader"></div>
+
+    </section>
+    <aside id="proceed-to-checkout-container">
+        <a>Place order <img src="/media/icons/thin-arrow-right.png" id="cart-checkout-arrow" /></a>
+    </aside>
+</main>
+
+<script src="~/js/Checkout.js" asp-append-version="true"></script>

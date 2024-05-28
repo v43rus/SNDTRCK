@@ -12,31 +12,48 @@ body {
 }
 
 main{
-    flex-wrap: nowrap !important;
+    
 }
 
+#checkout-header{
+    font-weight: 700;
+    font-size: 3em;
+    margin-top: 5%;
+    color: black;
+}
 /*The html main-tag for the shopping cart page*/
-#ShoppingCart-main{
+#checkout-main {
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     /*min-height: 82vh;*/
 }
+
+#order-detail-container{
+    display: flex;
+    flex-direction: row;    
+}
+
+.order-detail{
+    font-size: 4em; 
+    font-weight: 700;
+    margin-right: 20px;
+    color: black;
+}
+
+.countUp {
+    color: #FF3300;
+    font-size: 2em;
+}
+
+
 
 /*The container for the product rows in the cart*/
 #Shoppingcart-product-container {
     margin: 2% auto 0 auto;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-/*Empty cart text*/
-#empty-cart-text{
-    display: none;
-    font-family: inter;
-    margin-top: 15%;
 }
 
 /*#region product rows*/
@@ -147,7 +164,6 @@ main{
         font-weight: 650;
         margin: 0;
         color: black;
-        text-decoration: none;
     }
 
         #proceed-to-checkout-container a:hover {

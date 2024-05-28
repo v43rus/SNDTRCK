@@ -59,9 +59,8 @@ namespace SNDTRCK.Controllers
 		[HttpPost]
 		public ActionResult BuildShoppingCartRows([FromBody] string cartData) //[FromBody] säger åt controllern att informationen från kroppen på http-förfrågan och inte t.ex. url:n eller headern. xhr.setRequestHeader("Content-Type", "application/json") behövs för att detta ska fungera
 		{
-
-			//Konventera JSON-strängen till en Dictionary<int, int>
-			Dictionary<int, int> cartDataDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(cartData);
+            //Konventera JSON-strängen till en Dictionary<int, int>
+            Dictionary<int, int> cartDataDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(cartData);
 
 			//Stores html for each product line in cart
 			List<string> productLines = new List<string>();
@@ -217,5 +216,43 @@ namespace SNDTRCK.Controllers
 			}	
 			return Json(searchSuggestions); // Returnera HTML-produktrader som JSON-respons
 		}
-	}
+
+        /*Get the product data in the cart for the checkout page*/
+        [HttpGet]
+        [Route("/checkout")]
+        public ActionResult Checkout()
+        {
+            var userCart = Request.Cookies["userCart"];
+
+            //Konventera JSON-strängen till en Dictionary<int, int>
+            Dictionary<int, int> cartDataDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(userCart);
+
+            decimal orderValue = 0;
+
+            int orderQuantity = 0;
+
+            foreach (var entry in cartDataDict)
+            {
+                int productId = entry.Key;
+                int quantity = entry.Value;
+
+                Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
+
+                if (product is not null)
+                {
+					orderValue += (product.Price * quantity);
+
+					orderQuantity += quantity;
+                }
+            }
+
+			var viewModel = new CheckoutViewModel
+			{
+				OrderValue = orderValue,
+				OrderQuantity = orderQuantity,
+			};
+
+			return View(viewModel);
+        }
+    }
 }
