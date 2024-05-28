@@ -168,17 +168,24 @@ body {
 }
 
 #home-heart-house {
-    background-color: #0032D2;
+    display: flex;
+    justify-content: center;
+    background-color: #072DCB;
+    width: 100%;
+    margin-bottom: 2vh;
+    padding: 10px;
 }
 
     #home-heart-house h3 {
         text-align: left;
         color: white;
         font-weight: 700;
+        width: 520px;
         margin-bottom: 10px;
     }
 
     #home-heart-house a {
+        width: 100px;
         border: solid 1px #FF3300;
         font-weight: 700;
         text-decoration: none;
@@ -192,16 +199,21 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        align-items: center;
+        align-items: flex-start;
     }
 
     #home-heart-house article {
+        width: 530px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
 
-    #home-heart-house img {
+#home-heart-house article:nth-child(2) {
+    width: fit-content;
+}
+
+    #home-heart-house video {
         width: 275px;
     }
 
@@ -229,6 +241,32 @@ body {
     /*The link "See all categories"*/
     .see-categories-link {
         font-size: 1.8em !important;
+    }
+
+    #home-heart-house {
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    #home-heart-house video {
+        width: 128px !important;
+    }
+
+    #home-heart-house section {
+        align-items: center;
+        width: 100%;
+    }
+
+    #home-heart-house article {
+        align-items: center;
+        width: 100%;
+    }
+
+    #home-heart-house h3 {
+        width: 80%;
+        font-size: 1.4rem;
+        text-align: center;
     }
 }
 /*For tablet potrait up (used as standard mobile verision of site)*/
@@ -269,6 +307,22 @@ body {
         margin: auto;
         margin-top: 0;
         margin-bottom: 8%;
+    }
+
+    #home-heart-house video {
+        width: 100%;
+    }
+
+    #home-heart-house section {
+        width: 80%;
+    }
+
+    #home-heart-house article {
+        width: 100%;
+    }
+
+    #home-heart-house h3 {
+        font-size: 1.4rem;
     }
 }
 
