@@ -482,8 +482,8 @@ footer {
 
     /*Each <li>-element or category item in the nav*/
     .nav-category-text {
-        margin: 8% 0 0 5%;
-        font-size: 2em;
+        margin: 20px 0 0 15px;
+        font-size: 1.2em;
         border-bottom: 1.5px solid grey;
         width: 80%;
 
@@ -671,7 +671,7 @@ footer {
         width: 1.6em;
         height: 1.6em;
     }
-        
+
     nav {
         margin: 0;
         height: 5vh;
