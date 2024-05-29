@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="~/css/contactus.css" asp-append-version="true" />
 </head>
 <body>
-	<header>
+	<header id="header">
 		<!--Checkbox needs to be put here in order to control nav style-->
 		<input id="mobile-menu-checkbox" class="mobile-menu-checkbox hide-in-desktop" type="checkbox" onclick="checkIfScroll()" />
 		<section id="header-content-section">
@@ -79,7 +79,7 @@
 		</section>
 
 
-		<nav class="nav">
+		<nav id="nav" class="nav">
 			<ul id="navigation-list">
 				<form id="mobile-header-searchbar-form" class="hide-in-desktop">
 					<input id="mobile-header-searchbar" class="searchbar hide-in-desktop" type="text" placeholder="Search.." autocomplete="off" onkeyup='ShowSearchSuggestions(this.value, "mobile")' onblur="HideSuggestionsContainer('mobile')">
@@ -127,6 +127,7 @@
 	<script src="~/js/header.js" asp-append-version="true"></script>
 	<script src="~/js/ShoppingCart.js" asp-append-version="true"></script>
 	<script src="~/js/Searchbar.js" asp-append-version="true"></script>
+	<script src="~/js/fixedNav.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
