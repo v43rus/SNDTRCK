@@ -76,6 +76,23 @@ body {
         user-select: none;
     }
 
+.blur-filter {
+    filter: blur(0.5px);
+}
+
+.blur-filter:hover {
+    filter: blur(0px);
+}
+
+.gray-filter {
+    filter: grayscale(80%);
+    transition: 0.3s;
+}
+
+    .gray-filter:hover {
+        filter: grayscale(0%);
+    }
+
 #home-top-5 {
     background-color: #D8D8D8;
     flex-direction: column;
@@ -102,12 +119,17 @@ body {
         width: 100%;
         max-width: 200px;
         max-height: 200px;
+        transition: 0.3s;
     }
+
+        #home-top-5 img:hover {
+            filter: drop-shadow(-5px 4px 3px #a02000);
+        }
 
     #home-top-5 .top5-ranking {
         position: absolute;
         top: 15px;
-        left: 30px;
+        left: 35px;
         width: 35px;
         height: 35px;
         font-size: 20px;
@@ -178,6 +200,12 @@ body {
 }
 
 #latest-additions img {
+    width: 90%;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+#latest-additions img:hover {
     width: 100%;
     max-width: 200px;
     max-height: 200px;
@@ -202,7 +230,7 @@ body {
         -moz-box-shadow: -10px -6px 6px -1px rgba(156,154,156,1);
         box-shadow: -10px -6px 6px -1px rgba(156,154,156,1);
 
-        border: 1px solid darkgrey;
+        outline: 1px solid darkgrey;
         border-radius: 0;
         position: relative;
         width: 150px;
@@ -216,17 +244,17 @@ body {
         margin: 15px;
     }
 
-#latest-additions div {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 10px;
-    margin: 5px;
-    border: 0px solid;
-    border-radius: 8px;
-}
+        #latest-additions div {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 10px;
+            margin: 5px;
+            border: 0px solid;
+            border-radius: 8px;
+        }
     .buy-section p {
         margin-bottom: 0;
     }
@@ -275,14 +303,21 @@ body {
         padding: 3px 10px;
         background-color: #FF3300;
         color: white;
+        transition: 0.3s;
     }
 
-    #home-heart-house section {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: flex-start;
-    }
+        #home-heart-house a:hover {
+            outline: 1px solid #FF3300;
+            background-color: white;
+            color: #FF3300;
+        }
+
+        #home-heart-house section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: flex-start;
+        }
 
     #home-heart-house article {
         width: 530px;
