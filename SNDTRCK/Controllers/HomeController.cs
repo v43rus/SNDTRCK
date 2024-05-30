@@ -34,6 +34,17 @@ namespace SNDTRCK.Controllers
 			return View(_context.Products.ToList());
 		}
 
+		public IActionResult Delivery()
+		{
+
+			return View(_context.Products.ToList());
+		}
+
+		public IActionResult UserTerms()
+		{
+
+			return View(_context.Products.ToList());
+		}
 		public IActionResult Privacy()
 		{
 			return View();
