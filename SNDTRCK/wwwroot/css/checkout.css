@@ -8,6 +8,7 @@
     src: url(/fonts/Inter/Inter-VariableFont_slnt,wght.ttf)
 }
 
+
 body {
 }
 
@@ -31,122 +32,52 @@ main{
 
 #order-detail-container{
     display: flex;
-    flex-direction: row;    
+    display: none;
 }
 
 .order-detail{
-    font-size: 4em; 
     font-weight: 700;
-    margin-right: 20px;
     color: black;
 }
 
 .countUp {
     color: #FF3300;
-    font-size: 2em;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: 1px solid black;
+    -webkit-text-fill-color: var(--main-orange);
+    -webkit-box-shadow: 0;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+#checkout-grid-container{
+    display: grid;
+    border: 1px solid black;
+}
+
+.checkout-grid-item{
+    font-size: 1.4em;
+    color: var(--main-orange);
+    font-weight: 600;
+    accent-color: black;
 }
 
 
 
-/*The container for the product rows in the cart*/
-#Shoppingcart-product-container {
-    margin: 2% auto 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-/*#region product rows*/
 
-/*Each product row in the cart*/
-.product-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    padding-bottom: 1%;
-    border-bottom: 1px solid black;
-    margin-bottom: 2%;
-}
 
-/*The container with all the information about the product in the row*/
-.product-row .information-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
 
-/*The image for the product row*/
-.product-row .image {
-    width: 120px;
-    height: 120px;
-}
 
-/*The container with the title and price of the product*/
-.product-row .information-container .title-price-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 95%;
-    margin: 0 0 0 5%;
-}
-
-/*Title of the product*/
-.product-row .title {
-    margin: 0;
-    margin-left: 0;
-    font-weight: 500;
-}
-
-/*Container for the "substract", "add" and "delete" operation-buttons of the product*/
-.product-row .edit-productrow-container{
-    display: flex;
-    flex-direction: row;
-    margin: 2% 0 0 5%;
-}
-
-/*Container for displaying the quantity of the product*/
-.product-row .quantity-container {
-    display: flex;
-    flex-direction: row;
-    width: 40%;
-    justify-content: flex-start;
-}
-
-/*Buttons to raise or lower quantity*/
-.change-quantity-button{
-    background: none;
-    font-size: 1em;
-    font-weight: 500;
-}
-
-/*The text of the quantity*/
-.product-row .quantity-indicator {
-    margin: 0 10px 0 10px;
-    font-weight: 500;
-    font-size: 1.2em;
-}
-
-/*Button that delets product entirely from cart*/
-.DeleteProductFromCartButton{
-    background-color: white;
-    background: none;
-    font-weight: 500;
-}
-
-.DeleteProductFromCartButton:hover, .change-quantity-button:hover{
-    background-color: lightgray;
-}
-
-/*The price in the product row*/
-.product-row .price-paragraph {
-    margin: 0;
-    font-size: 1.5em;
-    font-weight: 650;
-}
-
-/*#endregion*/
 
 /*Price container at bottom of page*/
 #proceed-to-checkout-container {
@@ -155,7 +86,7 @@ main{
     flex-direction: column;
     width: fit-content;
     padding: 10px;
-    margin: 2% 10% 2% auto;
+    margin: 2% auto 2% auto;
     user-select: none;
 }
 
@@ -181,55 +112,66 @@ main{
 @media screen and (max-width: 599px) {
     /*Only used in special cases for really small screens*/
     /*The image for the product row*/
-    .product-row .image {
-        width: 80px !important;
-        height: 80px !important;
+    .order-detail {
+        font-size: 3em !important;
     }
 
-    /*Title of the product*/
-    .product-row .title {
-        font-size: 1.2em !important;
-    }
-
-    /*Container for the "substract", "add" and "delete" operation-buttons of the product*/
-    .product-row .edit-productrow-container {
-        width: 100% !important;
-    }
-
-    /*The price in the product row*/
-    .product-row .price-paragraph {
-        font-size: 1.2em !important;
+    .countUp {
+        font-size: 2em;
     }
 
 }
 /*For tablet potrait up (used as standard mobile verision of site)*/
 @media screen and (max-width: 899px) {
-    #ShoppingCart-main h1 {
-        margin: 2% 0 0 0;
+    #order-detail-container {
+        flex-direction: column;
     }
 
-    /*The container for the product rows in the cart*/
-    #Shoppingcart-product-container {
+    .order-detail {
+        font-size: 4em;
+    }
+
+    .countUp {
+        font-size: 2em;
+    }
+
+    #checkout-grid-container {
         width: 90%;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto auto;
+        column-gap: 10px;
+        row-gap: 10px;
+        padding: 10px;
     }
 
-    /*Title of the product*/
-    .product-row .title {
-        font-size: 1.5em;
+    #fName {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row: 1;
     }
 
-    /*Container for the "substract", "add" and "delete" operation-buttons of the product*/
-    .product-row .edit-productrow-container {
-        width: 50%;
+    #lName {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row: 2;
     }
 
-    /*The price in the product row*/
-    .product-row .price-paragraph {
-        font-size: 1.5em;
+    #address {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row: 3;
     }
 
-    #proceed-to-checkout-container {
-        margin: 5% auto 2% auto;
+    #pCode {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row: 4;
+    }
+
+    #city {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row: 5;
     }
 }
 
@@ -237,32 +179,56 @@ main{
 
 /*For tablet landscape up + small computers*/
 @media screen and (min-width: 900px) {
-    #ShoppingCart-main h1 {
-        margin: 2% 0 0 10%;
+    #order-detail-container {
+        flex-direction: row;
     }
 
-    /*The container for the product rows in the cart*/
-    #Shoppingcart-product-container {
-        width: 65%;
+    .order-detail {
+        font-size: 4em;
+        margin-right: 20px;
     }
 
-    /*Title of the product*/
-    .product-row .title {
-        font-size: 1.5em;
+    .countUp {
+        font-size: 2em;
     }
 
-    /*Container for the "substract", "add" and "delete" operation-buttons of the product*/
-    .product-row .edit-productrow-container {
-        width: 40%;
+    #checkout-grid-container {
+        width: 60%;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto auto auto auto;
+        column-gap: 10px;
+        row-gap: 10px;
+        padding: 10px;
     }
 
-    /*The price in the product row*/
-    .product-row .price-paragraph {
-        font-size: 1.5em;
+    #fName {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row: 1;
     }
 
-    #proceed-to-checkout-container {
-        margin: 2% 10% 2% auto;
+    #lName {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row: 1;
+    }
+
+    #address {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row: 2;
+    }
+
+    #pCode {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row: 3;
+    }
+
+    #city {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row: 3;
     }
 
 }

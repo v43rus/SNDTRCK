@@ -65,24 +65,27 @@ function ShowSearchSuggestions(query, device) {
 
 function HideSuggestionsContainer(device) {
 
-    let searchSuggestionsContainer = "";
-    let searchBar = "";
+    //Neccessary to make links clickable in search suggestion before they dissapear
+    setTimeout(function () {
 
-    //To determine what container that should be hidden
-    if (device === "desktop") {
-        searchSuggestionsContainer = document.getElementById("desktop-search-suggestions-container");
-        searchBar = document.getElementById("desktop-header-searchbar");
-    }
-    else if (device === "mobile") {
-        searchSuggestionsContainer = document.getElementById("mobile-search-suggestions-container");
-        searchBar = document.getElementById("mobile-header-searchbar");
-    }
+        let searchSuggestionsContainer = "";
+        let searchBar = "";
 
-    searchSuggestionsContainer.style.display = "none";
+        //To determine what container that should be hidden
+        if (device === "desktop") {
+            searchSuggestionsContainer = document.getElementById("desktop-search-suggestions-container");
+            searchBar = document.getElementById("desktop-header-searchbar");
+        }
+        else if (device === "mobile") {
+            searchSuggestionsContainer = document.getElementById("mobile-search-suggestions-container");
+            searchBar = document.getElementById("mobile-header-searchbar");
+        }
 
-    //Clears user input
-    searchBar.value = "";
+        searchSuggestionsContainer.style.display = "none";
 
+        //Clears user input
+        searchBar.value = "";
+    }, 100);
 }
 
 //Clears search suggestion container
@@ -109,3 +112,14 @@ function ClearSearchSuggestionContainer(device) {
     //Hides "See all" button in search container
     searchSeeAllButton.style.display = "none";
 }
+
+//Code to detect when the "see all" button in search suggestions is pressed
+window.onload = function () {
+    document.getElementById('desktop-search-see-all-button').onclick = function () {
+        document.getElementById("desktop-searchbar-form").submit();
+    };
+
+    document.getElementById('mobile-search-see-all-button').onclick = function () {
+        document.getElementById('mobile-header-searchbar-form').submit();
+    };
+};

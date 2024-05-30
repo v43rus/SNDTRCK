@@ -33,6 +33,7 @@ const animateCountUp = el => {
 
 // Run the animation on all elements with a class of ‘countup’
 const runAnimations = () => {
+	document.getElementById("order-detail-container").style.display = "flex";
 	const countupEls = document.querySelectorAll('.countUp');
 	console.log("test")
 	countupEls.forEach(animateCountUp);

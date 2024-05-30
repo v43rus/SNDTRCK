@@ -10,6 +10,7 @@ using System.Web;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 
 namespace SNDTRCK.Controllers
 {
@@ -206,7 +207,7 @@ namespace SNDTRCK.Controllers
 					if(searchSuggestions.Count != result.Count)
 					{
 						string suggestion = $@"
-								<a class=""search-suggestion"" asp-controller=""Product"" asp-action =""Product"" asp-route-productId=""{result[i].ProductId}"">
+								<a class=""search-suggestion"" href=""/Product?productId={result[i].ProductId}"">
 									<div class=""search-suggestion-image-container"">
 										<img src = ""/{result[i].CoverImageLink}""  alt=""{result[i].Title}""/>
 									</div >
@@ -235,8 +236,8 @@ namespace SNDTRCK.Controllers
             Dictionary<int, int> cartDataDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(userCart);
 
             decimal orderValue = 0;
-
             int orderQuantity = 0;
+
 
             foreach (var entry in cartDataDict)
             {
