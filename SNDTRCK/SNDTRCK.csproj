@@ -20,6 +20,7 @@
   <ItemGroup>
     <Folder Include="Areas\Identity\Pages\Account\NewFolder\" />
     <Folder Include="wwwroot\media\pictures\album-covers\" />
+    <Folder Include="wwwroot\media\pictures\developers\" />
   </ItemGroup>
 
 </Project>

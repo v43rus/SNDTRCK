@@ -38,6 +38,11 @@ namespace SNDTRCK.Controllers
 			return View();
 		}
 
+		public IActionResult AboutUs()
+		{
+			return View();
+		}
+
 
 		public IActionResult ContactUs()
 		{
