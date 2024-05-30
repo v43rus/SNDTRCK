@@ -1,6 +1,7 @@
 ﻿@page "/{productId}"
 
 @using DiscogsClient.Data.Result
+@using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using SNDTRCK.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -16,24 +17,24 @@
 
 <main id="product-main">
 	<div id="product-container">
+		<article>
+			<img alt="album cover" src="/@product!.CoverImageLink">
+		</article>
 		<section>
-			<img src="/@product!.CoverImageLink"/>
-		</section>
-		<section>
-			<article>
+			<div>
 				<h2>@product.Title - @product.Artist</h2>
 				<div id="price-container">
 					<h3>@Math.Truncate(product.Price)</h3>
 					<h3>  SEK</h3>
 					<button class="buy-button" onclick="AddToCart(@product.ProductId)">BUY</button>
 				</div>
-			</article>
-			<article>
+			</div>
+			<div>
 				<p>Album name: @product.Title</p>
 				<p>Artist: @product.Artist</p>
 				<p>Release year: @product.ReleaseYear</p>
 				<p>Record label: @product.RecordLabel</p>
-			</article>
+			</div>
 		</section>
 	</div>
 	
@@ -45,17 +46,17 @@
 
 	@if (album != null)
 	{
-		<section id="tracklist">
+		<div id="tracklist">
 			@foreach (var track in album.tracklist)
 			{
-				<article class="track-container">
+				<div class="track-container">
 					<p>@trackLoop - @track.title</p>
 					<p>@track.duration</p>
-				</article>
+				</div>
 
 				trackLoop++;
 			}
-		</section>
+		</div>
 	}
 	else
 	{
