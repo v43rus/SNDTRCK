@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8"/>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>@ViewData["Title"] - SNDTRCK</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
@@ -29,8 +29,8 @@
 <body>
 	<header id="header">
 		<!--Checkbox needs to be put here in order to control nav style-->
-		<input id="mobile-menu-checkbox" class="mobile-menu-checkbox hide-in-desktop" type="checkbox" onclick="checkIfScroll()" />
-		<section id="header-content-section">
+		<input id="mobile-menu-checkbox" class="mobile-menu-checkbox hide-in-desktop" type="checkbox" onclick="checkIfScroll()">
+		<div id="header-content-section">
 
 			<!--This div is necessary to position elements in the center-->
 			<div id="center-header-content-div">
@@ -38,7 +38,7 @@
 				<label class="hamburger hide-in-desktop" for="mobile-menu-checkbox"><span class="hamburger-line"></span></label>
 
 				<!--Logo-->
-				<a id="logo-anchor-container" asp-controller="Home" asp-action="Index"><img id="header-logo-text" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>
+				<a id="logo-anchor-container" asp-controller="Home" asp-action="Index"><img id="header-logo-text" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png"></a>
 
 				<!--Star and cart icon-->
 				<div id="header-icon-container">
@@ -51,7 +51,7 @@
 							<!--Example of search suggestion-->
 							<a class="search-suggestion" href="#">
 								<div class="search-suggestion-image-container">
-									<img src="/media/pictures/album-covers/zeppelin.jpg" />
+									<img alt="search suggestion" src="/media/pictures/album-covers/zeppelin.jpg">
 								</div>
 								<div class="search-suggestion-text-container">
 									<ul>
@@ -69,14 +69,13 @@
 					@if (User.Identity!.IsAuthenticated && isAdmin)
 					{
 						<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" title="Admin" class="hide-in-mobile">
-							<img class="header-icon" src="~/media/icons/crown.png" />
+							<img alt="admin dashboard" class="header-icon" src="~/media/icons/crown.png">
 						</a>
 					}
-					<!--<img class="header-icon hide-in-mobile" src="~/media/icons/star.png" />-->
-					<a id="shopping-cart-link" asp-controller="Home" asp-action="ShoppingCart" title="Shopping Cart"><img class="header-icon" src="~/media/icons/cart.png" /><span id="cart-quantity-indicator"> </span></a>
+					<a id="shopping-cart-link" asp-controller="Home" asp-action="ShoppingCart" title="Shopping Cart"><img alt="shopping cart" class="header-icon" src="~/media/icons/cart.png"><span id="cart-quantity-indicator"> </span></a>
 				</div>
 			</div>
-		</section>
+		</div>
 
 
 		<nav id="nav" class="nav">
@@ -87,7 +86,7 @@
 						<!--Example of search suggestion-->
 						<a class="search-suggestion" href="#">
 							<div class="search-suggestion-image-container">
-								<img src="/media/pictures/album-covers/zeppelin.jpg" />
+								<img alt="search suggestion" src="/media/pictures/album-covers/zeppelin.jpg">
 							</div>
 							<div class="search-suggestion-text-container">
 								<ul>
@@ -101,18 +100,17 @@
 						<a id="mobile-search-see-all-button" class="search-see-all-button" href="#">See all</a>
 					</div>
 				</form>
-				<li class="nav-category-text hide-in-desktop"><a>Log in/Sign up</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text hide-in-desktop"><a>Log in/Sign up</a><img alt="login or signup" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop"></li>
 				@if (User.Identity!.IsAuthenticated && isAdmin)
 				{
 					<li class="nav-category-text hide-in-desktop">
 						<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" title="Admin" class="hide-in-desktop">Admin view</a>
-						<img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" />
+						<img alt="admin dashboard" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop">
 					</li>
 				}
 			</ul>
 
 		</nav>
-		<label id="close-mobile-menu-label" class="hide-in-desktop" for="mobile-menu-checkbox" />
 	</header>
 
 	<!--<div class="container">-->
