@@ -1,0 +1,240 @@
+﻿:root {
+    --main-blue: #0032D2;
+    --main-orange: #FF3300;
+}
+/*Bör läggas i en root-css fil*/
+@font-face {
+    font-family: inter;
+    src: url(/fonts/Inter/Inter-VariableFont_slnt,wght.ttf)
+}
+
+
+body {
+}
+
+main{
+    
+}
+
+#checkout-header{
+    font-weight: 700;
+    font-size: 3em;
+    margin-top: 5%;
+    color: black;
+}
+/*The html main-tag for the shopping cart page*/
+#checkout-main {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /*min-height: 82vh;*/
+}
+
+#order-detail-container{
+    display: flex;
+    display: none;
+}
+
+.order-detail{
+    font-weight: 700;
+    color: black;
+}
+
+.countUp {
+    color: #FF3300;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: 1px solid black;
+    -webkit-text-fill-color: var(--main-orange);
+    -webkit-box-shadow: 0;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+#checkout-grid-container{
+    display: grid;
+    border: 1px solid black;
+}
+
+.checkout-grid-item{
+    font-size: 1.4em;
+    color: var(--main-orange);
+    font-weight: 600;
+    accent-color: black;
+}
+
+
+
+
+
+
+
+
+
+/*Price container at bottom of page*/
+#proceed-to-checkout-container {
+    border: 1px solid black;
+    display: none;
+    flex-direction: column;
+    width: fit-content;
+    padding: 10px;
+    margin: 2% auto 2% auto;
+    user-select: none;
+}
+
+    #proceed-to-checkout-container a {
+        font-size: 1.5em;
+        font-weight: 650;
+        margin: 0;
+        color: black;
+    }
+
+        #proceed-to-checkout-container a:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+#cart-checkout-arrow{
+    height: 25px;
+    margin-bottom: 5px;
+}
+
+/* #region Media queries*/
+/*For phones*/
+@media screen and (max-width: 599px) {
+    /*Only used in special cases for really small screens*/
+    /*The image for the product row*/
+    .order-detail {
+        font-size: 3em !important;
+    }
+
+    .countUp {
+        font-size: 2em;
+    }
+
+}
+/*For tablet potrait up (used as standard mobile verision of site)*/
+@media screen and (max-width: 899px) {
+    #order-detail-container {
+        flex-direction: column;
+    }
+
+    .order-detail {
+        font-size: 4em;
+    }
+
+    .countUp {
+        font-size: 2em;
+    }
+
+    #checkout-grid-container {
+        width: 90%;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto auto;
+        column-gap: 10px;
+        row-gap: 10px;
+        padding: 10px;
+    }
+
+    #fName {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row: 1;
+    }
+
+    #lName {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row: 2;
+    }
+
+    #address {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row: 3;
+    }
+
+    #pCode {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row: 4;
+    }
+
+    #city {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row: 5;
+    }
+}
+
+/*Breakpoint for mobile verision of site*/
+
+/*For tablet landscape up + small computers*/
+@media screen and (min-width: 900px) {
+    #order-detail-container {
+        flex-direction: row;
+    }
+
+    .order-detail {
+        font-size: 4em;
+        margin-right: 20px;
+    }
+
+    .countUp {
+        font-size: 2em;
+    }
+
+    #checkout-grid-container {
+        width: 60%;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto auto auto auto;
+        column-gap: 10px;
+        row-gap: 10px;
+        padding: 10px;
+    }
+
+    #fName {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row: 1;
+    }
+
+    #lName {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row: 1;
+    }
+
+    #address {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row: 2;
+    }
+
+    #pCode {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row: 3;
+    }
+
+    #city {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row: 3;
+    }
+
+}
+/*For desktop up*/
+@media screen and (min-width: 1200px) {
+}
+/*For big desktop*/
+@media screen and (min-width: 1800px) {
+}

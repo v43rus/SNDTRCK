@@ -90,6 +90,38 @@ h1, h2, h3, h4 {
     font-family: inter;
 }
 
+/*The universal loader*/
+#loader {
+    width: 80px;
+    height: 80px;
+    margin: 10% 0 10% 0;
+    border: 12px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid var(--main-blue);
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    display: none;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 
 

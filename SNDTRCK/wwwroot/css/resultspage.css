@@ -64,7 +64,7 @@ body {
 @media screen and (max-width: 599px) {
     /*Only used in special cases for really small screens*/
     #ResultsPage-main {
-        flex-direction: row !important;
+        /*flex-direction: row !important;*/
         height: fit-content !important;
     }
 
