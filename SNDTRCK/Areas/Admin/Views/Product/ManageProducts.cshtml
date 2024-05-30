@@ -7,11 +7,11 @@
 @{
 	Layout = "../_Shared/_Layout";
 }
-
-<h2>Manage Products</h2>
-
-<table class="table table-hover manage-admin">
-	<thead>
+<main class="d-flex flex-column align-items-center">
+	<h2>Manage Products</h2>
+	<a href="#add-admin">Add Product</a>
+	<table class="table table-hover manage-admin">
+		<thead>
 		<tr>
 			<th scope="col"></th>
 			<th scope="col">Title</th>
@@ -20,8 +20,8 @@
 			<th scope="col">Price</th>
 			<th scope="col"></th>
 		</tr>
-	</thead>
-	<tbody>
+		</thead>
+		<tbody>
 
 		@if (Model != null)
 		{
@@ -29,7 +29,7 @@
 			{
 				<tr>
 					<th scope="col">
-						<img src="~/@p.CoverImageLink" class="product-image" />
+						<img alt="album cover" src="~/@p.CoverImageLink" class="product-image">
 					</th>
 					<th scope="col">@p.Title</th>
 					<th scope="col">@p.Artist</th>
@@ -40,11 +40,11 @@
 
 					<th scope="col">
 						<form class="inline-button" asp-area="Admin" asp-controller="Product" asp-action="EditProduct" method="get">
-							<input type="hidden" name="productId" value="@p.ProductId" />
+							<input type="hidden" name="productId" value="@p.ProductId">
 							<button type="submit" class="btn btn-success">Edit</button>
 						</form>
-						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" method="post" class="delete-form inline-button">
-							<input type="hidden" name="productId" value="@p.ProductId" />
+						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" method="post" class="inline-button">
+							<input type="hidden" name="productId" value="@p.ProductId">
 
 							<button type="button" class="btn btn-danger" onclick="confirmDelete('@p.ProductId')">Delete</button>
 						</form>
@@ -55,21 +55,21 @@
 			}
 		}
 
-	</tbody>
-</table>
+		</tbody>
+	</table>
 
-<h3>Add New Product</h3>
-<form id="add-admin" asp-area="Admin" asp-controller="Product" asp-action="SaveNewProduct" enctype="multipart/form-data">
+	<h3>Add New Product</h3>
+	<form id="add-admin" class="mb-5" asp-area="Admin" asp-controller="Product" asp-action="SaveNewProduct" enctype="multipart/form-data">
 
-	<table>
-		<tbody>
+		<table>
+			<tbody>
 
 			<tr>
 				<th>
 					<label for="title">Title </label>
 				</th>
 				<th>
-					<input type="text" id="title" name="title" placeholder="Album Title..." required />
+					<input type="text" id="title" name="title" placeholder="Album Title..." required>
 				</th>
 			</tr>
 
@@ -78,7 +78,7 @@
 					<label for="artist">Artist: </label>
 				</th>
 				<th>
-					<input type="text" id="artist" name="artist" placeholder="Album Artist..." required />
+					<input type="text" id="artist" name="artist" placeholder="Album Artist..." required>
 				</th>
 			</tr>
 
@@ -113,7 +113,7 @@
 					<label for="description">Description: </label>
 				</th>
 				<th>
-					<input type="text" id="description" name="description" placeholder="Album Description..." required />
+					<input type="text" id="description" name="description" placeholder="Album Description..." required>
 				</th>
 			</tr>
 
@@ -122,7 +122,7 @@
 					<label for="label">Record Label: </label>
 				</th>
 				<th>
-					<input type="text" id="label" name="label" placeholder="Record Label..." required />
+					<input type="text" id="label" name="label" placeholder="Record Label..." required>
 				</th>
 			</tr>
 
@@ -131,7 +131,7 @@
 					<label for="release-year">Release Year: </label>
 				</th>
 				<th>
-					<input type="number" id="release-year" name="release-year" placeholder="Release Year..." required />
+					<input type="number" id="release-year" name="release-year" placeholder="Release Year..." required>
 				</th>
 			</tr>
 
@@ -140,7 +140,7 @@
 					<label for="discog-id">Discog Id: </label>
 				</th>
 				<th>
-					<input type="number" id="discog-id" name="discog-id" placeholder="Discog id, set to 0 if non-existent" />
+					<input type="number" id="discog-id" name="discog-id" placeholder="Discog id, set to 0 if non-existent">
 				</th>
 			</tr>
 
@@ -149,7 +149,7 @@
 					<label for="price">Price </label>
 				</th>
 				<th>
-					<input type="number" id="price" name="price" placeholder="Price..." required />
+					<input type="number" id="price" name="price" placeholder="Price..." required>
 				</th>
 			</tr>
 
@@ -161,11 +161,14 @@
 					<input type="file" id="image" name="image" class="form-control-file" required>
 				</th>
 			</tr>
-		</tbody>
-	</table>
+			</tbody>
+		</table>
 
-	<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Save Album">Save Album</button>
-</form>
+		<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Save Album">Save Album</button>
+	</form>
+	
+	<a href="#top-of-admin">Go To Top</a>
+</main>
 
 <script>
 	function confirmDelete(productId) {

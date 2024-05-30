@@ -9,114 +9,115 @@
 
 	Layout = "../_Shared/_Layout";
 }
-
+<main class="max-width-80 d-flex flex-column text-center align-items-center">
 <h3>Edit Product</h3>
 <form id="add-admin" asp-area="Admin" asp-controller="Product" asp-action="ModifyExistingProduct" enctype="multipart/form-data">
 
 	<table>
 		<tbody>
 
-			<tr>
-				<th>
-					<label for="title">Title </label>
-				</th>
-				<th>
-					<input type="text" id="title" name="title" placeholder="@product!.Title" />
-				</th>
-			</tr>
+		<tr>
+			<th>
+				<label for="title">Title </label>
+			</th>
+			<th>
+				<input type="text" id="title" name="title" placeholder="@product!.Title">
+			</th>
+		</tr>
 
-			<tr>
-				<th>
-					<label for="artist">Artist: </label>
-				</th>
-				<th>
-					<input type="text" id="artist" name="artist" placeholder="@product.Artist" />
-				</th>
-			</tr>
+		<tr>
+			<th>
+				<label for="artist">Artist: </label>
+			</th>
+			<th>
+				<input type="text" id="artist" name="artist" placeholder="@product.Artist">
+			</th>
+		</tr>
 
-			<tr>
-				<th>
-					<label for="genre">Genre: </label>
-				</th>
-				<th>
-					<select id="genre" name="genre">
-						<option value="@product.Genre">@product.Genre</option>
-						<option value="Rock">Rock</option>
-						<option value="Classical">Classical</option>
-						<option value="Country">Country</option>
-						<option value="EDM">EDM</option>
-						<option value="Drum & Bass">Drum & Bass</option>
-						<option value="Dubstep">Dubstep</option>
-						<option value="House">House</option>
-						<option value="Pop">Pop</option>
-						<option value="R&amp; & Soul">R&amp;B &amp; Soul</option>
-						<option value="Soundtrack">Soundtrack</option>
-						<option value="Techno">Techno</option>
-						<option value="Trap">Trap</option>
-						<option value="Hip-Hop">Hip Hop & Rap</option>
-						<option value="Indie">Indie</option>
-						<option value="Chiptune">Chiptune</option>
-						<option value="OST">OST</option>
-						<option value="New-Age">New Age</option>
-					</select>
-				</th>
-			</tr>
-			<tr>
-				<th>
-					<label for="description">Description: </label>
-				</th>
-				<th>
-					<input type="text" id="description" name="description" placeholder="@product.Description" />
-				</th>
-			</tr>
+		<tr>
+			<th>
+				<label for="genre">Genre: </label>
+			</th>
+			<th>
+				<select id="genre" name="genre">
+					<option value="@product.Genre">@product.Genre</option>
+					<option value="Rock">Rock</option>
+					<option value="Classical">Classical</option>
+					<option value="Country">Country</option>
+					<option value="EDM">EDM</option>
+					<option value="Drum & Bass">Drum & Bass</option>
+					<option value="Dubstep">Dubstep</option>
+					<option value="House">House</option>
+					<option value="Pop">Pop</option>
+					<option value="R&amp; & Soul">R&amp;B &amp; Soul</option>
+					<option value="Soundtrack">Soundtrack</option>
+					<option value="Techno">Techno</option>
+					<option value="Trap">Trap</option>
+					<option value="Hip-Hop">Hip Hop & Rap</option>
+					<option value="Indie">Indie</option>
+					<option value="Chiptune">Chiptune</option>
+					<option value="OST">OST</option>
+					<option value="New-Age">New Age</option>
+				</select>
+			</th>
+		</tr>
+		<tr>
+			<th>
+				<label for="description">Description: </label>
+			</th>
+			<th>
+				<input type="text" id="description" name="description" placeholder="@product.Description">
+			</th>
+		</tr>
 
-			<tr>
-				<th>
-					<label for="label">Record Label: </label>
-				</th>
-				<th>
-					<input type="text" id="label" name="label" placeholder="@product.RecordLabel" />
-				</th>
-			</tr>
+		<tr>
+			<th>
+				<label for="label">Record Label: </label>
+			</th>
+			<th>
+				<input type="text" id="label" name="label" placeholder="@product.RecordLabel">
+			</th>
+		</tr>
 
-			<tr>
-				<th>
-					<label for="release-year">Release Year: </label>
-				</th>
-				<th>
-					<input type="number" id="release-year" name="release-year" placeholder="@product.ReleaseYear" />
-				</th>
-			</tr>
+		<tr>
+			<th>
+				<label for="release-year">Release Year: </label>
+			</th>
+			<th>
+				<input type="number" id="release-year" name="release-year" placeholder="@product.ReleaseYear">
+			</th>
+		</tr>
 
-			<tr>
-				<th>
-					<label for="discog-id">Discog Id: </label>
-				</th>
-				<th>
-					<input type="number" id="discog-id" name="discog-id" placeholder="@product.DiscogId" />
-				</th>
-			</tr>
+		<tr>
+			<th>
+				<label for="discog-id">Discog Id: </label>
+			</th>
+			<th>
+				<input type="number" id="discog-id" name="discog-id" placeholder="@product.DiscogId">
+			</th>
+		</tr>
 
 
-			<tr>
-				<th>
-					<label for="price">Price </label>
-				</th>
-				<th>
-					<input type="number" id="price" name="price" placeholder="@product.Price" />
-				</th>
-			</tr>
+		<tr>
+			<th>
+				<label for="price">Price </label>
+			</th>
+			<th>
+				<input type="number" id="price" name="price" placeholder="@product.Price">
+			</th>
+		</tr>
 
-			<tr>
-				<th>
-					<label for="album-cover">Upload Cover Image</label>
-				</th>
-				<th>
-					<input type="file" id="album-cover" name="album-cover" class="form-control-file">
-				</th>
-			</tr>
+		<tr>
+			<th>
+				<label for="album-cover">Upload Cover Image</label>
+			</th>
+			<th>
+				<input type="file" id="album-cover" name="album-cover" class="form-control-file">
+			</th>
+		</tr>
 		</tbody>
 	</table>
-	<input type="hidden" name="productId" value="@product.ProductId" />
+	<input type="hidden" name="productId" value="@product.ProductId">
 	<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Save Album">Save Album</button>
 </form>
+</main>
