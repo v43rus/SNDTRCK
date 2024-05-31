@@ -15,27 +15,27 @@
         <p class="order-detail"><span class="countUp">@Model.OrderQuantity</span> @quantityWord FOR</p>
         <p class="order-detail"><span class="countUp">@Model.OrderValue</span> KR</p>
     </div>
-    
-    <form id="checkout-grid-container">
-        <input type="text" placeholder="First name" id="fName" name="fName" class="checkout-grid-item" required/>        
-        
-        <input type="text" placeholder="Last name" id="lName" name="lName" class="checkout-grid-item" required/>
-        
-        <input type="text" placeholder="Address" id="address" name="address" class="checkout-grid-item" required/>
 
-        <input type="number" maxlength="5" placeholder="Postal code" id="pCode" name="pCode" class="checkout-grid-item" required/>
+    @using (Html.BeginForm("PlaceOrder", "Home", FormMethod.Post, new { id = "checkout-grid-container" }))
+    {
+            <input type="text" placeholder="First name" id="fName" name="fName" class="checkout-grid-item" required/>        
 
-        <input type="text" placeholder="City" id="city" name="city" class="checkout-grid-item" required/>
+            <input type="text" placeholder="Last name" id="lName" name="lName" class="checkout-grid-item" required/>
 
-        <input type="tel" placeholder="Phone number" id="telNumber" name="telNumber" class="checkout-grid-item" required/>
+            <input type="text" placeholder="Address" id="address" name="address" class="checkout-grid-item" required/>
 
-        <input type="email" placeholder="Email address" id="email" name="email" class="checkout-grid-item" required/>
+            <input type="number" maxlength="5" placeholder="Postal code" id="pCode" name="pCode" class="checkout-grid-item" required/>
 
-    </form>
+            <input type="text" placeholder="City" id="city" name="city" class="checkout-grid-item" required/>
 
-    <aside id="proceed-to-checkout-container">
-        <a>Place order <img src="/media/icons/thin-arrow-right.png" id="cart-checkout-arrow" /></a>
+            <input type="tel" placeholder="Phone number" id="telNumber" name="telNumber" class="checkout-grid-item" required/>
+
+            <input type="email" placeholder="Email address" id="email" name="email" class="checkout-grid-item" required/>
+
+        <aside id="place-order-container">
+            <button type="submit">Place order <img src="/media/icons/thin-arrow-right.png" id="cart-checkout-arrow" /></button>
     </aside>
+    }
 </main>
 
 <script src="~/js/Checkout.js" asp-append-version="true"></script>

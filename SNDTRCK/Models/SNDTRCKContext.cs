@@ -32,6 +32,10 @@ public partial class SNDTRCKContext : DbContext
 
 	public virtual DbSet<Product> Products { get; set; }
 
+	public virtual DbSet<Order> Orders { get; set; }
+
+	public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
@@ -144,7 +148,10 @@ public partial class SNDTRCKContext : DbContext
 			entity.HasOne(d => d.User).WithMany(p => p.AspNetUserTokens).HasForeignKey(d => d.UserId);
 		});
 
-		OnModelCreatingPartial(modelBuilder);
+        modelBuilder.Entity<OrderDetail>()
+            .HasNoKey();
+
+        OnModelCreatingPartial(modelBuilder);
 	}
 
 	partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

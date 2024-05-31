@@ -274,9 +274,30 @@ namespace SNDTRCK.Controllers
 			{
 				OrderValue = orderValue,
 				OrderQuantity = orderQuantity,
+				Order = new OrderViewModel
+				{
+					OrderContent = cartDataDict
+				}
 			};
 
 			return View(viewModel);
         }
+
+		[HttpPost]
+		public ActionResult PlaceOrder(CheckoutViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				//return RedirectToAction("OrderConfirmation");
+				return RedirectToAction("Index");
+			}
+
+            return View("Checkout", model);
+        }
+
+		public ActionResult OrderConfirmation()
+		{
+			return View();
+		}
     }
 }
