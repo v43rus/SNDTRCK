@@ -241,19 +241,28 @@ namespace SNDTRCK.Controllers
 			return Json(searchSuggestions); // Returnera HTML-produktrader som JSON-respons
 		}
 
-        /*Get the product data in the cart for the checkout page*/
-        [HttpGet]
-        [Route("/checkout")]
-        public ActionResult Checkout()
-        {
+
+
+
+
+		//Metod som hämtar datan från varukorgen, räknar ut antal, summa och dictionary av produkterna
+		public Dictionary<int, int> GetShoppingCartData()
+		{
             var userCart = Request.Cookies["userCart"];
 
             //Konventera JSON-strängen till en Dictionary<int, int>
             Dictionary<int, int> cartDataDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(userCart);
 
-            decimal orderValue = 0;
-            int orderQuantity = 0;
+			return cartDataDict;
+        }
 
+		public Dictionary<string, decimal> GetOrderSumAndQuantity()
+		{
+            decimal orderSum = 0;
+            int orderQuantity = 0;
+			Dictionary<string, decimal> OrderSumAndQuantity = new Dictionary<string, decimal>();
+
+            Dictionary<int, int> cartDataDict = GetShoppingCartData();
 
             foreach (var entry in cartDataDict)
             {
@@ -264,32 +273,85 @@ namespace SNDTRCK.Controllers
 
                 if (product is not null)
                 {
-					orderValue += (product.Price * quantity);
+                    orderSum += (product.Price * quantity);
 
-					orderQuantity += quantity;
+                    orderQuantity += quantity;
                 }
             }
 
+			OrderSumAndQuantity.Add("orderSum", orderSum);
+			OrderSumAndQuantity.Add("orderQuantity", orderQuantity);
+
+			return OrderSumAndQuantity;
+        }
+
+
+
+
+
+
+        /*Get the product data in the cart for the checkout page*/
+        [HttpGet]
+        [Route("/checkout")]
+        public ActionResult Checkout()
+        {
+			Dictionary<string, decimal> OrderSumAndQuantity = GetOrderSumAndQuantity();
+
+            decimal orderSum = OrderSumAndQuantity["orderSum"];
+            int orderQuantity = Convert.ToInt32(OrderSumAndQuantity["orderQuantity"]);
+
 			var viewModel = new CheckoutViewModel
 			{
-				OrderValue = orderValue,
+				OrderSum = orderSum,
 				OrderQuantity = orderQuantity,
-				Order = new OrderViewModel
-				{
-					OrderContent = cartDataDict
-				}
 			};
 
 			return View(viewModel);
         }
 
 		[HttpPost]
-		public ActionResult PlaceOrder(CheckoutViewModel model)
+		public ActionResult PlaceOrder(OrderViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
-				//return RedirectToAction("OrderConfirmation");
-				return RedirectToAction("Index");
+                Dictionary<string, decimal> OrderSumAndQuantity = GetOrderSumAndQuantity();
+
+                //Sparar ordern
+                Order order = new Order
+				{
+					FirstName = model.FirstName,
+					LastName = model.LastName,
+					Address = model.Address,
+					PostalCode = model.PostalCode,
+					City = model.City,
+					PhoneNumber = model.PhoneNumber,
+					Email = model.Email,
+					OrderSum = OrderSumAndQuantity["orderSum"], 
+					OrderDate = DateTime.Now,
+					Quantity = Convert.ToInt32(OrderSumAndQuantity["orderQuantity"]),
+				};
+
+				_context.Orders.Add(order);
+				_context.SaveChanges();
+
+				//Sparar vilka produkter som beställdes i kopplingstabellen OrderDetail
+				foreach(var item in GetShoppingCartData())
+				{
+					OrderDetail orderDetail = new OrderDetail
+					{
+						OrderId = order.OrderId,
+						ProductId = item.Key,  
+						Quantity = item.Value
+
+					};
+
+                    _context.OrderDetails.Add(orderDetail);
+                }
+
+                _context.SaveChanges();
+
+                //return RedirectToAction("OrderConfirmation");
+                return RedirectToAction("OrderConfirmation");
 			}
 
             return View("Checkout", model);

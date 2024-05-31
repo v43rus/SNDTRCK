@@ -205,17 +205,20 @@ function UpdateCartQuantityIndicatorByAction(action) {
 
 //The quantity indicator on the cart icon
 function UpdateCartQuantityIndicatorByCookie() {
-
-    //Calculates how many products there are in the cart;
-    let jsonObj = JSON.parse(GetCookie("userCart"));
     let totalProducts = 0; //Stores the number of products in cart
-    for (var key in jsonObj) {
-        if (jsonObj.hasOwnProperty(key)) {
-            totalProducts += jsonObj[key];
+
+    try {
+        //Calculates how many products there are in the cart;
+        let jsonObj = JSON.parse(GetCookie("userCart"));
+    
+        for (var key in jsonObj) {
+            if (jsonObj.hasOwnProperty(key)) {
+                totalProducts += jsonObj[key];
+            }
         }
     }
+    catch { }
 
-    console.log(jsonObj)
 
     //Gets the quantity indicator
     let quanityIndicator = document.getElementById("cart-quantity-indicator");
@@ -224,7 +227,7 @@ function UpdateCartQuantityIndicatorByCookie() {
     //Gets the indicator value as a number
     let quanityIndicatorText = quanityIndicator.innerText;
     let quantityValue = parseInt(quanityIndicatorText);
-
+    
     //Gets the "your cart is empty-text"
     let emptyCartText = document.getElementById("empty-cart-text");
 

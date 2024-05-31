@@ -33,7 +33,7 @@ window.addEventListener("load", (event) => {
 
     console.log("cartData:" + cartData.length)
 
-    if (cartData.length > 2) { //En tom korg består av tecknen: {}
+    if (cartData.length > 2) { //En tom korg består av tecknen: "{}"
         var xhr = new XMLHttpRequest(); //nytt XMLHttpRequest-objekt skapas, vilket är en inbyggd webbläsarobjekt som används för att skicka HTTP-förfrågningar och ta emot svar från en server utan att ladda om hela sidan.
         xhr.open("POST", "/Home/BuildShoppingCartRows", false); //asynkron POST-förfrågan till en viss URL (/Controller/Action) öppnas. Detta är den URL där servern förväntas ta emot förfrågan för att behandla varukorgen.
         xhr.setRequestHeader("Content-Type", "application/json"); //ställer in HTTP-headers för förfrågan. Här specificeras att den skickade datan är i JSON-format.

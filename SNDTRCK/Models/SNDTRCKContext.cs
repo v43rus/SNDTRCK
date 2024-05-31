@@ -148,8 +148,11 @@ public partial class SNDTRCKContext : DbContext
 			entity.HasOne(d => d.User).WithMany(p => p.AspNetUserTokens).HasForeignKey(d => d.UserId);
 		});
 
+        //modelBuilder.Entity<OrderDetail>()
+        //  .HasNoKey();
+
         modelBuilder.Entity<OrderDetail>()
-            .HasNoKey();
+        .HasKey(od => new { od.OrderId, od.ProductId });
 
         OnModelCreatingPartial(modelBuilder);
 	}
