@@ -18,7 +18,7 @@
 
             @foreach(var product in Model){
                 <a class="search-result" asp-controller="Product" asp-action="Product" asp-route-productId="@product.ProductId">
-                    <img src="/@product.CoverImageLink" alt="@product.Title"/>
+                    <img src="/@product.CoverImageLink" alt="@product.Title">
                     <h3>@product.Title - @product.Artist</h3>
                     <p><span class="color-of-price">@product.Price</span> kr</p>
                 </a>
@@ -26,7 +26,7 @@
 
         }
         else{
-            <h3 id="no-results-h3">No results, try another query or <br /> <a href="/">return to the startpage</a></h3>
+            <h3 id="no-results-h3">No results, try another query or <br> <a href="/">return to the startpage</a></h3>
         }
     </article>
     

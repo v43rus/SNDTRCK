@@ -13,26 +13,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>@ViewData["Title"] - SNDTRCK</title>
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/catalogue.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/header-footer.css" asp-append-version="true"/>
-	<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/css/catalogue.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/css/header-footer.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true">
 	<link rel="stylesheet" href="~/css/shoppingcart.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/resultspage.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/product.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/css/resultspage.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/css/product.css" asp-append-version="true">
 </head>
 <body>
 
 	<header id="header">
 		<!--Checkbox needs to be put here in order to control nav style-->
-		<input id="mobile-menu-checkbox" class="mobile-menu-checkbox hide-in-desktop" type="checkbox" onclick="checkIfScroll()" />
-		<section id="header-content-section">
+		<input id="mobile-menu-checkbox" class="mobile-menu-checkbox hide-in-desktop" type="checkbox" onclick="checkIfScroll()">
+		<div id="header-content-section">
 
 			<!--This div is necessary to position elements in the center-->
 			<div id="center-header-content-div">
@@ -40,7 +40,7 @@
 				<label class="hamburger hide-in-desktop" for="mobile-menu-checkbox"><span class="hamburger-line"></span></label>
 
 				<!--Logo-->
-				<a id="logo-anchor-container" asp-controller="Home" asp-action="Index"><img id="header-logo-text" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png" /></a>
+				<a id="logo-anchor-container" asp-controller="Home" asp-action="Index"><img id="header-logo-text" alt="SNDTRCK logo" src="~/media/pictures/_logo/full_logo.png"></a>
 
 				<!--Star and cart icon-->
 				<div id="header-icon-container">
@@ -53,7 +53,7 @@
 							<!--Example of search suggestion-->
 							<a class="search-suggestion" href="#">
 								<div class="search-suggestion-image-container">
-									<img src="/media/pictures/album-covers/zeppelin.jpg" />
+									<img alt="search suggestion image" src="/media/pictures/album-covers/zeppelin.jpg">
 								</div>
 								<div class="search-suggestion-text-container">
 									<ul>
@@ -71,14 +71,14 @@
 					@if (User.Identity!.IsAuthenticated && isAdmin)
 					{
 							<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" title="Admin" class="hide-in-mobile">
-							<img class="header-icon" src="~/media/icons/crown.png" />
+							<img alt="admin pages" class="header-icon" src="~/media/icons/crown.png">
 							</a>
 					}
 					<!--<img class="header-icon hide-in-mobile" src="~/media/icons/star.png" />-->
-					<a id="shopping-cart-link" asp-controller="Home" asp-action="ShoppingCart" title="Shopping Cart"><img class="header-icon" src="~/media/icons/cart.png" /><span id="cart-quantity-indicator"> </span></a>
+					<a alt="shopping cart" id="shopping-cart-link" asp-controller="Home" asp-action="ShoppingCart" title="Shopping Cart"><img alt="shopping cart" class="header-icon" src="~/media/icons/cart.png"><span id="cart-quantity-indicator"> </span></a>
 				</div>
 			</div>
-		</section>	
+		</div>	
 
 
 		<nav id="nav" class="nav">
@@ -89,7 +89,7 @@
 						<!--Example of search suggestion-->
 						<a class="search-suggestion" href="#">
 							<div class="search-suggestion-image-container">
-								<img src="/media/pictures/album-covers/zeppelin.jpg" />
+								<img alt="search suggestion" src="/media/pictures/album-covers/zeppelin.jpg">
 							</div>
 							<div class="search-suggestion-text-container">
 								<ul>
@@ -103,26 +103,25 @@
 						<a id="mobile-search-see-all-button" class="search-see-all-button" href="#">See all</a>
 					</div>
 				</form>
-				<li class="nav-category-text hide-in-desktop"><a>Log in/Sign up</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text hide-in-desktop"><a>Log in/Sign up</a><img alt="login or signup" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop"></li>
 				@if (User.Identity!.IsAuthenticated && isAdmin)
 				{
 					<li class="nav-category-text hide-in-desktop">
 						<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" title="Admin" class="hide-in-desktop">Admin view</a>
-						<img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" />
+						<img alt="admin dashboard" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop">
 					</li>
 				}
-				<li class="nav-category-text hide-in-desktop"><a href="#">Favourites</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="/genre/rock">Rock</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="/genre/pop">Pop</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="/genre/house">House</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="/genre/hip-hop">Hip-hop</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="/genre/edm">EDM</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="/genre/dubstep">Dubstep</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
-				<li class="nav-category-text"><a href="/genre/new-age">New Age</a><img src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop" /></li>
+				<li class="nav-category-text hide-in-desktop"><a href="#">Favourites</a><img alt="favourites" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop"></li>
+				<li class="nav-category-text"><a href="/genre/rock">Rock</a><img alt="rock albums" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop"></li>
+				<li class="nav-category-text"><a href="/genre/pop">Pop</a><img alt="pop albums" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop"></li>
+				<li class="nav-category-text"><a href="/genre/house">House</a><img alt="house albums" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop"></li>
+				<li class="nav-category-text"><a href="/genre/hip-hop">Hip-hop</a><img alt="hiphop albums" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop"></li>
+				<li class="nav-category-text"><a href="/genre/edm">EDM</a><img alt="EDM albums" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop"></li>
+				<li class="nav-category-text"><a href="/genre/dubstep">Dubstep</a><img alt="dubstep albums" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop"></li>
+				<li class="nav-category-text"><a href="/genre/new-age">New Age</a><img alt="new age albums" src="/media/icons/thin-arrow-right.png" class="mobile-nav-arrow-icon hide-in-desktop"></li>
 			</ul>
 
 		</nav>
-		<label id="close-mobile-menu-label" class="hide-in-desktop" for="mobile-menu-checkbox" />
 	</header>
 
 	<!--<div class="container">-->
@@ -134,22 +133,22 @@
 	<!--Css for home-section class can be found in home.css-->
 	<footer>
 		<div id="footer-left-hand-container" class="footer-hand-container">
-			<img class="footer-hand" src="/media/pictures/left-hand.png" />
+			<img alt="left rock hand" class="footer-hand" src="/media/pictures/left-hand.png">
 		</div>
 		<div id="footer-right-hand-container" class="footer-hand-container">
-			<img class="footer-hand" src="/media/pictures/right-hand.png" />
+			<img alt="right rock hand" class="footer-hand" src="/media/pictures/right-hand.png">
 		</div>
 
 		<div id="footer-bar-code-container">
-			<img id="footer-bar-code" src="~/media/pictures/bar-code.png" />
+			<img alt="barcode" id="footer-bar-code" src="~/media/pictures/bar-code.png">
 		</div>
 
 		<div id="footer-pricetag-container">
-			<img id="footer-pricetag" src="~/media/pictures/pricetag.png"/>
+			<img alt="footer price tag" id="footer-pricetag" src="~/media/pictures/pricetag.png">
 		</div>
 
 		<!--flex-direction: column-->
-		<section id="footer-list">
+		<div id="footer-list">
 			<!--flex-direction: row-->
 			<div class="footer-list-row">
 				<p class="footer-list-p">1</p>
@@ -172,7 +171,7 @@
 				<a class="footer-list-a" asp-controller="Home" asp-action="Privacy">PRIVACY POLICY</a>
 			</div>
 
-		</section>
+		</div>
 				
 	</footer>
 

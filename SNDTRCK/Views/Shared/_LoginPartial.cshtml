@@ -5,12 +5,12 @@
 	@if (SignInManager.IsSignedIn(User))
 	{
 		<a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-			<img class="header-icon hide-in-mobile" src="~/media/icons/user.png" />
+			<img alt="profile" class="header-icon hide-in-mobile" src="~/media/icons/user.png" />
 		</a>
 	}
 	else
 	{
 			<a class="text-dark" asp-area="Identity" asp-page="/Account/Login">
-			<img class="header-icon hide-in-mobile" src="~/media/icons/user.png" />
+			<img alt="log in" class="header-icon hide-in-mobile" src="~/media/icons/user.png" />
 			</a>
 	}

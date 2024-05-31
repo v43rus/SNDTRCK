@@ -7,9 +7,11 @@
 	Layout = "../_Shared/_Layout";
 	var registerModel = ViewBag.RegisterModel as SNDTRCK.Areas.Identity.Pages.Account.RegisterModel;
 }
+<!-- TODO: Implement a user management system -->
 
+<main class="max-width-80 d-flex flex-column text-center align-items-center">
 <h2>Manage Users</h2>
-
+<h3>NOTICE: NOT IMPLEMENTED YET</h3>
 <table class="table table-hover manage-admin">
 	<thead>
 		<tr>
@@ -50,7 +52,7 @@
 				<label for="username">Username: </label>
 			</th>
 			<th>
-				<input type="text" id="username" name="username" placeholder="Username..." required />
+				<input type="text" id="username" name="username" placeholder="Username..." required>
 			</th>
 		</tr>
 
@@ -71,7 +73,7 @@
 				<label for="password">Password: </label>
 			</th>
 			<th>
-				<input type="password" id="password" name="password" autocomplete="new-password" aria-required="true" placeholder="password" />
+				<input type="password" id="password" name="password" autocomplete="new-password" aria-required="true" placeholder="password">
 			</th>
 		</tr>
 
@@ -80,7 +82,7 @@
 				<label for="repeat-password">Repeat Password: </label>
 			</th>
 			<th>
-				<input type="password" id="repeat-password" name="repeat-password" autocomplete="new-password" aria-required="true" placeholder="password" />
+				<input type="password" id="repeat-password" name="repeat-password" autocomplete="new-password" aria-required="true" placeholder="password">
 			</th>
 		</tr>
 
@@ -89,3 +91,4 @@
 
 	<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Create User">Create User</button>
 </form>
+</main>
