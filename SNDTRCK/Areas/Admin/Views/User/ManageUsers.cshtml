@@ -1,94 +1,117 @@
-﻿@using SNDTRCK.Models
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using SNDTRCK.Models
 @using SNDTRCK.Models.User
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject UserManager<IdentityUser> _userManager
+
 
 @model List<AspNetUser>
 
 @{
 	Layout = "../_Shared/_Layout";
 	var registerModel = ViewBag.RegisterModel as SNDTRCK.Areas.Identity.Pages.Account.RegisterModel;
+
+	var currentUser = await _userManager.GetUserAsync(User);
 }
 <!-- TODO: Implement a user management system -->
 
 <main class="max-width-80 d-flex flex-column text-center align-items-center">
-<h2>Manage Users</h2>
-<h3>NOTICE: NOT IMPLEMENTED YET</h3>
-<table class="table table-hover manage-admin">
-	<thead>
-		<tr>
-			<th scope="col">Username (email)</th>
-			<th scope="col">Phone Nr</th>
-			<th scope="col">Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-
-		@foreach (var user in Model)
-		{
+	<h2>Manage Users</h2>
+	<h3>NOTICE: NOT IMPLEMENTED YET</h3>
+	<table class="table table-hover manage-admin">
+		<thead>
 			<tr>
-				<th scope="col">@user.Email</th>
-				<th scope="col">@user.PhoneNumber</th>
-
-
-				<th scope="col">
-					<button type="button" class="btn btn-success">Edit</button>
-					<button type="button" class="btn btn-danger">Delete User</button>
-				</th>
+				<th scope="col">Username (email)</th>
+				<th scope="col">Phone Nr</th>
+				<th scope="col">Actions</th>
 			</tr>
-		}
-
-	</tbody>
-</table>
-
-<h2>Add New user</h2>
-
-
-<form id="add-admin" asp-area="Admin" asp-controller="User" asp-action="SaveNewUser">
-
-	<table>
+		</thead>
 		<tbody>
 
-		<tr>
-			<th>
-				<label for="username">Username: </label>
-			</th>
-			<th>
-				<input type="text" id="username" name="username" placeholder="Username..." required>
-			</th>
-		</tr>
+			@foreach (var user in Model)
+			{
+				<tr>
+					<th scope="col">@user.Email</th>
+					<th scope="col">@user.PhoneNumber</th>
 
-		<tr>
-			<th>
-				<label for="role">Role: </label>
-			</th>
-			<th>
-				<select id="role" name="role" required>
-					<option value="Regular User">Regular User</option>
-					<option value="Admin">Admin</option>
-				</select>
-			</th>
-		</tr>
 
-		<tr>
-			<th>
-				<label for="password">Password: </label>
-			</th>
-			<th>
-				<input type="password" id="password" name="password" autocomplete="new-password" aria-required="true" placeholder="password">
-			</th>
-		</tr>
+					<th scope="col">
+						<button type="button" class="btn btn-success">Edit</button>
 
-		<tr>
-			<th>
-				<label for="repeat-password">Repeat Password: </label>
-			</th>
-			<th>
-				<input type="password" id="repeat-password" name="repeat-password" autocomplete="new-password" aria-required="true" placeholder="password">
-			</th>
-		</tr>
+						<form asp-area="Admin" asp-controller="User" asp-action="DeleteUser" method="post" class="inline-button delete-form">
+							<input type="hidden" name="userName" value="@user.UserName">
+							<input type="hidden" name="currentUser" value="@currentUser">
+							<button type="button" class="btn btn-danger" onclick="confirmDelete('@user.UserName')">Delete User</button>
+						</form>
+					</th>
+				</tr>
+			}
 
 		</tbody>
 	</table>
 
-	<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Create User">Create User</button>
-</form>
+	<h2>Add New user</h2>
+
+
+	<form id="add-admin" asp-area="Admin" asp-controller="User" asp-action="SaveNewUser">
+
+		<table>
+			<tbody>
+
+				<tr>
+					<th>
+						<label for="username">Username: </label>
+					</th>
+					<th>
+						<input type="text" id="username" name="username" placeholder="Username..." required>
+					</th>
+				</tr>
+
+				<tr>
+					<th>
+						<label for="role">Role: </label>
+					</th>
+					<th>
+						<select id="role" name="role" required>
+							<option value="Regular User">Regular User</option>
+							<option value="Admin">Admin</option>
+						</select>
+					</th>
+				</tr>
+
+				<tr>
+					<th>
+						<label for="password">Password: </label>
+					</th>
+					<th>
+						<input type="password" id="password" name="password" autocomplete="new-password" aria-required="true" placeholder="password">
+					</th>
+				</tr>
+
+				<tr>
+					<th>
+						<label for="repeat-password">Repeat Password: </label>
+					</th>
+					<th>
+						<input type="password" id="repeat-password" name="repeat-password" autocomplete="new-password" aria-required="true" placeholder="password">
+					</th>
+				</tr>
+
+			</tbody>
+		</table>
+
+		<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Create User">Create User</button>
+	</form>
 </main>
+
+<script>
+	function confirmDelete(userName) {
+		if (confirm("Are you sure you want to delete this user?")) {
+			// Find the form associated with the delete button
+			var form = document.querySelector('.delete-form input[name="userName"][value="' + userName + '"]');
+			form.parentNode.submit();
+		}
+	}
+</script>

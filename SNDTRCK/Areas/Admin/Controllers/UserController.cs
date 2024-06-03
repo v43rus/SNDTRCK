@@ -27,6 +27,19 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			return View(listOfUsers);
 		}
 
+		public IActionResult DeleteUser(string? userName, string? currentUser)
+		{
+			if (currentUser != userName && currentUser != null)
+			{
+				var userToDelete = _context.AspNetUsers.Where(u => u.UserName == userName).FirstOrDefault();
+
+				_context.AspNetUsers.Remove(userToDelete!);
+				_context.SaveChanges();
+			}
+			
+			return RedirectToAction("ManageUsers");
+		}
+
 		private bool ValidateUser(AspNetUser user)
 		{
 			return true;

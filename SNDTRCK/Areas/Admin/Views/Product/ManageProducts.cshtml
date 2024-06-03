@@ -43,7 +43,7 @@
 							<input type="hidden" name="productId" value="@p.ProductId">
 							<button type="submit" class="btn btn-success">Edit</button>
 						</form>
-						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" method="post" class="inline-button">
+						<form asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" method="post" class="inline-button delete-form">
 							<input type="hidden" name="productId" value="@p.ProductId">
 
 							<button type="button" class="btn btn-danger" onclick="confirmDelete('@p.ProductId')">Delete</button>
