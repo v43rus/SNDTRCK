@@ -35,7 +35,17 @@ public partial class AspNetUser
 
     public int AccessFailedCount { get; set; }
 
-    public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; } = new List<AspNetUserClaim>();
+    public string? FirstName { get; set; }
+
+    public string? LastName { get; set; }
+
+    public string? Address { get; set; }
+
+    public string? PostalCode { get; set; }
+
+    public string? City { get; set; }
+
+	public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; } = new List<AspNetUserClaim>();
 
     public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; } = new List<AspNetUserLogin>();
 

@@ -29,6 +29,7 @@ namespace SNDTRCK.Areas.Admin.Controllers
 
 		public IActionResult DeleteUser(string? userName, string? currentUser)
 		{
+			// DELETES USER
 			if (currentUser != userName && currentUser != null)
 			{
 				var userToDelete = _context.AspNetUsers.Where(u => u.UserName == userName).FirstOrDefault();

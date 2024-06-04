@@ -31,9 +31,7 @@ public partial class SNDTRCKContext : DbContext
 	public virtual DbSet<NewsletterSignup> NewsletterSignups { get; set; }
 
 	public virtual DbSet<Product> Products { get; set; }
-
 	public virtual DbSet<Order> Orders { get; set; }
-
 	public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
 
@@ -113,9 +111,14 @@ public partial class SNDTRCKContext : DbContext
 				.IsUnique()
 				.HasFilter("([NormalizedUserName] IS NOT NULL)");
 
+			entity.Property(e => e.Address).HasMaxLength(255);
+			entity.Property(e => e.City).HasMaxLength(100);
 			entity.Property(e => e.Email).HasMaxLength(256);
+			entity.Property(e => e.FirstName).HasMaxLength(50);
+			entity.Property(e => e.LastName).HasMaxLength(50);
 			entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
 			entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
+			entity.Property(e => e.PostalCode).HasMaxLength(20);
 			entity.Property(e => e.UserName).HasMaxLength(256);
 		});
 
@@ -148,13 +151,34 @@ public partial class SNDTRCKContext : DbContext
 			entity.HasOne(d => d.User).WithMany(p => p.AspNetUserTokens).HasForeignKey(d => d.UserId);
 		});
 
-        //modelBuilder.Entity<OrderDetail>()
-        //  .HasNoKey();
+		modelBuilder.Entity<Order>(entity =>
+		{
+			entity.HasKey(e => e.OrderId).HasName("PK__Orders__C3905BCFE81A436E");
 
-        modelBuilder.Entity<OrderDetail>()
-        .HasKey(od => new { od.OrderId, od.ProductId });
+			entity.Property(e => e.Address).HasMaxLength(200);
+			entity.Property(e => e.City).HasMaxLength(50);
+			entity.Property(e => e.Email).HasMaxLength(100);
+			entity.Property(e => e.FirstName).HasMaxLength(50);
+			entity.Property(e => e.LastName).HasMaxLength(50);
+			entity.Property(e => e.OrderDate).HasColumnType("datetime");
+			entity.Property(e => e.OrderStatus).HasMaxLength(50);
+			entity.Property(e => e.OrderSum).HasColumnType("decimal(18, 2)");
+			entity.Property(e => e.PhoneNumber).HasMaxLength(20);
+			entity.Property(e => e.PostalCode).HasMaxLength(10);
+			entity.Property(e => e.UserId).HasMaxLength(450);
+		});
 
-        OnModelCreatingPartial(modelBuilder);
+		modelBuilder.Entity<OrderDetail>(entity =>
+		{
+			entity.HasNoKey();
+
+			entity.HasOne(d => d.Order).WithMany()
+				.HasForeignKey(d => d.OrderId)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("FK_OrderDetails_Orders");
+		});
+
+		OnModelCreatingPartial(modelBuilder);
 	}
 
 	partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

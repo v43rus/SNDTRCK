@@ -315,7 +315,7 @@ namespace SNDTRCK.Controllers
 			if (ModelState.IsValid)
 			{
                 Dictionary<string, decimal> OrderSumAndQuantity = GetOrderSumAndQuantity();
-
+				
                 //Sparar ordern
                 Order order = new Order
 				{
@@ -352,6 +352,7 @@ namespace SNDTRCK.Controllers
 
                 //return RedirectToAction("OrderConfirmation");
                 return RedirectToAction("OrderConfirmation");
+				
 			}
 
             return View("Checkout", model);
