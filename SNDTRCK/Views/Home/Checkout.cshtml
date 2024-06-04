@@ -5,6 +5,8 @@
 @{
     ViewData["Title"] = "Checkout";
     var quantityWord = @Model.OrderQuantity == 1 ? "ITEM" : "ITEMS"; //condition ? "trueResult" : "falseResult"
+
+    var u = ViewBag.User as AspNetUser;
 }
 
 <main id="checkout-main">
@@ -18,19 +20,19 @@
 
     @using (Html.BeginForm("PlaceOrder", "Home", FormMethod.Post, new { id = "checkout-grid-container" }))
     {
-            <input type="text" placeholder="First name" id="fName" name="FirstName" class="checkout-grid-item" required/>        
+            <input type="text" placeholder="First name" value="@u.FirstName" id="fName" name="FirstName" class="checkout-grid-item" required/>
 
-            <input type="text" placeholder="Last name" id="lName" name="LastName" class="checkout-grid-item" required/>
+        <input type="text" placeholder="Last name" value="@u.LastName" id="lName" name="LastName" class="checkout-grid-item" required />
 
-            <input type="text" placeholder="Address" id="address" name="Address" class="checkout-grid-item" required/>
+            <input type="text" placeholder="Address" value="@u.Address" id="address" name="Address" class="checkout-grid-item" required/>
 
-            <input type="number" maxlength="5" placeholder="Postal code" id="pCode" name="PostalCode" class="checkout-grid-item" required/>
+        <input type="number" maxlength="5" placeholder="Postal code" value="@u.PostalCode" id="pCode" name="PostalCode" class="checkout-grid-item" required />
 
-            <input type="text" placeholder="City" id="city" name="City" class="checkout-grid-item" required/>
+        <input type="text" placeholder="City" id="city" value="@u.City"  name="City" class="checkout-grid-item" required />
 
-            <input type="tel" placeholder="Phone number" id="telNumber" name="PhoneNumber" class="checkout-grid-item" required/>
+        <input type="tel" placeholder="Phone number" value="@u.PhoneNumber" id="telNumber" name="PhoneNumber" class="checkout-grid-item" required />
 
-            <input type="email" placeholder="Email address" id="email" name="Email" class="checkout-grid-item" required/>
+        <input type="email" placeholder="Email address" value="@u.Email" id="email" name="Email" class="checkout-grid-item" required />
 
         <aside id="place-order-container">
             <button type="submit">Place order <img src="/media/icons/thin-arrow-right.png" id="cart-checkout-arrow" /></button>

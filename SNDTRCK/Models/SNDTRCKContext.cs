@@ -170,12 +170,7 @@ public partial class SNDTRCKContext : DbContext
 
 		modelBuilder.Entity<OrderDetail>(entity =>
 		{
-			entity.HasNoKey();
-
-			entity.HasOne(d => d.Order).WithMany()
-				.HasForeignKey(d => d.OrderId)
-				.OnDelete(DeleteBehavior.ClientSetNull)
-				.HasConstraintName("FK_OrderDetails_Orders");
+			entity.HasKey(e => new { e.OrderId, e.ProductId });
 		});
 
 		OnModelCreatingPartial(modelBuilder);

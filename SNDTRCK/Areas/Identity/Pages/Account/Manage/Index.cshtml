@@ -37,8 +37,8 @@
 		</div>
 		
 		<div class="form-floating mb-3">
-			<input name="postalcode" asp-for="CurrentUser.PostalCode" class="form-control" />
-			<label asp-for="CurrentUser.PostalCode" class="form-label">Postal Code:</label>
+			<input type="number" name="postalcode" asp-for="CurrentUser.PostalCode" class="form-control" />
+			<label  asp-for="CurrentUser.PostalCode" class="form-label">Postal Code:</label>
 			<span asp-validation-for="CurrentUser.PostalCode" class="text-danger"></span>
 		</div>
 		

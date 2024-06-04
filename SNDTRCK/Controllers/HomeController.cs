@@ -18,12 +18,13 @@ namespace SNDTRCK.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
 		private readonly SNDTRCKContext _context;
+		private readonly UserManager<IdentityUser> _userManager;
 
-
-		public HomeController(SNDTRCKContext context, ILogger<HomeController> logger)
+		public HomeController(SNDTRCKContext context, ILogger<HomeController> logger, UserManager<IdentityUser> userManager)
 		{
 			_logger = logger;
 			_context = context;
+			_userManager = userManager;
 		}
 
 
@@ -83,8 +84,8 @@ namespace SNDTRCK.Controllers
 		[HttpPost]
 		public ActionResult BuildShoppingCartRows([FromBody] string cartData) //[FromBody] säger åt controllern att informationen från kroppen på http-förfrågan och inte t.ex. url:n eller headern. xhr.setRequestHeader("Content-Type", "application/json") behövs för att detta ska fungera
 		{
-            //Konventera JSON-strängen till en Dictionary<int, int>
-            Dictionary<int, int> cartDataDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(cartData);
+			//Konventera JSON-strängen till en Dictionary<int, int>
+			Dictionary<int, int> cartDataDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(cartData);
 
 			//Stores html for each product line in cart
 			List<string> productLines = new List<string>();
@@ -248,57 +249,57 @@ namespace SNDTRCK.Controllers
 		//Metod som hämtar datan från varukorgen, räknar ut antal, summa och dictionary av produkterna
 		public Dictionary<int, int> GetShoppingCartData()
 		{
-            var userCart = Request.Cookies["userCart"];
+			var userCart = Request.Cookies["userCart"];
 
-            //Konventera JSON-strängen till en Dictionary<int, int>
-            Dictionary<int, int> cartDataDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(userCart);
+			//Konventera JSON-strängen till en Dictionary<int, int>
+			Dictionary<int, int> cartDataDict = JsonConvert.DeserializeObject<Dictionary<int, int>>(userCart);
 
 			return cartDataDict;
-        }
+		}
 
 		public Dictionary<string, decimal> GetOrderSumAndQuantity()
 		{
-            decimal orderSum = 0;
-            int orderQuantity = 0;
+			decimal orderSum = 0;
+			int orderQuantity = 0;
 			Dictionary<string, decimal> OrderSumAndQuantity = new Dictionary<string, decimal>();
 
-            Dictionary<int, int> cartDataDict = GetShoppingCartData();
+			Dictionary<int, int> cartDataDict = GetShoppingCartData();
 
-            foreach (var entry in cartDataDict)
-            {
-                int productId = entry.Key;
-                int quantity = entry.Value;
+			foreach (var entry in cartDataDict)
+			{
+				int productId = entry.Key;
+				int quantity = entry.Value;
 
-                Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
+				Product product = _context.Products.FirstOrDefault(p => p.ProductId == entry.Key);
 
-                if (product is not null)
-                {
-                    orderSum += (product.Price * quantity);
+				if (product is not null)
+				{
+					orderSum += (product.Price * quantity);
 
-                    orderQuantity += quantity;
-                }
-            }
+					orderQuantity += quantity;
+				}
+			}
 
 			OrderSumAndQuantity.Add("orderSum", orderSum);
 			OrderSumAndQuantity.Add("orderQuantity", orderQuantity);
 
 			return OrderSumAndQuantity;
-        }
+		}
 
 
 
 
 
 
-        /*Get the product data in the cart for the checkout page*/
-        [HttpGet]
-        [Route("/checkout")]
-        public ActionResult Checkout()
-        {
+		/*Get the product data in the cart for the checkout page*/
+		[HttpGet]
+		[Route("/checkout")]
+		public async Task<ActionResult> Checkout()
+		{
 			Dictionary<string, decimal> OrderSumAndQuantity = GetOrderSumAndQuantity();
 
-            decimal orderSum = OrderSumAndQuantity["orderSum"];
-            int orderQuantity = Convert.ToInt32(OrderSumAndQuantity["orderQuantity"]);
+			decimal orderSum = OrderSumAndQuantity["orderSum"];
+			int orderQuantity = Convert.ToInt32(OrderSumAndQuantity["orderQuantity"]);
 
 			var viewModel = new CheckoutViewModel
 			{
@@ -306,18 +307,26 @@ namespace SNDTRCK.Controllers
 				OrderQuantity = orderQuantity,
 			};
 
+			var user =  await _userManager.GetUserAsync(User);
+			ViewBag.User = _context.AspNetUsers.Where(u => u.Id == user.Id).FirstOrDefault();
+
 			return View(viewModel);
-        }
+		}
 
 		[HttpPost]
-		public ActionResult PlaceOrder(OrderViewModel model)
+		public async Task<ActionResult> PlaceOrder(OrderViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
-                Dictionary<string, decimal> OrderSumAndQuantity = GetOrderSumAndQuantity();
-				
-                //Sparar ordern
-                Order order = new Order
+				Dictionary<string, decimal> OrderSumAndQuantity = GetOrderSumAndQuantity();
+
+				var identity = await _userManager.GetUserAsync(User);
+
+				var user = _context.AspNetUsers.Where(u => u.Id == identity.Id).FirstOrDefault();
+
+
+				//Sparar ordern
+				Order order = new Order
 				{
 					FirstName = model.FirstName,
 					LastName = model.LastName,
@@ -329,11 +338,13 @@ namespace SNDTRCK.Controllers
 					OrderSum = OrderSumAndQuantity["orderSum"], 
 					OrderDate = DateTime.Now,
 					Quantity = Convert.ToInt32(OrderSumAndQuantity["orderQuantity"]),
+					OrderStatus = "Received",
+					UserId = user.Id
 				};
 
 				_context.Orders.Add(order);
 				_context.SaveChanges();
-
+				
 				//Sparar vilka produkter som beställdes i kopplingstabellen OrderDetail
 				foreach(var item in GetShoppingCartData())
 				{
@@ -342,25 +353,23 @@ namespace SNDTRCK.Controllers
 						OrderId = order.OrderId,
 						ProductId = item.Key,  
 						Quantity = item.Value
-
 					};
 
-                    _context.OrderDetails.Add(orderDetail);
-                }
+					_context.OrderDetails.Add(orderDetail);
+				}
 
-                _context.SaveChanges();
+				_context.SaveChanges();
 
-                //return RedirectToAction("OrderConfirmation");
-                return RedirectToAction("OrderConfirmation");
+				//return RedirectToAction("OrderConfirmation");
+				return RedirectToAction("OrderConfirmation");
 				
 			}
-
-            return View("Checkout", model);
-        }
+			return View("Checkout", model);
+		}
 
 		public ActionResult OrderConfirmation()
 		{
 			return View();
 		}
-    }
+	}
 }
