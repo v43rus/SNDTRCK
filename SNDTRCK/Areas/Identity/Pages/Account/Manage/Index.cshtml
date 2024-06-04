@@ -1,28 +1,63 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
-    ViewData["ActivePage"] = ManageNavPages.Index;
+	ViewData["Title"] = "Profile";
+	ViewData["ActivePage"] = ManageNavPages.Index;
+
+	var user = Model.CurrentUser;
 }
 
 <main id="account-main">
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-        <form class="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
-                <label asp-for="Username" class="form-label"></label>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary profile-button">Save</button>
-        </form>
+	<h3>@ViewData["Title"]</h3>
+	<partial name="_StatusMessage" for="StatusMessage" />
+	<form class="profile-form" method="post">
+		<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+		<div class="form-floating mb-3">
+			<input name="username" asp-for="CurrentUser.UserName" class="form-control" disabled />
+			<label asp-for="CurrentUser.UserName" class="form-label">Username:</label>
+		</div>
+		
+		<div class="form-floating mb-3">
+			<input name="firstname" asp-for="CurrentUser.FirstName" class="form-control"/>
+			<label asp-for="CurrentUser.FirstName" class="form-label">First Name:</label>
+			<span asp-validation-for="CurrentUser.FirstName" class="text-danger"></span>
+		</div>
+		
+		<div class="form-floating mb-3">
+			<input name="lastname" asp-for="CurrentUser.LastName" class="form-control" />
+			<label asp-for="CurrentUser.LastName" class="form-label">Last Name:</label>
+			<span asp-validation-for="CurrentUser.LastName" class="text-danger"></span>
+		</div>
+
+		<div class="form-floating mb-3">
+			<input name="city" asp-for="CurrentUser.City" class="form-control" />
+			<label asp-for="CurrentUser.City" class="form-label">City:</label>
+			<span asp-validation-for="CurrentUser.City" class="text-danger"></span>
+		</div>
+		
+		<div class="form-floating mb-3">
+			<input name="postalcode" asp-for="CurrentUser.PostalCode" class="form-control" />
+			<label asp-for="CurrentUser.PostalCode" class="form-label">Postal Code:</label>
+			<span asp-validation-for="CurrentUser.PostalCode" class="text-danger"></span>
+		</div>
+		
+		<div class="form-floating mb-3">
+			<input name="address" asp-for="CurrentUser.Address" class="form-control" />
+			<label asp-for="CurrentUser.Address" class="form-label">Address:</label>
+			<span asp-validation-for="CurrentUser.Address" class="text-danger"></span>
+		</div>
+		
+		<div class="form-floating mb-3">
+			<input name="phone" asp-for="CurrentUser.PhoneNumber" class="form-control" />
+			<label asp-for="CurrentUser.PhoneNumber" class="form-label">Phone Nr:</label>
+			<span asp-validation-for="CurrentUser.PhoneNumber" class="text-danger"></span>
+		</div>
+
+		<button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary profile-button">Save</button>
+	</form>
 </main>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+	<partial name="_ValidationScriptsPartial" />
 }
