@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SNDTRCK.Controllers;
 using SNDTRCK.Models;
 using System.Drawing;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using RestSharp.Validation;
 
 namespace SNDTRCK.Areas.Admin.Controllers
 {
@@ -29,7 +31,7 @@ namespace SNDTRCK.Areas.Admin.Controllers
 		{
 			ViewBag.Orders = _context.Orders.ToList();
 			ViewBag.OrderDetails = _context.OrderDetails.ToList();
-			
+
 			return View();
 		}
 
@@ -53,6 +55,47 @@ namespace SNDTRCK.Areas.Admin.Controllers
 			ViewBag.Products = products;
 
 			return View();
+		}
+
+		public IActionResult ModifyExistingOrder(int? orderId)
+		{
+			var currentOrder = _context.Orders.Where(o => o.OrderId == orderId).FirstOrDefault();
+
+			if (currentOrder != null)
+			{
+				if (Request.Form["city"] != "")
+					currentOrder.City = Request.Form["city"].ToString();
+
+				if (Request.Form["postalcode"] != "")
+					currentOrder.PostalCode = Request.Form["postalcode"].ToString();
+
+				if (Request.Form["address"] != "")
+					currentOrder.Address = Request.Form["address"].ToString();
+
+				if (Request.Form["orderstatus"] != "")
+					currentOrder.OrderStatus = Request.Form["orderstatus"].ToString();
+
+				if (ValidateNewOrder(currentOrder))
+					_context.SaveChanges();
+			}
+
+			return RedirectToAction("ManageOrders");
+		}
+
+		private bool ValidateNewOrder(Order o)
+		{
+			if (!int.TryParse(o.PostalCode, out _))
+				return false;
+
+			if (o.OrderStatus == "Shipped" ||
+				o.OrderStatus == "Received" ||
+				o.OrderStatus == "Delivered" ||
+				o.OrderStatus == "Cancelled")
+			{
+				return true;
+			}
+			else
+				return false;
 		}
 	}
 }

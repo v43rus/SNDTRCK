@@ -15,7 +15,7 @@
 }
 <main class="max-width-80 d-flex flex-column text-center align-items-center">
 	<h3>Edit Order</h3>
-	<form id="add-admin" asp-area="Admin" asp-controller="Product" asp-action="ModifyExistingProduct" enctype="multipart/form-data">
+	<form id="add-admin" asp-area="Admin" asp-controller="Order" asp-action="ModifyExistingOrder">
 
 		<table>
 			<tbody>
@@ -128,7 +128,7 @@
 					</td>
 				</tr>
 
-				@{
+				{
 					currentIteration++;
 				}
 			}
@@ -137,6 +137,6 @@
 		</table>
 
 		<input type="hidden" name="orderId" value="@order.OrderId">
-		<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Save Album">Modify Order</button>
+		<button type="submit" id="submit-btn" class="btn btn-primary" name="submit-btn" value="Modify Order">Modify Order</button>
 	</form>
 </main>
