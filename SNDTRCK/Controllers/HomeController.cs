@@ -328,13 +328,14 @@ namespace SNDTRCK.Controllers
 				//Sparar ordern
 				Order order = new Order
 				{
-					FirstName = model.FirstName,
-					LastName = model.LastName,
-					Address = model.Address,
-					PostalCode = model.PostalCode,
-					City = model.City,
-					PhoneNumber = model.PhoneNumber,
-					Email = model.Email,
+                    //HttpUtility.HtmlEncode() för att förhindra XSS eller annan injektion
+                    FirstName = HttpUtility.HtmlEncode(model.FirstName),
+					LastName = HttpUtility.HtmlEncode(model.LastName),
+					Address = HttpUtility.HtmlEncode(model.Address),
+					PostalCode = HttpUtility.HtmlEncode(model.PostalCode),
+					City = HttpUtility.HtmlEncode(model.City),
+					PhoneNumber = HttpUtility.HtmlEncode(model.PhoneNumber),
+					Email = HttpUtility.HtmlEncode(model.Email),
 					OrderSum = OrderSumAndQuantity["orderSum"], 
 					OrderDate = DateTime.Now,
 					Quantity = Convert.ToInt32(OrderSumAndQuantity["orderQuantity"]),
