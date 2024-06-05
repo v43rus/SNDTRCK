@@ -1,48 +1,52 @@
 ﻿@page
+
+@using SNDTRCK.Models
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
 	Layout = "../_Shared/_Layout";
 
-	var orders = ViewBag.Orders;
-	var orderDetails = ViewBag.OrderDetails;
+	var orders = ViewBag.Orders as List<Order>;
 }
 
 <main class="max-width-80 d-flex flex-column text-center align-items-center">
 	<h1>Manage Orders</h1>
-	
+
 	<table class="table table-hover manage-admin">
 		<thead>
-		<tr>
-			<th scope="col">#</th>
-			<th scope="col">Name</th>
-			<th scope="col">Postal</th>
-			<th scope="col">City</th>
-			<th scope="col">Phone Nr</th>
-			<th scope="col">Email</th>
-			<th scope="col">Order Sum</th>
-		</tr>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Name</th>
+				<th scope="col">Email</th>
+				<th scope="col">Address</th>
+				<th scope="col">Status</th>
+				<th scope="col">Order Sum</th>
+				<th scope="col"></th>
+			</tr>
 		</thead>
 		<tbody>
 
-		@if (orders != null)
-		{
-			@foreach (var o in orders)
+			@if (orders != null)
 			{
-				<tr>
-					<th scope="col"></th>
-					<th scope="col"></th>
-					<th scope="col"></th>
-					<th scope="col"></th>
-					<th scope="col"></th>
-
-
-
-					<th scope="col">
-					</th>
-				</tr>
-
-
+				@foreach (var o in orders)
+				{
+					<tr>
+						<td scope="col">@o.OrderId</td>
+						<td scope="col">@o.FirstName @o.LastName</td>
+						<td scope="col">@o.Email</td>
+						<td scope="col">@o.City, @o.Address</td>
+						<td scope="col">@o.OrderStatus</td>
+						<td scope="col">@o.OrderSum</td>
+						<td scope="col">
+							<form class="inline-button" asp-area="Admin" asp-controller="Order" asp-action="EditOrder" method="get">
+								<input type="hidden" name="orderId" value="@o.OrderId">
+								<button type="submit" class="btn btn-success">Edit</button>
+							</form>
+						</td>
+					</tr>
+				}
 			}
-		}
 
 		</tbody>
 	</table>

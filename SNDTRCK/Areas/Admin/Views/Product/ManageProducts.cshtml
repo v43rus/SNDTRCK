@@ -28,17 +28,17 @@
 			@foreach (var p in Model)
 			{
 				<tr>
-					<th scope="col">
+					<td scope="col">
 						<img alt="album cover" src="~/@p.CoverImageLink" class="product-image">
-					</th>
-					<th scope="col">@p.Title</th>
-					<th scope="col">@p.Artist</th>
-					<th scope="col">@p.Genre</th>
-					<th scope="col">@p.Price</th>
+					</td>
+					<td scope="col">@p.Title</td>
+					<td scope="col">@p.Artist</td>
+					<td scope="col">@p.Genre</td>
+					<td scope="col">@p.Price</td>
 
 
 
-					<th scope="col">
+					<td scope="col">
 						<form class="inline-button" asp-area="Admin" asp-controller="Product" asp-action="EditProduct" method="get">
 							<input type="hidden" name="productId" value="@p.ProductId">
 							<button type="submit" class="btn btn-success">Edit</button>
@@ -48,7 +48,7 @@
 
 							<button type="button" class="btn btn-danger" onclick="confirmDelete('@p.ProductId')">Delete</button>
 						</form>
-					</th>
+					</td>
 				</tr>
 
 
@@ -65,28 +65,28 @@
 			<tbody>
 
 			<tr>
-				<th>
+				<td>
 					<label for="title">Title </label>
-				</th>
-				<th>
+				</td>
+				<td>
 					<input type="text" id="title" name="title" placeholder="Album Title..." required>
-				</th>
+				</td>
 			</tr>
 
 			<tr>
-				<th>
+				<td>
 					<label for="artist">Artist: </label>
-				</th>
-				<th>
+				</td>
+				<td>
 					<input type="text" id="artist" name="artist" placeholder="Album Artist..." required>
-				</th>
+				</td>
 			</tr>
 
 			<tr>
-				<th>
+				<td>
 					<label for="genre">Genre: </label>
-				</th>
-				<th>
+				</td>
+				<td>
 					<select id="genre" name="genre" required>
 						<option value="Rock">Rock</option>
 						<option value="Classical">Classical</option>
@@ -106,60 +106,60 @@
 						<option value="OST">OST</option>
 						<option value="New-Age">New Age</option>
 					</select>
-				</th>
+				</td>
 			</tr>
 			<tr>
-				<th>
+				<td>
 					<label for="description">Description: </label>
-				</th>
-				<th>
+				</td>
+				<td>
 					<input type="text" id="description" name="description" placeholder="Album Description..." required>
-				</th>
+				</td>
 			</tr>
 
 			<tr>
-				<th>
+				<td>
 					<label for="label">Record Label: </label>
-				</th>
-				<th>
+				</td>
+				<td>
 					<input type="text" id="label" name="label" placeholder="Record Label..." required>
-				</th>
+				</td>
 			</tr>
 
 			<tr>
-				<th>
+				<td>
 					<label for="release-year">Release Year: </label>
-				</th>
-				<th>
+				</td>
+				<td>
 					<input type="number" id="release-year" name="release-year" placeholder="Release Year..." required>
-				</th>
+				</td>
 			</tr>
 
 			<tr>
-				<th>
+				<td>
 					<label for="discog-id">Discog Id: </label>
-				</th>
-				<th>
+				</td>
+				<td>
 					<input type="number" id="discog-id" name="discog-id" placeholder="Discog id, set to 0 if non-existent">
-				</th>
+				</td>
 			</tr>
 
 			<tr>
-				<th>
+				<td>
 					<label for="price">Price </label>
-				</th>
-				<th>
+				</td>
+				<td>
 					<input type="number" id="price" name="price" placeholder="Price..." required>
-				</th>
+				</td>
 			</tr>
 
 			<tr>
-				<th>
+				<td>
 					<label for="album-cover">Upload Cover Image</label>
-				</th>
-				<th>
+				</td>
+				<td>
 					<input type="file" id="image" name="image" class="form-control-file" required>
-				</th>
+				</td>
 			</tr>
 			</tbody>
 		</table>
